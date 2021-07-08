@@ -16,7 +16,7 @@ const Signup = () => {
     const oStyle = {color:"orange"}
     return (
         <Grid >
-            <Paper  style={paperStyle}>
+            <Paper elevation={10} style={paperStyle}>
                 <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                 <p style={headerStyle}>Join</p>

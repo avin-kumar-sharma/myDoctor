@@ -13,7 +13,7 @@ return(
     <>
     <Grid>
         <Paper elevation={10} style={paperStyle}>
-           <Grid align="center"> <h2>Log in</h2></Grid>
+           <br/><br/>
            <label style={label}>Mobile Number/ Email ID</label>
            <TextField variant="outlined" type="email tel"  placeholder='Enter username' fullWidth required></TextField><br/><br/>
            <label style={label}>Password</label>
