@@ -1,10 +1,8 @@
 import Login from "./Components/Login";
-
-
 function App() {
   return (
     <div className="App">
-      Hello Doctor!!!
+      Hello Doctor!!
       <Login/>
     </div>
   );
