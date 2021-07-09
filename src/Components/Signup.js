@@ -46,7 +46,7 @@ const Signup = () => {
                  color="rgb(102, 204, 255)"
                  inputProps={{ 'aria-label': 'secondary checkbox' }}
                  />}
-                 label='Recieve relevant offers and promotional communication from Practo' style={checkStyle}/>
+                 label='Recieve relevant offers and promotional communication from myDoctor' style={checkStyle}/>
                  <br/><br/>
                  <Typography style={pStyle}>By Signing up,I agree to 
                   <Link style={lStyle}> terms</Link>
