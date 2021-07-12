@@ -1,0 +1,32 @@
+.paperStyle{
+    padding :30px 20px;
+    height : 90vh;
+    width:400;
+    margin:20px auto
+}
+.label{
+
+    font-size:14px;
+    font-weight:500;
+    color:grey;
+}
+.halfline{
+    width:200px;
+    align-items:center;
+}
+.forgotpw{
+    color: primary;
+    font-size: 14px;
+}
+.fbColor{
+    background-color:darkBlue;
+    color:white;
+}
+.headerStyle{
+    color:grey;
+    font-size:24px;
+}
+.stylesPro {
+   font-size:12px;
+    color:grey;
+}
