@@ -3,6 +3,7 @@ import { Grid , Paper , TextField ,Typography ,Link , Button} from '@material-ui
 import field from '../JSON/Signup.json'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React from 'react'
+import info from '../JSON/Info.json'
 
 
 
@@ -19,8 +20,8 @@ import React from 'react'
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <br/>
-                <p className="stylesPro">Are you a doctor?
-                <Link >Register here</Link></p>
+                <p className="stylesPro">{info.are_you_a_doctor}
+                <Link >{info.Register}</Link></p>
                 </Grid>
                 
                 </Grid>
@@ -39,13 +40,13 @@ import React from 'react'
                 <FormControlLabel control={ <Checkbox
                  color ="primary"              
                  />}
-                 label='Recieve relevant offers and promotional communication from myDoctor' className="label"/>
+                 label={info.reg_checkbox} className="label"/>
                  <br/><br/>
-                 <Typography className="label">By Signing up,I agree to 
-                  <Link > terms</Link>
+                 <Typography className="label">{info.agree}
+                  <Link > {info.terms}</Link>
                   </Typography>
                   <br/><br/>
-                  <Button fullWidth color="primary" variant="contained" style={color}>Login</Button>
+                  <Button fullWidth color="primary" variant="contained" style={color}>{info.register}</Button>
                 </form>
             </Paper>
         </Grid>

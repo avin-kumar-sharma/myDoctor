@@ -4,6 +4,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import '../Styles/Loginregister.css'
 import data from '../JSON/Login.json'
+import info from '../JSON/Info.json'
 
 
 const Login=()=>{
@@ -20,10 +21,10 @@ return(
                 return(
                      <>
             
-              <label className="label">{datas.data_label}</label>
-               <TextField variant="outlined" type={datas.data_type}  placeholder={datas.data_placeholder} fullWidth required></TextField><br/><br/>
+            <label className="label">{datas.data_label}</label>
+          <TextField variant="outlined" type={datas.data_type}  placeholder={datas.data_placeholder} fullWidth required></TextField><br/><br/>
           
-                     </>
+          </>
                )}) }
 
 
@@ -33,10 +34,10 @@ return(
           <FormControlLabel control={
              <Checkbox color="primary"/>
           }
-          label='Remember me for 30 days' className="label"/>
+          label={info.info_remember_me} className="label"/>
      
         <Link className="forgotpw" href="#" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Forgot Password?
+            {info.forgot}
        </Link>
           </Typography>
 
@@ -44,16 +45,16 @@ return(
       <FormControlLabel control={ 
         <Checkbox
         color="primary"/>}
-        label='Login with OTP instead of password' className="label"/>
+        label={info.Login_with_otp} className="label"/>
         <br/><br/>
       <Button fullWidth
       style={login} color="primary" variant="contained">
-         Login
+         {info.login}
       </Button>
       <br/><br/>
        <table><tr colspan="2"><td><hr className="halfline"></hr></td>or<td><hr className="halfline"></hr></td></tr></table><br/>
        <Button fullWidth style={colordark} variant="contained"   >
-        <FacebookIcon></FacebookIcon>&nbsp; Connect with Facebook
+        <FacebookIcon></FacebookIcon>&nbsp; {info.facebook}
        </Button>
 
       </Paper>
