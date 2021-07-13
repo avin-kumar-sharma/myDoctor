@@ -5,31 +5,14 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { Typography, Avatar } from "@material-ui/core";
-import Flex from "../../shared/components/Flex";
+import {useTranslation} from "react-i18next";
+import Flex from "../../../shared/components/Flex";
+import { useStyles } from "./styles";
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  subTitle: {
-    fontSize: 12,
-    fontWeight: "semi-bold",
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-  },
-});
 
 export default function DoctorCard({data}) {
   const classes = useStyles();
+  const {t} = useTranslation('i18n');
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -65,7 +48,7 @@ export default function DoctorCard({data}) {
 
       </CardContent>
       <CardActions style={{justifyContent: 'center'}}>
-        <Button size="small" variant="contained" color="primary" >BOOK APPOINTMENT</Button>
+        <Button size="small" variant="contained" color="primary" >{t('dashboard.book_appointment')}</Button>
       </CardActions>
     </Card>
   );

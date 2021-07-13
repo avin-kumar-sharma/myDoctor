@@ -1,42 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
+import { useDispatch, useSelector } from "react-redux";
+import { loadSpecializations } from "../../../state/common/slice";
+import { useStyles } from "./styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    border: `1px solid ${theme.palette.divider}`,
-    height: "30px",
-    boxShadow: "none",
-    borderRadius: "0",
-  },
-  icon: {
-    color: theme.palette.text.secondary,
-    marginRight: theme.spacing(2),
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-}));
-
-const options = ['Pulmonology', 'Cardialogy'];
 
 export default function Specialisation() {
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
+  const { specializations } = useSelector((state) => state.common);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadSpecializations());
+  }, []);
   return (
     <Autocomplete
       id="specialisation"
       style={{ width: 200 }}
-      options={options}
+      options={specializations || []}
       autoComplete
       includeInputInList
       filterSelectedOptions

@@ -9,7 +9,8 @@ import throttle from "lodash/throttle";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
-import LocationIcon from "@material-ui/icons/LocationOn";
+import { GOOGLE_LOCATIONS_URL } from "../../../constants";
+import { useStyles } from "./styles";
 
 function loadScript(src, position, id) {
   if (!position) {
@@ -25,29 +26,6 @@ function loadScript(src, position, id) {
 
 const autocompleteService = { current: null };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    border: `1px solid ${theme.palette.divider}`,
-    height: "30px",
-    boxShadow: "none",
-    borderTopRightRadius: '0',
-    borderBottomRightRadius: '0',
-  },
-  icon: {
-    color: theme.palette.text.secondary,
-    marginRight: theme.spacing(2),
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-}));
 
 export default function Location() {
   const classes = useStyles();
@@ -59,7 +37,7 @@ export default function Location() {
   if (typeof window !== "undefined" && !loaded.current) {
     if (!document.querySelector("#google-maps")) {
       loadScript(
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyBwRp1e12ec1vOTtGiA4fcCt2sCUS78UYc&libraries=places",
+        GOOGLE_LOCATIONS_URL,
         document.querySelector("head"),
         "google-maps"
       );
@@ -145,7 +123,7 @@ export default function Location() {
             className={classes.iconButton}
             aria-label="search"
           >
-            <LocationIcon />
+            <LocationOnIcon />
           </IconButton>
         </Paper>
       )}

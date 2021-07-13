@@ -5,23 +5,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/PersonOutline";
 import AppointmentsIcon from "@material-ui/icons/CalendarToday";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
-import { useDispatch } from "react-redux";
-import { logout } from "../../state/user/slice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../state/user/slice";
+import { useStyles } from "./styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-}));
+
 
 export default function ProfileSection() {
   const classes = useStyles();
   const anchorRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.user);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,7 +35,7 @@ export default function ProfileSection() {
     <div className={classes.root}>
       <div>
         <Avatar
-          src="/broken-image.jpg"
+          src={profile.profileImage}
           className={classes.avatar}
           ref={anchorRef}
           aria-haspopup="true"
