@@ -4,14 +4,14 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Login from '../Components/Login';
 import Signup from '../Components/Signup';
+import '../Styles/Loginregister.css'
 
 const SignInOutContainer=({field})=>{
     const [value,setValue]= useState(0)
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    const paperStyle={width:500,margin:"20px auto"}
-    const widthch={width:250}
+   
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
       
@@ -32,7 +32,7 @@ const SignInOutContainer=({field})=>{
         );
       }
     return(
-        <Paper style={paperStyle}>
+        <Paper className="paperStyle2" >
         <Tabs 
        
           value={value}
@@ -41,9 +41,9 @@ const SignInOutContainer=({field})=>{
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          <Tab style={widthch} label="Log In" />
+          <Tab className="widthch" label="Log In" />
           
-          <Tab style={widthch} label="Register" />
+          <Tab className="widthch" label="Register" />
         </Tabs>
         <TabPanel value={value} index={0}><Login /> </TabPanel>
         <TabPanel value={value} index={1}><Signup field={field}/> </TabPanel>
