@@ -3,6 +3,8 @@ import {Grid,Paper,TextField,Checkbox,Button,Typography,Link} from '@material-ui
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import '../Styles/Loginregister.css'
+import data from '../JSON/Login.json'
+
 
 const Login=()=>{
   const login={color:'white'}
@@ -12,13 +14,22 @@ return(
     <Grid>
         <Paper elevation={10} className="paperStyle">
            <br/><br/>
-           <label className="label">Mobile Number/ Email ID</label>
-           <TextField variant="outlined" type="email tel"  placeholder='Enter username' fullWidth required></TextField><br/><br/>
-           <label className="label">Password</label>
-           <TextField variant="outlined" type='password'  placeholder='Enter password' fullWidth required></TextField><br/><br/>
 
 
-           <Typography>
+          {data.map((datas)=>{
+                return(
+                     <>
+            
+              <label className="label">{datas.data_label}</label>
+               <TextField variant="outlined" type={datas.data_type}  placeholder={datas.data_placeholder} fullWidth required></TextField><br/><br/>
+          
+                     </>
+               )}) }
+
+
+
+
+          <Typography>
           <FormControlLabel control={
              <Checkbox color="primary"/>
           }
