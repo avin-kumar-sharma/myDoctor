@@ -1,12 +1,16 @@
 import { Checkbox } from '@material-ui/core'
 import { Grid , Paper , TextField ,Typography ,Link , Button} from '@material-ui/core'
-
+import field from '../Signup.json'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React from 'react'
 
-const Signup = () => {
+
+
+    const Signup = () => {
     const color ={color:"white"}
     return (
+       
+               
         <Grid >
             <Paper elevation={10} className="paperStyle">
                 <Grid container spacing={2}>
@@ -21,19 +25,17 @@ const Signup = () => {
                 
                 </Grid>
                <hr/>
+               
                 <form>
-                <label className="label">Full Name</label>
-                
-                <TextField id="outlined-basic"  variant="outlined" required fullWidth name="name" placeholder="Full Name" type="name" />
+                {field.map((fields)=>{
+                return(
+                     <>
+                <label key={fields.field_id} className="label">{fields.field_label}</label>
+                <TextField id="outlined-basic"  variant="outlined" required fullWidth name={fields.field_label} placeholder={fields.field_placeholder}  type="name" />
                 <br/><br/>
-                <label  className="label">Mobile Number</label>
-                
-                <TextField id="outlined-basic"  variant="outlined" required fullWidth name="number" placeholder="XXXX-XXX-XXX" type="number"/>
-                <br/><br/>
-                <label  className="label">Create Password</label>
-                
-                <TextField id="outlined-basic"  variant="outlined" required fullWidth name="password" placeholder="create password" type="password"/>
-                <br/><br/>
+                </>
+               )})}
+              
                 <FormControlLabel control={ <Checkbox
                  color ="primary"              
                  />}
@@ -47,7 +49,9 @@ const Signup = () => {
                 </form>
             </Paper>
         </Grid>
+        
     )
+    
 }
 
 export default Signup

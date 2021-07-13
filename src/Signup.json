@@ -1,0 +1,27 @@
+
+ [
+            {
+                "field_id": "1",
+                "field_label": "Full Name",
+                "field_mandatory": "yes",
+                "field_placeholder": "Enter name",
+                "field_type": "text",
+                "field_value": "" 
+            },
+            {
+                "field_id": "2",
+                "field_label": "Mobile Number",
+                "field_mandatory": "yes",
+                "field_placeholder": "XXXX-XXX-XXX",
+                "field_type": "number"
+            },
+            {
+                "field_id": "3",
+                "field_label": "Create Password",
+                "field_mandatory": "yes",
+                "field_placeholder": "create password",
+                "field_type": "password"
+            }
+
+        ]
+
