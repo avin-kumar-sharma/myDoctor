@@ -1,42 +1,17 @@
-import Page from "../layout/page";
-import SearchBar from "./components/searchBar";
-import Location from "./components/location";
-import Specialisation from "./components/specialisation";
+import Page from "../layout/Page/page";
+import SearchBar from "./components/SearchBar/searchBar";
+import Location from "./components/Location/location";
+import Specialisation from "./components/Specialization/specialisation";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import DoctorCard from "./components/doctorCard";
+import DoctorCard from "./components/DoctorCard/doctorCard";
 import { Grid } from "@material-ui/core";
 import Pagination from "@material-ui/lab/Pagination";
 import Flex from "../shared/components/Flex";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadDoctors } from "../state/doctors/slice";
+import { useStyles } from "./styles";
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      width: "100%",
-      maxWidth: 900,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      flexDirection: "column",
-    },
-    searchSection: {
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: theme.spacing(3),
-    },
-    content: {
-      marginTop: theme.spacing(3),
-      marginBottom: theme.spacing(3),
-    },
-    pageNation: {
-      marginBottom: theme.spacing(5),
-    },
-  })
-);
 
 function Dashboard() {
   const classes = useStyles();
