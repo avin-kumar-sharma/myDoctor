@@ -31,7 +31,7 @@ import React from 'react'
                 return(
                      <>
                 <label key={fields.field_id} className="label">{fields.field_label}</label>
-                <TextField id="outlined-basic"  variant="outlined" required fullWidth name={fields.field_label} placeholder={fields.field_placeholder}  type="name" />
+                <TextField id="outlined-basic"  variant="outlined" required fullWidth name={fields.field_label} placeholder={fields.field_placeholder}  type={fields.field_type}/>
                 <br/><br/>
                 </>
                )})}
