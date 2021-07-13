@@ -1,6 +1,6 @@
 import { Checkbox } from '@material-ui/core'
 import { Grid , Paper , TextField ,Typography ,Link , Button} from '@material-ui/core'
-import field from '../Signup.json'
+import field from '../JSON/Signup.json'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React from 'react'
 
