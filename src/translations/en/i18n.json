@@ -1,5 +1,8 @@
 {
     "dashboard": {
         "book_appointment": "BOOK APPOINTMENT"
+    },
+    "doctors_appointment": {
+        "years_of_experience": "Years of Experience"
     }
 }
