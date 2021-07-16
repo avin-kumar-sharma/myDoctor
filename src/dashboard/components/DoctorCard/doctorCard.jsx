@@ -5,14 +5,15 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { Typography, Avatar } from "@material-ui/core";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Flex from "../../../shared/components/Flex";
 import { useStyles } from "./styles";
+import { useHistory } from "react-router-dom";
 
-
-export default function DoctorCard({data}) {
+export default function DoctorCard({ data }) {
   const classes = useStyles();
-  const {t} = useTranslation('i18n');
+  const { t } = useTranslation("i18n");
+  const history = useHistory();
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -34,21 +35,28 @@ export default function DoctorCard({data}) {
               {data.specialisation} | {data.experience} years exp
             </Typography>
             <Flex column>
-            <Typography
-              className={classes.subTitle}
-              color="primary"
-              gutterBottom
-            >
-              Fee: {data.fee}
-            </Typography>
+              <Typography
+                className={classes.subTitle}
+                color="primary"
+                gutterBottom
+              >
+                Fee: {data.fee}
+              </Typography>
             </Flex>
           </Flex>
-         
         </Flex>
-
       </CardContent>
-      <CardActions style={{justifyContent: 'center'}}>
-        <Button size="small" variant="contained" color="primary" >{t('dashboard.book_appointment')}</Button>
+      <CardActions style={{ justifyContent: "center" }}>
+        <Button
+          size="small"
+          onClick={() => {
+            history.push("/doctorDetailsAndBooking");
+          }}
+          variant="contained"
+          color="primary"
+        >
+          {t("dashboard.book_appointment")}
+        </Button>
       </CardActions>
     </Card>
   );
