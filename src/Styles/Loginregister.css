@@ -2,7 +2,9 @@
     padding :30px 20px;
     height : 90vh;
     width:400;
-    margin:20px auto
+    margin:20px auto;
+    
+    
 }
 .paperStyle2{
     
@@ -11,10 +13,12 @@
 }
 .widthch{width:250px}
 .label{
-
+    
     font-size:14px;
     font-weight:500;
     color:grey;
+   
+  
 }
 .halfline{
     width:200px;
