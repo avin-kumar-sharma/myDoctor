@@ -4,7 +4,6 @@ import DoctorsInfo from "./components/DoctorsInfo/DoctorsInfo";
 import SlotBooking from "./components/SlotBooking/SlotBooking";
 import DoctorDetails from "./components/DoctorDetails/DoctorDetails";
 import Page from "../layout/Page/page";
-import { makeStyles } from "@material-ui/core/styles";
 import { useStyles } from "./styles";
 
 const DoctorsDetailAndBooking = () => {

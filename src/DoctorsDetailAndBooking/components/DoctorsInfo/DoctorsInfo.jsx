@@ -10,34 +10,17 @@ import ShareIcon from "@material-ui/icons/Share";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
 import { useTranslation } from "react-i18next";
-import JSONResult from "../../../../src/data.json";
 
 const DoctorsInfo = () => {
   const classes = useStyles();
   const [doctorInfos, setDoctorInfos] = React.useState({});
   const { t } = useTranslation("i18n");
 
-  const getData = () => {
-    fetch("../data.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        console.log(response);
-        return response.json();
-      })
-      .then(function (myJson) {
-        console.log(myJson);
-      });
-  };
-
   useEffect(() => {
-    setDoctorInfos(JSONResult.doctorsInfo);
+    fetch("./data.json")
+      .then((response) => response.json())
+      .then((data) => setDoctorInfos(data.doctorsInfo));
   }, []);
-
-  getData();
 
   return (
     <Card className={classes.root}>

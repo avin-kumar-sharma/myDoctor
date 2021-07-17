@@ -5,7 +5,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
-import JSONResult from "../../../../src/data.json";
 
 const DoctorDetails = () => {
   const classes = useStyles();
@@ -13,17 +12,18 @@ const DoctorDetails = () => {
   const [doctorInfos, setDoctorInfos] = React.useState([]);
 
   useEffect(() => {
-    setDoctorInfos(JSONResult.doctorInfoValue);
+    fetch("./data.json")
+      .then((response) => response.json())
+      .then((data) => setDoctorInfos(data.doctorInfoValue));
   }, []);
 
   const handlePanelChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  //TODO:remove dependency of doctorInfo.panel property
   return (
     <div className={classes.root}>
-      {doctorInfos.map((doctorInfo, index) => (
+      {doctorInfos.map((doctorInfo) => (
         <Accordion
           expanded={expanded === doctorInfo._id}
           onChange={handlePanelChange(doctorInfo._id)}

@@ -6,7 +6,6 @@ import Chip from "@material-ui/core/Chip";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
-import JSONResult from "../../../../src/data.json";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +44,9 @@ const SlotBooking = () => {
   };
 
   useEffect(() => {
-    setSlotInfo(JSONResult.slotInfo);
+    fetch("./data.json")
+      .then((response) => response.json())
+      .then((data) => setSlotInfo(data.slotInfo));
   }, []);
 
   return (
