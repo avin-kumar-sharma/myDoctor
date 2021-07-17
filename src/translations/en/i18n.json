@@ -3,6 +3,7 @@
         "book_appointment": "BOOK APPOINTMENT"
     },
     "doctors_appointment": {
-        "years_of_experience": "Years of Experience"
+        "years_of_experience": "Years of Experience",
+        "doctor_salutation": "Dr."
     }
 }

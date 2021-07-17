@@ -17,9 +17,27 @@ const DoctorsInfo = () => {
   const [doctorInfos, setDoctorInfos] = React.useState({});
   const { t } = useTranslation("i18n");
 
+  const getData = () => {
+    fetch("../data.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(myJson);
+      });
+  };
+
   useEffect(() => {
     setDoctorInfos(JSONResult.doctorsInfo);
   }, []);
+
+  getData();
 
   return (
     <Card className={classes.root}>
@@ -29,7 +47,9 @@ const DoctorsInfo = () => {
             <img src={doctorInfos.doctorsImageURL}></img>
           </Avatar>
         }
-        title={"Dr. " + doctorInfos.name}
+        title={
+          t("doctors_appointment.doctor_salutation") + " " + doctorInfos.name
+        }
         subheader={
           doctorInfos.qualifications +
           ", " +
