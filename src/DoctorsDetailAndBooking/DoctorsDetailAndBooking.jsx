@@ -1,22 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import DoctorsInfo from "./components/DoctorsInfo";
-import SlotBooking from "./components/SlotBooking";
-import DoctorDetails from "./components/DoctorDetails";
+import DoctorsInfo from "./components/DoctorsInfo/DoctorsInfo";
+import SlotBooking from "./components/SlotBooking/SlotBooking";
+import DoctorDetails from "./components/DoctorDetails/DoctorDetails";
 import Page from "../layout/Page/page";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 1200,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    flexDirection: "column",
-    marginTop: "30px",
-  },
-}));
+import { useStyles } from "./styles";
 
 const DoctorsDetailAndBooking = () => {
   const classes = useStyles();

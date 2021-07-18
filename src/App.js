@@ -4,6 +4,7 @@ import theme from './Theme/index'
 import SignInOutContainer from "./Containers/Index";
 import Dashboard from "./dashboard";
 import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndBooking";
+import MyAppointments from './MyAppointments/MyAppointments';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         </ThemeProvider>
         <Route path="/" exact component={Dashboard} />
         <Route path="/doctorDetailsAndBooking" exact component={DoctorsDetailAndBooking} />
+        <Route path="/myAppointments" exact component={MyAppointments} />
       </Switch>
     </Router>
   );

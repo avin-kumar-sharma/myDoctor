@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadDoctors } from "../state/doctors/slice";
 import { useStyles } from "./styles";
-import DoctorsInfo from "../DoctorsDetailAndBooking/components/DoctorsInfo";
 
 function Dashboard() {
   const classes = useStyles();
