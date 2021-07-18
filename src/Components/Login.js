@@ -30,7 +30,7 @@ const Login = () => {
             }
               label={info.info_remember_me} className="label" />
 
-            <Link className="forgotpw" href="#" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Link className="forgotpw" href="#" >
               {info.forgot}
             </Link>
           </Typography>
