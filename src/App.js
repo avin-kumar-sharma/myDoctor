@@ -1,16 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createMuiTheme,ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from './Theme/index'
 import SignInOutContainer from "./Containers/Index";
 import Dashboard from "./dashboard";
 import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndBooking";
 
-const theme = createMuiTheme({
-  palette:{
-    primary:{
-      main:'rgb(102, 204, 255)',      
-    },
-  }
-})
 
 function App() {
   return (
