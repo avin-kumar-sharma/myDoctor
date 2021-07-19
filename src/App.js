@@ -12,11 +12,12 @@ function App() {
     <Router>
       <Switch>
         <ThemeProvider theme={theme}>
-          <SignInOutContainer/>
-        </ThemeProvider>
+         
+        <Route path="/login" exact component={SignInOutContainer} />
         <Route path="/" exact component={Dashboard} />
         <Route path="/doctorDetailsAndBooking" exact component={DoctorsDetailAndBooking} />
         <Route path="/myAppointments" exact component={MyAppointments} />
+        </ThemeProvider>
       </Switch>
     </Router>
   );
