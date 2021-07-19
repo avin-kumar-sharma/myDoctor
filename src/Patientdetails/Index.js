@@ -15,7 +15,7 @@ const Index=()=>{
                  <label>{data.label}</label>
                  
                      <RadioGroup>
-                        <Link to="/index"> <FormControlLabel label={data.username}  control={<Radio/>} value={data.username}/></Link>
+                        <Link to="/index"> <FormControlLabel label={data.username}   control={<Radio/>} value={data.username}/></Link>
                         <Link to="/someone"><FormControlLabel label={data.otherUser} control={<Radio/>} value={data.otherUser}/></Link>
                      </RadioGroup>
 
