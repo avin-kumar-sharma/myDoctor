@@ -1,14 +1,25 @@
 import React from 'react';
 import Page from '../layout/Page/page';
-
+import {Link} from 'react-router-dom'
 import {Button, Container, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import '../Styles/Patient.css';
 import Index from './Index';
 
 const Others=()=>{
     return(
-   <Container>
-       <Index/>
+        <>
+        <Page/>
+        <Container  maxWidth="sm">
+               <Typography className="patient" variant="h4">Patient Details</Typography><br/>
+                 <label>The appointment is for:</label>
+                 
+                     <RadioGroup>
+                        <Link to="/index"> <FormControlLabel label="John" control={<Radio/>} value="John"/></Link>
+                        <Link to="/someone"><FormControlLabel className="active" label="Someone else" control={<Radio />} value="Someone else"/></Link>
+                       
+                     </RadioGroup>
+                     <Container>
+      
        <label>Please provide following information about John:</label><br/><br/>
                      <label>Patient Name:</label><br/>
                      <TextField fullWidth variant="outlined" type="text" value="John"></TextField><br/><br/>
@@ -19,6 +30,9 @@ const Others=()=>{
                      <label>Fee: 500Rs</label><br/><br/>
                      <Button variant="contained" fullWidth color="primary">Confirm and Pay</Button>
    </Container>
+                     
+           </Container>
+   </>
     )
 }
 export default Others;

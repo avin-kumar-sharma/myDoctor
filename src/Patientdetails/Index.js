@@ -7,9 +7,9 @@ import '../Styles/Patient.css';
 
 const Index=()=>{
     return(
-        
-        <Page>
-           <Container maxWidth="sm">
+        <>
+        <Page/>
+        <Container  maxWidth="sm">
                <Typography className="patient" variant="h4">Patient Details</Typography><br/>
                  <label>The appointment is for:</label>
                  
@@ -18,20 +18,20 @@ const Index=()=>{
                         <Link to="/someone"><FormControlLabel label="Someone else" control={<Radio/>} value="Someone else"/></Link>
                        
                      </RadioGroup>
+                     <Container maxWidth="sm">
+   
+   <label>Please provide following information about John:</label><br/><br/>
+                 <label>Patient Name:</label><br/>
+                 <TextField fullWidth variant="outlined" type="text" value="John"></TextField><br/><br/>
+                 <label>Mobile number:</label><br/>
+                 <TextField fullWidth variant="outlined" type="number" value="7324697"></TextField><br/><br/>
+                 <label>Fee: 500Rs</label><br/><br/>
+                 <Button variant="contained" fullWidth color="primary">Confirm and Pay</Button>
+</Container>
                      
-                     <label>Please provide following information about John:</label><br/><br/>
-                     <label>Patient Name:</label><br/>
-                     <TextField fullWidth variant="outlined" type="text" value="John"></TextField><br/><br/>
-                     <label>Mobile number:</label><br/>
-                     <TextField fullWidth variant="outlined" type="number" value="7324697"></TextField><br/><br/>
-                     <label>Fee: 500Rs</label><br/><br/>
-                     <Button variant="contained" fullWidth color="primary">Confirm and Pay</Button>
-
-                    
-                    
            </Container>
-            
-        </Page>
+            </> 
+        
         
     )
 }
