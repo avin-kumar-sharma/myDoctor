@@ -8,7 +8,8 @@ import ProfileSection from "../components/ProfileSection/profileSection";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../state/user/slice";
 import { useStyles } from "./styles";
-
+import {Link} from 'react-router-dom';
+import info from '../../JSON/Info.json'
 
 
 function Page(props) {
@@ -26,11 +27,11 @@ function Page(props) {
           {profile ? (
             <ProfileSection />
           ) : (
-            <Button color="primary" variant="contained" onClick={() => {
+           <Link to="/login"> <Button color="primary" variant="contained" onClick={() => {
               dispatch(login());
             }}>
-              Login
-            </Button>
+              {info.login}
+            </Button></Link>
           )}
         </Toolbar>
       </AppBar>
