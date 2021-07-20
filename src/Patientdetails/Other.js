@@ -8,6 +8,7 @@ import data from '../JSON/patient.json'
 
 
 const Others=()=>{
+   const submit_color={color:'white'}
     return(
          <>
             <Page/>
@@ -29,7 +30,7 @@ const Others=()=>{
                      <label>{data.label_otherNumber} </label><br/>
                      <TextField fullWidth variant="outlined" type="number" ></TextField><br/><br/>
                      <label>{data.label_fee}{data.user_fees}</label><br/><br/>
-                     <Button variant="contained" fullWidth color="primary">{data.confirm_and_pay}</Button>
+                     <Button variant="contained" fullWidth style={submit_color} color="primary">{data.confirm_and_pay}</Button>
                      <br/><br/>
                      </Container>
                     </> 

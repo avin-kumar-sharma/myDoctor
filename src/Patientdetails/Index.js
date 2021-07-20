@@ -7,6 +7,7 @@ import data from '../JSON/patient.json'
 
 
 const Index=()=>{
+    const submit_color={color:'white'}
     return(
         <>
         <Page/>
@@ -27,7 +28,7 @@ const Index=()=>{
                  <label>{data.label_Mobilenumber}</label><br/>
                  <TextField fullWidth variant="outlined" type="number" value={data.user_number}></TextField><br/><br/>
                  <label>{data.label_fee}{data.user_fees}</label><br/><br/>
-                 <Button variant="contained" fullWidth color="primary">{data.confirm_and_pay}</Button>
+                 <Button variant="contained" fullWidth style={submit_color} color="primary">{data.confirm_and_pay}</Button>
                </Container>
                      
            </Container>
