@@ -3,11 +3,18 @@ import { Grid , Paper , TextField ,Typography ,Link , Button} from '@material-ui
 import field from '../JSON/Signup.json'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React from 'react'
-import info from '../JSON/Info.json'
+
+import { useEffect } from 'react';
+import JSONResult from "../translations/en/i18n.json"
 
 
 
     const Signup = () => {
+        const [loginPage, setLoginPage] = React.useState([]);
+
+   useEffect(() => {
+     setLoginPage(JSONResult.loginPage);
+   }, []);
     const color ={color:"white"}
     return (
        
@@ -20,8 +27,8 @@ import info from '../JSON/Info.json'
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <br/>
-                <p className="stylesPro">{info.are_you_a_doctor}
-                <Link >{info.Register}</Link></p>
+                <p className="stylesPro">{loginPage.are_you_a_doctor}
+                <Link >{loginPage.Register}</Link></p>
                 </Grid>
                 
                 </Grid>
@@ -40,13 +47,13 @@ import info from '../JSON/Info.json'
                 <FormControlLabel control={ <Checkbox
                  color ="primary"              
                  />}
-                 label={info.reg_checkbox} className="label"/>
+                 label={loginPage.reg_checkbox} className="label"/>
                  <br/><br/>
-                 <Typography className="label">{info.agree}
-                  <Link > {info.terms}</Link>
+                 <Typography className="label">{loginPage.agree}
+                  <Link > {loginPage.terms}</Link>
                   </Typography>
                   <br/><br/>
-                  <Button fullWidth color="primary" variant="contained" style={color}>{info.register}</Button>
+                  <Button fullWidth color="primary" variant="contained" style={color}>{loginPage.register}</Button>
                 </form>
             </Paper>
         </Grid>
