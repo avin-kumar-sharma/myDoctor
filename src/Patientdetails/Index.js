@@ -14,8 +14,8 @@ const Index=()=>{
                  <label>The appointment is for:</label>
                  
                      <RadioGroup>
-                        <Link to="/index"> <FormControlLabel label="John" control={<Radio/>} value="John"/></Link>
-                        <Link to="/someone"><FormControlLabel label="Someone else" control={<Radio/>} value="Someone else"/></Link>
+                        <Link to="/index" className="link"> <FormControlLabel checked  label="John" control={<Radio color="primary"/>} value="John"/></Link>
+                        <Link to="/someone" className="link"><FormControlLabel label="Someone else" control={<Radio color="primary"/>} value="Someone else"/></Link>
                        
                      </RadioGroup>
                      <Container maxWidth="sm">

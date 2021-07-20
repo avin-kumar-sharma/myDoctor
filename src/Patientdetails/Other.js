@@ -3,7 +3,7 @@ import Page from '../layout/Page/page';
 import {Link} from 'react-router-dom'
 import {Button, Container, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import '../Styles/Patient.css';
-import Index from './Index';
+
 
 const Others=()=>{
     return(
@@ -14,19 +14,19 @@ const Others=()=>{
                  <label>The appointment is for:</label>
                  
                      <RadioGroup>
-                        <Link to="/index"> <FormControlLabel label="John" control={<Radio/>} value="John"/></Link>
-                        <Link to="/someone"><FormControlLabel className="active" label="Someone else" control={<Radio />} value="Someone else"/></Link>
+                        <Link to="/index" className="link"> <FormControlLabel color="primary" label="John" control={<Radio color="primary"/>} value="John"/></Link>
+                        <Link to="/someone" className="link"><FormControlLabel color="primary" className="active" checked label="Someone else" control={<Radio  color="primary" />} value="Someone else"/></Link>
                        
                      </RadioGroup>
                      <Container>
       
        <label>Please provide following information about John:</label><br/><br/>
                      <label>Patient Name:</label><br/>
-                     <TextField fullWidth variant="outlined" type="text" value="John"></TextField><br/><br/>
+                     <TextField fullWidth variant="outlined" type="text" ></TextField><br/><br/>
                      <label>Mobile number:</label><br/>
-                     <TextField fullWidth variant="outlined" type="number" value="7324697"></TextField><br/><br/>
+                     <TextField fullWidth variant="outlined" type="number" ></TextField><br/><br/>
                      <label> Patient's Mobile number:</label><br/>
-                     <TextField fullWidth variant="outlined" type="number" value="7324697"></TextField><br/><br/>
+                     <TextField fullWidth variant="outlined" type="number" ></TextField><br/><br/>
                      <label>Fee: 500Rs</label><br/><br/>
                      <Button variant="contained" fullWidth color="primary">Confirm and Pay</Button>
    </Container>

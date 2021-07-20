@@ -8,7 +8,6 @@ import MyAppointments from './MyAppointments/MyAppointments';
 
 import Others from "./Patientdetails/Other";
 import Index from "./Patientdetails/Index";
-import Patient from "./Patientdetails/Patient";
 
 
 function App() {
