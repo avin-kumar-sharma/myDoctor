@@ -11,6 +11,7 @@ import { useStyles } from "./styles";
 import {Link} from 'react-router-dom';
 import info from '../../JSON/Info.json'
 
+
 function Page(props) {
   const classes = useStyles();
   const profile = useSelector((state) => {

@@ -3,36 +3,37 @@ import Page from '../layout/Page/page';
 import {Link} from 'react-router-dom'
 import {Button, Container, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import '../Styles/Patient.css';
+import Index from './Index';
+import data from '../JSON/patient.json'
 
 
 const Others=()=>{
     return(
-        <>
-        <Page/>
-        <Container  maxWidth="sm">
-               <Typography className="patient" variant="h4">Patient Details</Typography><br/>
-                 <label>The appointment is for:</label>
+         <>
+            <Page/>
+               <Container  maxWidth="sm">
+               <Typography className="patient" variant="h4">{data.head}</Typography><br/>
+                 <label>{data.label}</label>
                  
                      <RadioGroup>
-                        <Link to="/index" className="link"> <FormControlLabel color="primary" label="John" control={<Radio color="primary"/>} value="John"/></Link>
-                        <Link to="/someone" className="link"><FormControlLabel color="primary" className="active" checked label="Someone else" control={<Radio  color="primary" />} value="Someone else"/></Link>
-                       
+                        <Link to="/index" className="link"> <FormControlLabel label={data.username} control={<Radio color="primary"/>} value={data.username}/></Link>
+                        <Link to="/someone" className="link"><FormControlLabel checked className="active" label={data.otherUser} control={<Radio color="primary" />} value={data.otherUser}/></Link>
                      </RadioGroup>
-                     <Container>
-      
-       <label>Please provide following information about John:</label><br/><br/>
-                     <label>Patient Name:</label><br/>
+
+                  
+                     <label>{data.info}{data.username}</label><br/><br/>
+                     <label>{data.label_patientname}</label><br/>
                      <TextField fullWidth variant="outlined" type="text" ></TextField><br/><br/>
-                     <label>Mobile number:</label><br/>
+                     <label>{data.label_Mobilenumber}</label><br/>
                      <TextField fullWidth variant="outlined" type="number" ></TextField><br/><br/>
-                     <label> Patient's Mobile number:</label><br/>
+                     <label>{data.label_otherNumber} </label><br/>
                      <TextField fullWidth variant="outlined" type="number" ></TextField><br/><br/>
-                     <label>Fee: 500Rs</label><br/><br/>
-                     <Button variant="contained" fullWidth color="primary">Confirm and Pay</Button>
-   </Container>
-                     
-           </Container>
-   </>
+                     <label>{data.label_fee}{data.user_fees}</label><br/><br/>
+                     <Button variant="contained" fullWidth color="primary">{data.confirm_and_pay}</Button>
+                     <br/><br/>
+                     </Container>
+                    </> 
+               
     )
 }
 export default Others;

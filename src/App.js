@@ -14,13 +14,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <ThemeProvider theme={theme}>
-          
-          <Route path="/login" exact component={SignInOutContainer} />
+        <ThemeProvider theme={theme}>  
+         <Route path="/login" exact component={SignInOutContainer} />
         <Route  path="/" exact component={Dashboard} />
         <Route path="/doctorDetailsAndBooking" exact component={DoctorsDetailAndBooking} />
         <Route path="/myAppointments" exact component={MyAppointments} />
-        
         <Route path="/someone" component={Others}></Route>
         <Route path="/index" component={Index}></Route>
 
