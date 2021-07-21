@@ -5,5 +5,78 @@
     "doctors_appointment": {
         "years_of_experience": "Years of Experience",
         "doctor_salutation": "Dr."
-    }
+    },
+    "loginPage":{
+        "info_remember_me":"Remember me for 30 days",
+        "forgot":"Forgot Password?",
+        "Login_with_otp":"Login with Otp instead of password",
+        "login":"LOGIN",
+        "facebook":"Connect With Facebook",
+        "join":"Join",
+        "are_you_a_doctor":"Are you a doctor?",
+        "Register":"Register here",
+        "reg_checkbox":"Recieve relevant offers and promotional communication from myDoctor",
+        "agree":"By Signing up,I agree to ",
+        "terms":"terms",
+        "register":"Register"
+    },
+    "patient":{
+        "head":"Patient Details",
+        "label":"The appointment is for:",
+        "username":"username",
+        "user_number":"9899898989",
+        "Othernumber":"9999999999",
+        "user_fees":"500",
+        "otherUser":"Someone Else",
+        "info":"Please provide following information about ",
+        "label_patientname":"Patient Name :",
+        "label_Mobilenumber":"Mobile Number :",
+        "label_otherNumber":"Patient's Mobile number:",
+        "label_fee":"Fee : ",
+        "confirm_and_pay":"Confirm and Pay"
+    },
+    "signup":[
+        {
+            "field_id": "1",
+            "field_label": "Full Name ",
+            "field_mandatory": "yes",
+            "field_placeholder": "Enter name",
+            "field_type": "text",
+            "field_value": "" 
+        },
+        {
+            "field_id": "2",
+            "field_label": "Mobile Number",
+            "field_mandatory": "yes",
+            "field_placeholder": "XXXX-XXX-XXX",
+            "field_type": "number"
+        },
+        {
+            "field_id": "3",
+            "field_label": "Create Password",
+            "field_mandatory": "yes",
+            "field_placeholder": "create password",
+            "field_type": "password"
+        }
+    ],
+    "loginMap":[
+        {
+            "data_id": "1",
+            "data_label": "Mobile Number/ Email Id",
+            "data_mandatory": "yes",
+            "data_placeholder": "Enter username",
+            "data_type": "text",
+            "data_value": "" 
+        },
+        {
+            "data_id": "2",
+            "data_label": "Password",
+            "data_mandatory": "yes",
+            "data_placeholder": "Enter password",
+            "data_type": "password"
+        }
+    
+
+    ]
+
 }
