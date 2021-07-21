@@ -9,11 +9,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../state/user/slice";
 import { useStyles } from "./styles";
 import {Link} from 'react-router-dom';
-import info from '../../JSON/Info.json'
+import { useEffect } from "react";
+import JSONResult from "../../translations/en/i18n.json"
 
 
 function Page(props) {
   const classes = useStyles();
+
+  const [loginPage, setLoginPage] = React.useState([]);
+
+  useEffect(() => {
+    setLoginPage(JSONResult.loginPage);
+  }, []);
   const profile = useSelector((state) => {
     console.log(state);
     return state.user.profile;
@@ -30,7 +37,7 @@ function Page(props) {
            <Link to="/login"> <Button color="primary" variant="contained" onClick={() => {
               dispatch(login());
             }}>
-              {info.login}
+              {loginPage.login}
             </Button></Link>
           )}
         </Toolbar>

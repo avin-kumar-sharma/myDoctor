@@ -3,17 +3,23 @@ import { Grid, Paper, TextField, Checkbox, Button, Typography, Link } from '@mat
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import '../Styles/Loginregister.css'
-import data from '../JSON/Login.json'
 import { useEffect } from 'react';
 import JSONResult from "../translations/en/i18n.json"
 
 
 const Login = () => {
   const [loginPage, setLoginPage] = React.useState([]);
+  const [loginMap,setLoginMap]=React.useState([]);
+
+  useEffect(() => {
+    setLoginMap(JSONResult.loginMap);
+
+  }, []);
 
    useEffect(() => {
      setLoginPage(JSONResult.loginPage);
    }, []);
+
   const login = { color: 'white' }
   const colordark = { backgroundColor: "darkBlue", color: "white" }
   return (
@@ -21,7 +27,7 @@ const Login = () => {
       <Grid>
         <Paper elevation={10} className="paperStyle">
         <br/><br/>
-          {data.map((datas) => {
+          {loginMap.map((datas) => {
             return (
               <>   
                 <label className="label">{datas.data_label}</label>

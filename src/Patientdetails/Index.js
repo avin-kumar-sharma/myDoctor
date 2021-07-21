@@ -3,7 +3,6 @@ import Page from '../layout/Page/page';
 import {Link} from 'react-router-dom'
 import {Button, Container, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import '../Styles/Patient.css';
-import patient from '../JSON/patient.json'
 import { useEffect } from 'react';
 import JSONResult from "../translations/en/i18n.json"
 

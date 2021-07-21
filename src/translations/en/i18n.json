@@ -58,6 +58,25 @@
             "field_placeholder": "create password",
             "field_type": "password"
         }
+    ],
+    "loginMap":[
+        {
+            "data_id": "1",
+            "data_label": "Mobile Number/ Email Id",
+            "data_mandatory": "yes",
+            "data_placeholder": "Enter username",
+            "data_type": "text",
+            "data_value": "" 
+        },
+        {
+            "data_id": "2",
+            "data_label": "Password",
+            "data_mandatory": "yes",
+            "data_placeholder": "Enter password",
+            "data_type": "password"
+        }
+    
+
     ]
 
 }

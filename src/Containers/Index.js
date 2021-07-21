@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Paper,Tabs , Tab } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Login from '../Components/Login';
 import Signup from '../Components/Signup';
 import '../Styles/Loginregister.css'
-import info from '../JSON/Info.json'
+import JSONResult from "../translations/en/i18n.json"
+
 const SignInOutContainer=({field})=>{
     const [value,setValue]= useState(0)
+ 
+     const [loginPage, setLoginPage] = React.useState([]);
+
+  useEffect(() => {
+    setLoginPage(JSONResult.loginPage);
+  }, []);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -41,9 +48,9 @@ const SignInOutContainer=({field})=>{
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          <Tab className="widthch" label={info.login} />
+          <Tab className="widthch" label={loginPage.login} />
           
-          <Tab className="widthch" label={info.register} />
+          <Tab className="widthch" label={loginPage.register} />
         </Tabs>
         <TabPanel value={value} index={0}><Login /> </TabPanel>
         <TabPanel value={value} index={1}><Signup field={field}/> </TabPanel>

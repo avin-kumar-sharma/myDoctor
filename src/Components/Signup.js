@@ -1,9 +1,7 @@
 import { Checkbox } from '@material-ui/core'
 import { Grid , Paper , TextField ,Typography ,Link , Button} from '@material-ui/core'
-import field from '../JSON/Signup.json'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React from 'react'
-
 import { useEffect } from 'react';
 import JSONResult from "../translations/en/i18n.json"
 
@@ -11,10 +9,15 @@ import JSONResult from "../translations/en/i18n.json"
 
     const Signup = () => {
         const [loginPage, setLoginPage] = React.useState([]);
+        const [signup,setSignup]=React.useState([]);
 
    useEffect(() => {
      setLoginPage(JSONResult.loginPage);
+ 
    }, []);
+   useEffect(()=>{
+    setSignup(JSONResult.signup);
+   },[]);
     const color ={color:"white"}
     return (
        
@@ -35,11 +38,11 @@ import JSONResult from "../translations/en/i18n.json"
                <hr/>
                
                 <form>
-                {field.map((fields)=>{
+                { signup.map((sign)=>{
                 return(
                      <>
-                <label key={fields.field_id} className="label">{fields.field_label}</label>
-                <TextField id="outlined-basic"  variant="outlined" required fullWidth name={fields.field_label} placeholder={fields.field_placeholder}  type={fields.field_type}/>
+                <label key={sign.field_id} className="label">{sign.field_label}</label>
+                <TextField id="outlined-basic"  variant="outlined" required fullWidth name={sign.field_label} placeholder={sign.field_placeholder}  type={sign.field_type}/>
                 <br/><br/>
                 </>
                )})}
