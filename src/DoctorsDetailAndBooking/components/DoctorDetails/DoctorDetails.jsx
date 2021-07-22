@@ -6,16 +6,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
 
-const DoctorDetails = () => {
+const DoctorDetails = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [doctorInfos, setDoctorInfos] = React.useState([]);
 
-  useEffect(() => {
-    fetch("./data.json")
-      .then((response) => response.json())
-      .then((data) => setDoctorInfos(data.doctorInfoValue));
-  }, []);
+  let { services, reviews, qualifications, experience } = props.data;
 
   const handlePanelChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -23,25 +18,113 @@ const DoctorDetails = () => {
 
   return (
     <div className={classes.root}>
-      {doctorInfos.map((doctorInfo) => (
-        <Accordion
-          expanded={expanded === doctorInfo._id}
-          onChange={handlePanelChange(doctorInfo._id)}
+      <Accordion
+        expanded={expanded === "services"}
+        onChange={handlePanelChange("services")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-          >
-            <Typography className={classes.heading}>
-              <b>{doctorInfo.heading}</b>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{doctorInfo.description}</Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
+          <Typography className={classes.heading}>
+            <b>Services</b>
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <ul>
+              {services.map((service) => (
+                <li>{service.name}</li>
+              ))}
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "reviews"}
+        onChange={handlePanelChange("reviews")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography className={classes.heading}>
+            <b>Reviews</b>
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <ul>
+              {reviews.map((review) => (
+                <li>
+                  {"Rating :" + review.rating + " Review :" + review.review}
+                </li>
+              ))}
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "qualifications"}
+        onChange={handlePanelChange("qualifications")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography className={classes.heading}>
+            <b>Qualifications</b>
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <ul>
+              {qualifications.map((qualification) => (
+                <li>
+                  {qualification.name +
+                    ", " +
+                    qualification.instituteName +
+                    ", " +
+                    qualification.procurementYear}
+                </li>
+              ))}
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "experience"}
+        onChange={handlePanelChange("experience")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography className={classes.heading}>
+            <b>Experience</b>
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <ul>
+              {experience.map((exper) => (
+                <li>
+                  {exper.role +
+                    " at " +
+                    exper.hospitalName +
+                    " for " +
+                    exper.yearsWorked +
+                    " years"}
+                </li>
+              ))}
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 };
