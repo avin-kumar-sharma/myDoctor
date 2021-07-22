@@ -10,9 +10,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/* <ThemeProvider theme={theme}>
-          <SignInOutContainer/>
-        </ThemeProvider> */}
+        <ThemeProvider theme={theme}>
+          <SignInOutContainer />
+        </ThemeProvider>
         <Route path="/" exact component={Dashboard} />
         <Route
           path="/doctorDetailsAndBooking"
