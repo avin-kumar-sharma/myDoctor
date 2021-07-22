@@ -11,39 +11,51 @@ import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
 import { useTranslation } from "react-i18next";
 
-const DoctorsInfo = () => {
+const DoctorsInfo = (props) => {
   const classes = useStyles();
-  const [doctorInfos, setDoctorInfos] = React.useState({});
   const { t } = useTranslation("i18n");
 
-  useEffect(() => {
-    fetch("./data.json")
-      .then((response) => response.json())
-      .then((data) => setDoctorInfos(data.doctorsInfo));
-  }, []);
+  console.log("logging props.");
+  console.log(props);
+
+  let { firstName, lastName, imageUrl, practicingFrom, description } =
+    props.data;
+
+  function getDifferenceInDays(date1) {
+    let currentDate = new Date();
+    let chgdate = new Date(date1);
+    const diffInMs = Math.abs(currentDate - chgdate);
+    return Math.round(diffInMs / (1000 * 60 * 60 * 24 * 365));
+  }
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            <img src={doctorInfos.doctorsImageURL}></img>
+            <img src={imageUrl}></img>
           </Avatar>
         }
         title={
-          t("doctors_appointment.doctor_salutation") + " " + doctorInfos.name
+          t("doctors_appointment.doctor_salutation") +
+          " " +
+          firstName +
+          " " +
+          lastName
         }
         subheader={
-          doctorInfos.qualifications +
-          ", " +
-          doctorInfos.experienceInYears +
+          // doctorInfos?.qualifications[0].name +
+          // ", " +
+          // doctorInfos?.qualifications[1].name +
+          // ", " +
+          getDifferenceInDays(practicingFrom) +
           " " +
           t("doctors_appointment.years_of_experience")
         }
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {doctorInfos.description}
+          {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

@@ -34,20 +34,15 @@ function a11yProps(index) {
   };
 }
 
-const SlotBooking = () => {
+const SlotBooking = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [slotInfo, setSlotInfo] = React.useState([]);
+
+  let { availableSlots } = props.data;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    fetch("./data.json")
-      .then((response) => response.json())
-      .then((data) => setSlotInfo(data.slotInfo));
-  }, []);
 
   return (
     <React.Fragment>
@@ -60,16 +55,21 @@ const SlotBooking = () => {
           variant="scrollable"
           scrollButtons="auto"
         >
-          {slotInfo.map((slotInfo, index) => (
+          {availableSlots.map((slotInfo, index) => (
             <Tab label={slotInfo.date} {...a11yProps(index)} />
           ))}
         </Tabs>
       </AppBar>
-      {slotInfo.map((slotInfo, index) => (
+      {availableSlots.map((slotInfo, index) => (
         <TabPanel value={value} index={index}>
           <div className={classes.root}>
-            {slotInfo.slots.map((slot) => (
-              <Chip variant="outlined" label={slot} clickable color="primary" />
+            {slotInfo.time.map((slot) => (
+              <Chip
+                variant="outlined"
+                label={slot.startTime + " - " + slot.endTime}
+                clickable
+                color="primary"
+              />
             ))}
           </div>
         </TabPanel>
