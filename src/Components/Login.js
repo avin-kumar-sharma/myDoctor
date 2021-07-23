@@ -25,7 +25,7 @@ const Login = () => {
   return (
     <>
       <Grid>
-        <Paper elevation={10} className="paperStyle">
+        <Paper elevation={10} id="login" className="paperStylelogin">
         <br/><br/>
           {loginMap.map((datas) => {
             return (
@@ -37,31 +37,20 @@ const Login = () => {
           })}
 
           <Typography>
-            <FormControlLabel control={
-              <Checkbox color="primary" />
-            }
-              label={loginPage.info_remember_me} className="label" />
+           
 
-            <Link className="forgotpw" href="#" >
+            <Link  href="#" >
               {loginPage.forgot}
             </Link>
           </Typography>
-
-
-          <FormControlLabel control={
-            <Checkbox
-              color="primary" />}
-            label={loginPage.Login_with_otp} className="label" />
           <br /><br />
           <Button fullWidth
             style={login} color="primary" variant="contained">
             {loginPage.login}
           </Button>
           <br /><br />
-          <table><tr colspan="2"><td><hr className="halfline"></hr></td>or<td><hr className="halfline"></hr></td></tr></table><br />
-          <Button fullWidth style={colordark} variant="contained"   >
-            <FacebookIcon></FacebookIcon>{loginPage.facebook}
-          </Button>
+          
+        
 
         </Paper>
       </Grid>
