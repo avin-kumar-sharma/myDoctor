@@ -5,7 +5,7 @@ import SignInOutContainer from "./Containers/Index";
 import Dashboard from "./dashboard";
 import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndBooking";
 
-import MyAppointments from './MyAppointments/MyAppointments';
+import MyAppointments from "./MyAppointments/MyAppointments";
 
 import Others from "./Patientdetails/Other";
 import Index from "./Patientdetails/Index";
@@ -14,15 +14,17 @@ function App() {
   return (
     <Router>
       <Switch>
-
-        <ThemeProvider theme={theme}>  
-         <Route path="/login" exact component={SignInOutContainer} />
-        <Route  path="/" exact component={Dashboard} />
-        <Route path="/doctorDetailsAndBooking" exact component={DoctorsDetailAndBooking} />
-        <Route path="/myAppointments" exact component={MyAppointments} />
-        <Route path="/someone" component={Others}></Route>
-        <Route path="/index" component={Index}></Route>
-
+        <ThemeProvider theme={theme}>
+          <Route path="/login" exact component={SignInOutContainer} />
+          <Route path="/" exact component={Dashboard} />
+          <Route
+            path="/doctor/:doctorId"
+            exact
+            component={DoctorsDetailAndBooking}
+          />
+          <Route path="/myAppointments" exact component={MyAppointments} />
+          <Route path="/someone" component={Others}></Route>
+          <Route path="/index" component={Index}></Route>
         </ThemeProvider>
       </Switch>
     </Router>
