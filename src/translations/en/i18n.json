@@ -7,18 +7,14 @@
         "doctor_salutation": "Dr."
     },
     "loginPage":{
-        "info_remember_me":"Remember me for 30 days",
         "forgot":"Forgot Password?",
-        "Login_with_otp":"Login with Otp instead of password",
-        "login":"LOGIN",
-        "facebook":"Connect With Facebook",
-        "join":"Join",
-        "are_you_a_doctor":"Are you a doctor?",
+        "login":"Login",
+        "already_have_an_account":"Already have an account? ",
         "Register":"Register here",
-        "reg_checkbox":"Recieve relevant offers and promotional communication from myDoctor",
-        "agree":"By Signing up,I agree to ",
-        "terms":"terms",
-        "register":"Register"
+        "register":"Register",
+        "signIn":"SignIn",
+        "signup_success": "Signed up successfully!",
+        "signup_fail": "Failed to sign up!"
     },
     "patient":{
         "head":"Patient Details",
@@ -49,20 +45,38 @@
             "field_label": "Mobile Number",
             "field_mandatory": "yes",
             "field_placeholder": "XXXX-XXX-XXX",
-            "field_type": "number"
+            "field_type": "number",
+            "field_value": "" 
         },
         {
             "field_id": "3",
+            "field_label": "Email",
+            "field_mandatory": "yes",
+            "field_placeholder": "abc@gmail.com",
+            "field_type": "email",
+            "field_value": "" 
+        },
+        {
+            "field_id": "4",
             "field_label": "Create Password",
             "field_mandatory": "yes",
             "field_placeholder": "create password",
-            "field_type": "password"
+            "field_type": "password",
+            "field_value": "" 
+        },
+        {
+            "field_id": "5",
+            "field_label": "Confirm Password",
+            "field_mandatory": "yes",
+            "field_placeholder": "confirm password",
+            "field_type": "password",
+            "field_value": ""
         }
     ],
     "loginMap":[
         {
             "data_id": "1",
-            "data_label": "Mobile Number/ Email Id",
+            "data_label": "Mobile Number/ Email ID",
             "data_mandatory": "yes",
             "data_placeholder": "Enter username",
             "data_type": "text",
