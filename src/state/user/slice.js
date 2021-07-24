@@ -35,6 +35,7 @@ const slice = createSlice({
     },
     loginSuccess(state, action) {
       state.token = action.payload.token;
+      localStorage.setItem('auth-token', state.token);
       state.profile = action.payload.user;
       state.loading = false;
       state.error = null;

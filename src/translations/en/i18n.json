@@ -19,17 +19,21 @@
     "patient":{
         "head":"Patient Details",
         "label":"The appointment is for:",
-        "username":"username",
+        "username":"My Self",
         "user_number":"9899898989",
         "Othernumber":"9999999999",
         "user_fees":"500",
         "otherUser":"Someone Else",
-        "info":"Please provide following information about ",
+        "otherPatient": "the patient",
+        "info":"Please provide the following information about ",
         "label_patientname":"Patient Name :",
         "label_Mobilenumber":"Mobile Number :",
         "label_otherNumber":"Patient's Mobile number:",
         "label_fee":"Fee : ",
-        "confirm_and_pay":"Confirm and Pay"
+        "confirm_and_pay":"Confirm and Pay",
+        "appointment_success": "Appointment is booked successfully!",
+        "appointment_fail": "Failed to book appointment!",
+        "invalid_patient_detail": "Please enter valid patient details!"
     },
     "signup":[
         {
