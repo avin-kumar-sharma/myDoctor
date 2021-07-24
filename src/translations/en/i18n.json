@@ -14,7 +14,9 @@
         "register":"Register",
         "signIn":"SignIn",
         "signup_success": "Signed up successfully!",
-        "signup_fail": "Failed to sign up!"
+        "signup_fail": "Failed to sign up!",
+        "login_success": "You are now logged in!",
+        "login_fail": "Login failed! Invalid username or password."
     },
     "patient":{
         "head":"Patient Details",

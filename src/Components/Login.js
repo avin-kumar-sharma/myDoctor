@@ -2,16 +2,20 @@ import React from 'react';
 import { Grid, Paper, TextField, Checkbox, Button, Typography, Link } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
+import {  Alert } from '@material-ui/lab';
 import '../Styles/Loginregister.css'
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../state/user/slice";
+import Store from "../state/index.js";
 import JSONResult from "../translations/en/i18n.json"
 
 
 const Login = () => {
   const [loginPage, setLoginPage] = React.useState([]);
   const [loginMap, setLoginMap] = React.useState(JSONResult.loginMap);
+  const [error, setError] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
 
   useEffect(() => {
     setLoginMap(JSONResult.loginMap);
@@ -23,6 +27,13 @@ const Login = () => {
   }, []);
 
   const dispatch = useDispatch();
+
+  Store.subscribe(() => {
+    setSuccess(Store.getState().user.error === null && Store.getState().user.token);
+    setError(Store.getState().user.error !== null);
+  });
+
+
   const refsMap = {};
   refsMap[loginMap[0]['data_id']] = useRef();
   refsMap[loginMap[1]['data_id']] = useRef();
@@ -43,6 +54,12 @@ const Login = () => {
       <Grid>
         <Paper elevation={10} id="login" className="paperStylelogin">
           <br /><br />
+          {error &&
+                    <Alert severity="error">{JSONResult.loginPage['login_fail']}</Alert>
+                }
+                {success &&
+                    <Alert severity="success">{JSONResult.loginPage['login_success']}</Alert>
+                }
           {loginMap.map((datas) => {
             return (
               <>
