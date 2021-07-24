@@ -12,7 +12,9 @@
         "already_have_an_account":"Already have an account? ",
         "Register":"Register here",
         "register":"Register",
-        "signIn":"SignIn"
+        "signIn":"SignIn",
+        "signup_success": "Signed up successfully!",
+        "signup_fail": "Failed to sign up!"
     },
     "patient":{
         "head":"Patient Details",
@@ -43,28 +45,32 @@
             "field_label": "Mobile Number",
             "field_mandatory": "yes",
             "field_placeholder": "XXXX-XXX-XXX",
-            "field_type": "number"
+            "field_type": "number",
+            "field_value": "" 
         },
         {
             "field_id": "3",
             "field_label": "Email",
             "field_mandatory": "yes",
             "field_placeholder": "abc@gmail.com",
-            "field_type": "email"
+            "field_type": "email",
+            "field_value": "" 
         },
         {
             "field_id": "4",
             "field_label": "Create Password",
             "field_mandatory": "yes",
             "field_placeholder": "create password",
-            "field_type": "password"
+            "field_type": "password",
+            "field_value": "" 
         },
         {
             "field_id": "5",
             "field_label": "Confirm Password",
             "field_mandatory": "yes",
             "field_placeholder": "confirm password",
-            "field_type": "password"
+            "field_type": "password",
+            "field_value": ""
         }
     ],
     "loginMap":[

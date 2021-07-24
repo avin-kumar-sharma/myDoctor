@@ -34,8 +34,8 @@ const slice = createSlice({
       state.error = null;
     },
     loginSuccess(state, action) {
-      state.token = action.payload;
-      state.profile = null;
+      state.token = action.payload.token;
+      state.profile = action.payload.user;
       state.loading = false;
       state.error = null;
     },
@@ -82,17 +82,14 @@ export const {
 export default slice.reducer;
 
 export const signup = (
-  name,
-  email,
-  mobile,
-  password,
+  payload,
   callback
 ) => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const res = await signupAPI(name, email, mobile, password);
+    const res = await signupAPI(payload);
     dispatch(signupSuccess(res.data));
-    callback();
+    if (callback !== undefined) callback();
   } catch (err) {
     dispatch(signupFailed(err));
   }
@@ -109,14 +106,14 @@ export const loadprofile = () => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async (
+export const login = (payload) => async (
   dispatch
 ) => {
   dispatch(showLoading());
   try {
-    const res = await loginAPI(email, password);
+    const res = await loginAPI(payload);
     dispatch(loginSuccess(res.data));
-    loadprofile()(dispatch);
+    //loadprofile()(dispatch);
   } catch (err) {
     dispatch(loginFailed(err));
   }
