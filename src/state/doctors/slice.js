@@ -26,7 +26,8 @@ const slice = createSlice({
       state.error = null;
     },
     loadDoctorsSuccess(state, action) {
-      state.doctors = action.payload;
+      state.doctors = action.payload.data;
+      state.pages = action.payload.pages;
       state.loading = false;
       state.error = null;
     },

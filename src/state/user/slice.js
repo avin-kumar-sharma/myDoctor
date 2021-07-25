@@ -34,9 +34,10 @@ const slice = createSlice({
       state.error = null;
     },
     loginSuccess(state, action) {
-      state.token = action.payload.data.token;
+      state.token = action.payload.token;
       localStorage.setItem('auth-token', state.token);
       state.profile = action.payload.user;
+      localStorage.setItem('profile', JSON.stringify(state.profile));
       state.loading = false;
       state.error = null;
     },
@@ -47,6 +48,7 @@ const slice = createSlice({
     },
     loadProfileSuccess(state, action) {
       state.profile = action.payload;
+      state.token = localStorage.getItem('auth-token');
       state.loading = false;
       state.error = null;
     },
@@ -101,7 +103,7 @@ export const loadprofile = () => async (dispatch) => {
   dispatch(showLoading());
   try {
     const res = await getProfileAPI();
-    dispatch(loadProfileSuccess(res.data));
+    dispatch(loadProfileSuccess(res));
   } catch (err) {
     dispatch(loadProfileFailed(err));
   }
@@ -113,7 +115,8 @@ export const login = (payload) => async (
   dispatch(showLoading());
   try {
     const res = await loginAPI(payload);
-    dispatch(loginSuccess(res.data));
+    console.log(res);
+    dispatch(loginSuccess(res.data.data));
     //loadprofile()(dispatch);
   } catch (err) {
     dispatch(loginFailed(err));

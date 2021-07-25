@@ -7,16 +7,40 @@ import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndB
 
 import MyAppointments from "./MyAppointments/MyAppointments";
 
+import { io } from "socket.io-client";
+import Chat from "./Chat";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { loadprofile } from "./state/user/slice";
 import Others from "./Patientdetails/Other";
 import Index from "./Patientdetails/Index";
 
+const socket = io("http://localhost:4000", {
+  path: "/chat-server/",
+  userId: 1234,
+});
+
+socket.on("connect", () => {
+  console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
+});
+
+socket.emit('register-session', 1234);
+
 function App() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem('auth-token');
+  useEffect(() => {
+    if(token){
+      dispatch(loadprofile());
+    }
+  }, [token]);
   return (
     <Router>
       <Switch>
         <ThemeProvider theme={theme}>
-          <Route path="/login" exact component={SignInOutContainer} />
           <Route path="/" exact component={Dashboard} />
+          <Route path="/chat" exact component={Chat} />
+          <Route path="/login" exact component={SignInOutContainer} />
           <Route
             path="/doctor/:doctorId"
             exact
