@@ -7,8 +7,8 @@ import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndB
 
 import MyAppointments from "./MyAppointments/MyAppointments";
 
-import Others from "./Patientdetails/Other";
-import Index from "./Patientdetails/Index";
+import Others from "./Appointments/Other";
+import Index from "./Appointments/Index";
 
 function App() {
   return (
@@ -23,8 +23,14 @@ function App() {
             component={DoctorsDetailAndBooking}
           />
           <Route path="/myAppointments" exact component={MyAppointments} />
-          <Route path="/someone" component={Others}></Route>
-          <Route path="/index" component={Index}></Route>
+          <Route path="/self-appointment"
+            exact
+            component={Index}>
+          </Route>
+          <Route path="/others-appointment"
+            exact
+            component={Others}>
+          </Route>
         </ThemeProvider>
       </Switch>
     </Router>

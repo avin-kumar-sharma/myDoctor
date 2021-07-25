@@ -35,7 +35,6 @@ function Page(props) {
   });
 
   Store.subscribe(() => {
-    console.log(Store.getState().user.profile);
     tryShowProfile(Store);
   });
 

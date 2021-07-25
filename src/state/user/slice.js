@@ -48,13 +48,11 @@ const slice = createSlice({
       state.loading = false;
     },
     loadProfileSuccess(state, action) {
-      console.log(action.payload);
       state.profile = action.payload;
       state.loading = false;
       state.error = null;
     },
     loadProfileFailed(state, action) {
-      console.log(action.payload);
       state.profile = null;
       state.error = action.payload ?? "profile error";
       state.loading = false;
