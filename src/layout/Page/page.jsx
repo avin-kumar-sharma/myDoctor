@@ -12,7 +12,6 @@ import {Link} from 'react-router-dom';
 import { useEffect } from "react";
 import JSONResult from "../../translations/en/i18n.json"
 
-
 function Page(props) {
   const classes = useStyles();
 
