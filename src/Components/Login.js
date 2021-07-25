@@ -8,14 +8,16 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../state/user/slice";
 import Store from "../state/index.js";
-import JSONResult from "../translations/en/i18n.json"
+import JSONResult from "../translations/en/i18n.json";
+import { useHistory } from 'react-router';
 
 
 const Login = () => {
   const [loginPage, setLoginPage] = React.useState([]);
   const [loginMap, setLoginMap] = React.useState(JSONResult.loginMap);
   const [error, setError] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     setLoginMap(JSONResult.loginMap);
@@ -28,9 +30,15 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+  if (userAlreadyLoggedIn()) {
+    history.push("/");
+  }
   Store.subscribe(() => {
-    setSuccess(Store.getState().user.error === null && Store.getState().user.token);
-    setError(Store.getState().user.error !== null);
+    setError(!!Store.getState().user.error);
+    const loginSuccessful = !!!Store.getState().user.error && Store.getState().user.token;
+    if (loginSuccessful) {
+      history.push("/");
+    }
   });
 
 
@@ -47,6 +55,11 @@ const Login = () => {
     };
   }
 
+  function userAlreadyLoggedIn() {
+    const tokenPresent = !!localStorage.getItem('auth-token');
+    const userIdPresent = !!localStorage.getItem('user-id');
+    return tokenPresent && userIdPresent;
+  }
   const loginStyle = { color: 'white' }
   const colordark = { backgroundColor: "darkBlue", color: "white" }
   return (
@@ -56,9 +69,6 @@ const Login = () => {
           <br /><br />
           {error &&
                     <Alert severity="error">{JSONResult.loginPage['login_fail']}</Alert>
-                }
-                {success &&
-                    <Alert severity="success">{JSONResult.loginPage['login_success']}</Alert>
                 }
           {loginMap.map((datas) => {
             return (

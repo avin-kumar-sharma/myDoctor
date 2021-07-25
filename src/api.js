@@ -20,8 +20,8 @@ instance.interceptors.request.use((config) => {
 });
 instance.interceptors.response.use(
   async (response) => {
-    if (response.data.token) {
-      setAuthToken(response.data.token);
+    if (response.data.data && response.data.data.token) {
+      setAuthToken(response.data.data.token);
     }
     return response;
   },

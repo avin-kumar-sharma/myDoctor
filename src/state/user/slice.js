@@ -32,27 +32,31 @@ const slice = createSlice({
       state.profile = null;
       state.loading = false;
       state.error = null;
+      localStorage.removeItem('auth-token');
+      localStorage.removeItem('user-id');
     },
     loginSuccess(state, action) {
       state.token = action.payload.data.token;
-      localStorage.setItem('auth-token', state.token);
-      state.profile = action.payload.user;
+      state.profile = action.payload.data.user;   
+      localStorage.setItem('user-id', state.profile._id);
       state.loading = false;
       state.error = null;
     },
     loginFailed(state, action) {
       state.profile = null;
-      state.error = action.payload;
+      state.error = action.payload ?? "login error";
       state.loading = false;
     },
     loadProfileSuccess(state, action) {
+      console.log(action.payload);
       state.profile = action.payload;
       state.loading = false;
       state.error = null;
     },
     loadProfileFailed(state, action) {
+      console.log(action.payload);
       state.profile = null;
-      state.error = action.payload;
+      state.error = action.payload ?? "profile error";
       state.loading = false;
     },
     signupSuccess(state, action) {
@@ -97,10 +101,10 @@ export const signup = (
 };
 
 
-export const loadprofile = () => async (dispatch) => {
+export const loadprofile = (payload) => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const res = await getProfileAPI();
+    const res = await getProfileAPI(payload);
     dispatch(loadProfileSuccess(res.data));
   } catch (err) {
     dispatch(loadProfileFailed(err));

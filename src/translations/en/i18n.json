@@ -16,7 +16,7 @@
         "signup_success": "Signed up successfully!",
         "signup_fail": "Failed to sign up!",
         "login_success": "You are now logged in!",
-        "login_fail": "Login failed! Invalid username or password."
+        "login_fail": "Username or password is incorrect. Please try again."
     },
     "patient":{
         "head":"Patient Details",
