@@ -64,7 +64,7 @@ const slice = createSlice({
     },
     signupFailed(state, action) {
       state.profile = null;
-      state.error = action.payload;
+      state.error = action.payload ? action.payload.data ?? "signup error" : "signup error";
       state.loading = false;
     },
   },
@@ -93,8 +93,8 @@ export const signup = (
     const res = await signupAPI(payload);
     dispatch(signupSuccess(res.data));
     if (callback !== undefined) callback();
-  } catch (err) {
-    dispatch(signupFailed(err));
+  } catch (error) {
+    dispatch(signupFailed(error));
   }
 };
 

@@ -6,7 +6,7 @@
         "years_of_experience": "Years of Experience",
         "doctor_salutation": "Dr."
     },
-    "loginPage":{
+    "loginPage": {
         "forgot":"Forgot Password?",
         "login":"Login",
         "already_have_an_account":"Already have an account? ",
@@ -16,7 +16,12 @@
         "signup_success": "Signed up successfully!",
         "signup_fail": "Failed to sign up!",
         "login_success": "You are now logged in!",
-        "login_fail": "Username or password is incorrect. Please try again."
+        "login_fail": "Username or password is incorrect. Please try again.",
+        "invalid_fullname": "Please enter your full name!",
+        "invalid_mobile": "Please enter a valid 10-digit mobile number!",
+        "invalid_email": "Please enter a valid e-mail address!",
+        "empty_password": "Password cannot be empty!",
+        "mismatch_password": "Passwords do not match!"
     },
     "patient":{
         "head":"Patient Details",
