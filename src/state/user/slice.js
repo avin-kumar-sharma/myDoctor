@@ -49,6 +49,7 @@ const slice = createSlice({
     },
     loadProfileSuccess(state, action) {
       state.profile = action.payload;
+      state.token = localStorage.getItem('auth-token');
       state.loading = false;
       state.error = null;
     },
@@ -115,7 +116,8 @@ export const login = (payload) => async (
   dispatch(showLoading());
   try {
     const res = await loginAPI(payload);
-    dispatch(loginSuccess(res.data));
+    console.log(res);
+    dispatch(loginSuccess(res.data.data));
     //loadprofile()(dispatch);
   } catch (err) {
     dispatch(loginFailed(err));

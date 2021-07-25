@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import JSONResult from "../../translations/en/i18n.json";
 import Store from "../../state/index.js";
 
-
 function Page(props) {
   const classes = useStyles();
 

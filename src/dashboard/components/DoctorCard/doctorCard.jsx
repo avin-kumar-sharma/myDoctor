@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import moment from 'moment';
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -14,25 +15,27 @@ export default function DoctorCard({ data }) {
   const classes = useStyles();
   const { t } = useTranslation("i18n");
   const history = useHistory();
+  var a = moment([new Date().getFullYear(), 0]);
+  var b = moment([new Date(data.practicingFrom).getFullYear(), 0]);
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Flex>
-          <Avatar src={data.profileImage} className={classes.avatar} />
+          <Avatar src={data.imageUrl} className={classes.avatar} />
           <Flex column style={{ marginLeft: "16px" }}>
             <Typography
               className={classes.title}
               color="textPrimary"
               gutterBottom
             >
-              {data.name}
+              {`${data.firstName} ${data.lastName}`}
             </Typography>
             <Typography
               className={classes.subTitle}
               color="primary"
               gutterBottom
             >
-              {data.specialisation} | {data.experience} years exp
+              {data.specializations.join(",")} | {a.diff(b, 'years')} years exp
             </Typography>
             <Flex column>
               <Typography
@@ -40,7 +43,7 @@ export default function DoctorCard({ data }) {
                 color="primary"
                 gutterBottom
               >
-                Fee: {data.fee}
+                Fee: {`${data.consultationFee} ${data.consultationFeeCurrency}`}
               </Typography>
             </Flex>
           </Flex>
