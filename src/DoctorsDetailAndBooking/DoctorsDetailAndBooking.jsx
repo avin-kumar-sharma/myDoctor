@@ -5,13 +5,18 @@ import SlotBooking from "./components/SlotBooking/SlotBooking";
 import DoctorDetails from "./components/DoctorDetails/DoctorDetails";
 import Page from "../layout/Page/page";
 import { useStyles } from "./styles";
+import StripePayment from "../shared/components/StripePayment/stripePayment";
 
-const DoctorsDetailAndBooking = () => {
+const DoctorsDetailAndBooking = (props) => {
   const classes = useStyles();
   const [doctorInfos, setDoctorInfos] = React.useState(null);
 
+  const { doctorId } = props.match.params;
+
+  console.log("Logging props : ", doctorId);
+
   useEffect(() => {
-    fetch("http://localhost:4000/v1/doctordetailsandslots")
+    fetch(`http://localhost:4000/v1/doctor/${doctorId}`)
       .then((response) => response.json())
       .then((data) => setDoctorInfos(data.message[0]));
   }, []);
@@ -37,6 +42,12 @@ const DoctorsDetailAndBooking = () => {
           <Grid item xs={12}>
             <DoctorDetails data={doctorInfos} />
           </Grid>
+          {/* <Grid item s={12}>
+            <StripePayment
+              name="Doctor Consultation"
+              price="50"
+            ></StripePayment>
+          </Grid> */}
         </Grid>
       </div>
     </Page>
