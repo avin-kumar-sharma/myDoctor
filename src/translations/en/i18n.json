@@ -6,7 +6,7 @@
         "years_of_experience": "Years of Experience",
         "doctor_salutation": "Dr."
     },
-    "loginPage":{
+    "loginPage": {
         "forgot":"Forgot Password?",
         "login":"Login",
         "already_have_an_account":"Already have an account? ",
@@ -14,19 +14,24 @@
         "register":"Register",
         "signIn":"SignIn",
         "signup_success": "Signed up successfully!",
-        "signup_fail": "Failed to sign up!",
+        "signup_fail": "Something went wrong while sign up!",
         "login_success": "You are now logged in!",
-        "login_fail": "Login failed! Invalid username or password."
+        "login_fail": "Mobile Number/Email or password is incorrect. Please try again.",
+        "invalid_fullname": "Please enter your full name!",
+        "invalid_mobile": "Please enter a valid 10-digit mobile number!",
+        "invalid_email": "Please enter a valid e-mail address!",
+        "empty_password": "Password cannot be empty!",
+        "mismatch_password": "Passwords do not match!"
     },
     "patient":{
         "head":"Patient Details",
         "label":"The appointment is for:",
-        "username":"My Self",
+        "username":"Myself",
         "user_number":"9899898989",
         "Othernumber":"9999999999",
         "user_fees":"500",
         "otherUser":"Someone Else",
-        "otherPatient": "the patient",
+        "the_patient": "the patient",
         "info":"Please provide the following information about ",
         "label_patientname":"Patient Name :",
         "label_Mobilenumber":"Mobile Number :",
@@ -35,7 +40,8 @@
         "confirm_and_pay":"Confirm and Pay",
         "appointment_success": "Appointment is booked successfully!",
         "appointment_fail": "Failed to book appointment!",
-        "invalid_patient_detail": "Please enter valid patient details!"
+        "invalid_otherName": "Please enter a valid patient name!",
+        "invalid_otherMobileNumber": "Please enter a valid 10-digit mobile number!"
     },
     "signup":[
         {
@@ -84,7 +90,7 @@
             "data_id": "1",
             "data_label": "Mobile Number/ Email ID",
             "data_mandatory": "yes",
-            "data_placeholder": "Enter username",
+            "data_placeholder": "Enter Mobile Number/Email’",
             "data_type": "text",
             "data_value": "" 
         },

@@ -10,7 +10,6 @@ import StripePayment from "../shared/components/StripePayment/stripePayment";
 const DoctorsDetailAndBooking = (props) => {
   const classes = useStyles();
   const [doctorInfos, setDoctorInfos] = React.useState(null);
-
   const { doctorId } = props.match.params;
 
   console.log("Logging props : ", doctorId);

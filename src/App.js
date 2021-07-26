@@ -7,13 +7,13 @@ import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndB
 
 import MyAppointments from "./MyAppointments/MyAppointments";
 
+import Others from "./Appointments/Other";
+import Index from "./Appointments/Index";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadprofile } from "./state/user/slice";
-import Others from "./Patientdetails/Other";
-import Index from "./Patientdetails/Index";
 
 const socket = io("http://localhost:4000", {
   path: "/chat-server/",
@@ -47,8 +47,14 @@ function App() {
             component={DoctorsDetailAndBooking}
           />
           <Route path="/myAppointments" exact component={MyAppointments} />
-          <Route path="/someone" component={Others}></Route>
-          <Route path="/index" component={Index}></Route>
+          <Route path="/self-appointment"
+            exact
+            component={Index}>
+          </Route>
+          <Route path="/others-appointment"
+            exact
+            component={Others}>
+          </Route>
         </ThemeProvider>
       </Switch>
     </Router>

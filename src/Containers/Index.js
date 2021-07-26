@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from 'react';
-import { Paper,Tabs , Tab } from '@material-ui/core';
+import { Paper, Tabs, Tab } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Login from '../Components/Login';
@@ -10,7 +11,17 @@ import JSONResult from "../translations/en/i18n.json"
 const SignInOutContainer=({field})=>{
     const [value,setValue]= useState(0)
  
-     const [loginPage, setLoginPage] = React.useState([]);
+  const [loginPage, setLoginPage] = React.useState([]);
+  const [message, setMessage] = React.useState("");
+
+  function handleSignupSuccess(message) {
+    setMessage(message);
+    setValue(0);
+  }
+
+  function handleClearMessage() {
+    setMessage("");
+  }
 
   useEffect(() => {
     setLoginPage(JSONResult.loginPage);
@@ -39,7 +50,10 @@ const SignInOutContainer=({field})=>{
         );
       }
     return(
-        <Paper className="paperStyle2" >
+      <Paper className="paperStyle2" >
+        {message !== "" &&
+            <Alert severity="success">{message}</Alert>
+        }
         <Tabs 
        
           value={value}
@@ -53,7 +67,7 @@ const SignInOutContainer=({field})=>{
           <Tab className="widthch" label={loginPage.register} />
         </Tabs>
         <TabPanel value={value} index={0}><Login /> </TabPanel>
-        <TabPanel value={value} index={1}><Signup field={field}/> </TabPanel>
+        <TabPanel value={value} index={1}><Signup field={field} onSuccess={handleSignupSuccess} onClear={handleClearMessage}/> </TabPanel>
       </Paper>
     )
 }

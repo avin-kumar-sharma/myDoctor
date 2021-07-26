@@ -1,8 +1,9 @@
 import API from '../../api';
 
-export function getProfileAPI() {
-  const profile = JSON.parse(localStorage.getItem('profile'));
-  return Promise.resolve(profile);
+export function getProfileAPI(payload) {
+  return API.get('/v1/user/profile', {
+    params : payload,
+  });
 }
 
 export function loginAPI(payload) {

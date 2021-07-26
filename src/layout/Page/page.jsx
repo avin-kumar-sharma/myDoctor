@@ -5,37 +5,61 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { ReactComponent as Logo } from "../../icons/logo.svg";
 import ProfileSection from "../components/ProfileSection/profileSection";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../state/user/slice";
 import { useStyles } from "./styles";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { loadprofile } from "../../state/user/slice.js";
 import { useEffect } from "react";
-import JSONResult from "../../translations/en/i18n.json"
+import JSONResult from "../../translations/en/i18n.json";
+import Store from "../../state/index.js";
 
 function Page(props) {
   const classes = useStyles();
 
   const [loginPage, setLoginPage] = React.useState([]);
-
+  const [showProfile, setShowProfile] = React.useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     setLoginPage(JSONResult.loginPage);
   }, []);
-  const profile = useSelector((state) => {
-    console.log(state);
-    return state.user.profile;
+
+  useEffect(() => {
+    if (userLoggedIn()) {
+      if (!tryShowProfile(Store)) {
+        dispatch(loadprofile({
+          id: localStorage.getItem("user-id")
+        }));
+      }
+    }
   });
-  const dispatch = useDispatch();
+
+  Store.subscribe(() => {
+    tryShowProfile(Store);
+  });
+
+  function userLoggedIn() {
+    const hasUserId = localStorage.getItem("user-id");
+    const hasAuthToken = localStorage.getItem("auth-token");
+    return hasUserId && hasAuthToken;
+  }
+  
+  function tryShowProfile(store) {
+    const profileAvailable = !!store.getState().user.profile;
+    if (profileAvailable) {
+      setShowProfile(true);
+      return true;
+    }
+    return false;
+  }
   return (
     <div>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Logo className={classes.logo} />
-          {profile ? (
+          {showProfile ? (
             <ProfileSection />
           ) : (
-           <Link to="/login"> <Button color="primary" variant="contained" onClick={() => {
-              dispatch(login());
-            }}>
+           <Link to="/login"> <Button color="primary" variant="contained">
               {loginPage.login}
             </Button></Link>
           )}

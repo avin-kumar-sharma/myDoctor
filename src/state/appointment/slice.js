@@ -5,6 +5,7 @@ import {
 
 
 const initialState = {
+  data: null,
   loading: false,
   error: null,
   created: null,
@@ -34,6 +35,9 @@ const slice = createSlice({
       state.created = null;
       state.loading = false;
     },
+    setAppointmentData(state, action) {
+      state.data = action.payload;
+    }
   },
 });
 
@@ -41,7 +45,8 @@ export const {
   showLoading,
   hideLoading,
   setBookingSucessful,
-  setBookingFailed
+  setBookingFailed,
+  setAppointmentData,
 } = slice.actions;
 
 export default slice.reducer;
@@ -50,10 +55,8 @@ export const bookNewAppointment = (payload) => async (dispatch) => {
   dispatch(showLoading());
   try {
     const res = await bookAppointment(payload);
-    console.log(`RESPONSE : ${res}`);
     dispatch(setBookingSucessful(res));
   } catch (err) {
-    console.log(`ERROR : ${err}`);
     dispatch(setBookingFailed());
   }
 };

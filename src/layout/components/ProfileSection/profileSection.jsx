@@ -8,6 +8,7 @@ import LogoutIcon from "@material-ui/icons/ExitToApp";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../state/user/slice";
 import { useStyles } from "./styles";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -17,6 +18,7 @@ export default function ProfileSection() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
   const { profile } = useSelector((state) => state.user);
+  const history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,6 +31,7 @@ export default function ProfileSection() {
   const onLogoutClick = () => {
     dispatch(logout());
     setAnchorEl(null);
+    history.push("/login");
   };
 
   return (
