@@ -16,7 +16,7 @@
         "signup_success": "Signed up successfully!",
         "signup_fail": "Failed to sign up!",
         "login_success": "You are now logged in!",
-        "login_fail": "Username or password is incorrect. Please try again.",
+        "login_fail": "Mobile Number/Email or password is incorrect. Please try again.",
         "invalid_fullname": "Please enter your full name!",
         "invalid_mobile": "Please enter a valid 10-digit mobile number!",
         "invalid_email": "Please enter a valid e-mail address!",
@@ -90,7 +90,7 @@
             "data_id": "1",
             "data_label": "Mobile Number/ Email ID",
             "data_mandatory": "yes",
-            "data_placeholder": "Enter username",
+            "data_placeholder": "Enter Mobile Number/Email’",
             "data_type": "text",
             "data_value": "" 
         },
