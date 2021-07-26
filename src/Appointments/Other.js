@@ -33,7 +33,7 @@ const Others = () => {
 	});
 	const clientId = localStorage.getItem("user-id");
 	if (!!!data || !!!clientId) {
-		history.push("/");
+		history.push("/login");
 	}
 	const dispatch = useDispatch();
 
@@ -142,59 +142,61 @@ const Others = () => {
 					</Link>
 				</RadioGroup>
 
-				<label>
-					{patient.info}
-					{patient.the_patient}:
-				</label>
-				<br />
-				<br />
-				<label>{patient.label_patientname}</label>
-				<br />
-				<TextField
-					fullWidth
-					variant="outlined"
-					type="text"
-					onInput={(e) => {
-						handleNameChange(e);
-					}}
-					value={name}
-				></TextField>
-				<br />
-				<br />
-				<label>{patient.label_otherNumber} </label>
-				<br />
-				<TextField
-					fullWidth
-					variant="outlined"
-					type="number"
-					onInput={(e) => {
-						handleMobileChange(e);
-					}}
-					value={mobile}
-				></TextField>
-				<br />
-				<br />
-				{data && (
+				<Container maxWidth="sm">
 					<label>
-						{patient.label_fee}
-						{data.consultationFee}
+						{patient.info}
+						{patient.the_patient}:
 					</label>
-				)}
-				<br />
-				<br />
-				<Button
-					variant="contained"
-					fullWidth
-					style={submit_color}
-					color="primary"
-					onClick={() => {
-						bookAppointment();
-					}}
-				>
-					{patient.confirm_and_pay}
-				</Button>
-				<br />
-				<br />
+					<br />
+					<br />
+					<label>{patient.label_patientname}</label>
+					<br />
+					<TextField
+						fullWidth
+						variant="outlined"
+						type="text"
+						onInput={(e) => {
+							handleNameChange(e);
+						}}
+						value={name}
+					></TextField>
+					<br />
+					<br />
+					<label>{patient.label_otherNumber} </label>
+					<br />
+					<TextField
+						fullWidth
+						variant="outlined"
+						type="number"
+						onInput={(e) => {
+							handleMobileChange(e);
+						}}
+						value={mobile}
+					></TextField>
+					<br />
+					<br />
+					{data && (
+						<label>
+							{patient.label_fee}
+							{data.consultationFee}
+						</label>
+					)}
+					<br />
+					<br />
+					<Button
+						variant="contained"
+						fullWidth
+						style={submit_color}
+						color="primary"
+						onClick={() => {
+							bookAppointment();
+						}}
+					>
+						{patient.confirm_and_pay}
+					</Button>
+					<br />
+					<br />
+				</Container>
 			</Container>
 		</>
 	);

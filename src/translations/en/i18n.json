@@ -90,7 +90,7 @@
             "data_id": "1",
             "data_label": "Mobile Number/ Email ID",
             "data_mandatory": "yes",
-            "data_placeholder": "Enter Mobile Number/Email’",
+            "data_placeholder": "Enter Mobile Number/Email",
             "data_type": "text",
             "data_value": "" 
         },

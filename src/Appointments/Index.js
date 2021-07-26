@@ -39,7 +39,7 @@ const Index = () => {
 	});
 	const clientId = localStorage.getItem("user-id");
 	if (!!!data || !!!clientId) {
-		history.push("/");
+		history.push("/login");
 	}
 	const dispatch = useDispatch();
 
