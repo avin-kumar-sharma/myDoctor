@@ -15,23 +15,15 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadprofile } from "./state/user/slice";
 
-const socket = io("http://localhost:4000", {
-  path: "/chat-server/",
-  userId: 1234,
-});
-
-socket.on("connect", () => {
-  console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
-});
-
-socket.emit('register-session', 1234);
 
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem('auth-token');
   useEffect(() => {
     if(token){
-      dispatch(loadprofile());
+      dispatch(loadprofile({
+        id: localStorage.getItem("user-id")
+      }));
     }
   }, [token]);
   return (
@@ -39,7 +31,7 @@ function App() {
       <Switch>
         <ThemeProvider theme={theme}>
           <Route path="/" exact component={Dashboard} />
-          <Route path="/chat" exact component={Chat} />
+          <Route path="/chat/:appointmentId" component={Chat} />
           <Route path="/login" exact component={SignInOutContainer} />
           <Route
             path="/doctor/:doctorId"

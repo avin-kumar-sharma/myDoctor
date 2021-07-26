@@ -31,9 +31,11 @@ const slice = createSlice({
 			localStorage.removeItem("user-id");
 		},
 		loginSuccess(state, action) {
-			state.token = action.payload.data.token;
-			state.profile = action.payload.data.user;
+			state.token = action.payload.token;
+			state.profile = action.payload.user;
 			localStorage.setItem("user-id", state.profile._id);
+			localStorage.setItem("auth-token", state.token);
+			localStorage.setItem("profile", JSON.stringify(state.token));
 			state.loading = false;
 			state.error = null;
 		},
@@ -104,7 +106,7 @@ export const login = (payload) => async (dispatch) => {
 	dispatch(showLoading());
 	try {
 		const res = await loginAPI(payload);
-		dispatch(loginSuccess(res.data));
+		dispatch(loginSuccess(res.data.data));
 		//loadprofile()(dispatch);
 	} catch (err) {
 		dispatch(loginFailed(err));

@@ -18,11 +18,14 @@ import { login } from "../state/user/slice";
 import Store from "../state/index.js";
 import JSONResult from "../translations/en/i18n.json";
 import { useHistory } from "react-router";
+import { CheckBox } from '@material-ui/icons';
+
 
 const Login = () => {
 	const [loginPage, setLoginPage] = React.useState([]);
 	const [loginMap, setLoginMap] = React.useState(JSONResult.loginMap);
 	const [error, setError] = React.useState(false);
+  const [isDoctorLogin, setIsDoctorLogin] = React.useState(false);
 
 	const history = useHistory();
 
@@ -100,6 +103,17 @@ const Login = () => {
 							</>
 						);
 					})}
+          <FormControlLabel
+        control={
+          <Checkbox
+            checked={isDoctorLogin}
+            onChange={() => setIsDoctorLogin((prev) => !prev)}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="Doctor Login"
+      />
 
 					<Typography>
 						{/* <Link href="#" >
@@ -114,7 +128,7 @@ const Login = () => {
 						color="primary"
 						variant="contained"
 						onClick={() => {
-							dispatch(login(getLoginDetails()));
+							dispatch(login({...getLoginDetails(), doctorLogin:isDoctorLogin}));
 						}}
 					>
 						{loginPage.login}
