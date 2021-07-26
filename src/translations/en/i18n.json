@@ -14,7 +14,7 @@
         "register":"Register",
         "signIn":"SignIn",
         "signup_success": "Signed up successfully!",
-        "signup_fail": "Failed to sign up!",
+        "signup_fail": "Something went wrong while sign up!",
         "login_success": "You are now logged in!",
         "login_fail": "Mobile Number/Email or password is incorrect. Please try again.",
         "invalid_fullname": "Please enter your full name!",
