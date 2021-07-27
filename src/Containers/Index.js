@@ -55,8 +55,11 @@ const SignInOutContainer = ({ field }) => {
 			direction="row"
 			justifyContent="center"
 			alignItems="center"
-			spacing={2}
+			style={{ minHeight: 100 + "%" }}
 		>
+			<Grid item xs={0} md={3} lg={4}>
+				<img src={"myDoctor.jpg"} alt="Logo" />
+			</Grid>
 			<Grid item md={5} lg={3}>
 				<Paper className="paperStyle2">
 					{message !== "" && (
@@ -74,7 +77,7 @@ const SignInOutContainer = ({ field }) => {
 						<Tab className="widthch" label={loginPage.register} />
 					</Tabs>
 					<TabPanel value={value} index={0}>
-						<Login />{" "}
+						<Login />
 					</TabPanel>
 					<TabPanel value={value} index={1}>
 						<Signup
