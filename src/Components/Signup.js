@@ -1,4 +1,4 @@
-import { Checkbox } from "@material-ui/core";
+import PwdRules, { MIN_PASSWORD_LENGTH } from "./passwordRules.js";
 import {
 	Grid,
 	Paper,
@@ -7,6 +7,12 @@ import {
 	Link,
 	Button,
 } from "@material-ui/core";
+import { green } from "@material-ui/core/colors";
+import {
+	RadioButtonUnchecked,
+	CheckCircleOutline,
+	HighlightOff,
+} from "@material-ui/icons";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { TabPanel, Alert } from "@material-ui/lab";
 import { signup } from "../state/user/slice";
@@ -27,6 +33,33 @@ const Signup = (props) => {
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
 	const [confPassword, setConfPassword] = React.useState("");
+
+	const pwdRules = [
+		{
+			ruleFn: PwdRules.hasLowerChar,
+			description: JSONResult.loginPage["pwd_rule_lower"],
+		},
+		{
+			ruleFn: PwdRules.hasUpperChar,
+			description: JSONResult.loginPage["pwd_rule_upper"],
+		},
+		{
+			ruleFn: PwdRules.hasSpecialChar,
+			description: JSONResult.loginPage["pwd_rule_special"],
+		},
+		{
+			ruleFn: PwdRules.hasDigitChar,
+			description: JSONResult.loginPage["pwd_rule_digit"],
+		},
+		{
+			ruleFn: PwdRules.hasMinLength,
+			description: JSONResult.loginPage["pwd_rule_length"].replace(
+				"%d",
+				MIN_PASSWORD_LENGTH
+			),
+		},
+	];
+	const [ruleFlags, setRuleFlags] = useState(pwdRules.map((v) => null));
 
 	function handleFieldChange(targetField, setFunction) {
 		setFunction(targetField.value);
@@ -60,6 +93,14 @@ const Signup = (props) => {
 		};
 	}
 
+	function updateRules(password) {
+		const newRuleFlags = [];
+		for (const rule of pwdRules) {
+			newRuleFlags.push(rule.ruleFn(password));
+		}
+		setRuleFlags(newRuleFlags);
+	}
+
 	function validate() {
 		const errors = [];
 		if (fullName.trim() === "") {
@@ -81,6 +122,10 @@ const Signup = (props) => {
 		}
 		setInvalid(errors);
 		return errors.length === 0;
+	}
+
+	function enableRegisterButton() {
+		return ruleFlags.reduce((prev, curr) => prev && curr, true);
 	}
 
 	function doSignup() {
@@ -186,11 +231,46 @@ const Signup = (props) => {
 						placeholder={signUp[3].field_placeholder}
 						type={signUp[3].field_type}
 						onInput={(e) => {
+							updateRules(e.target.value);
 							handleFieldChange(e.target, setPassword);
 						}}
 						value={password}
 					/>
 					<br />
+					{pwdRules.map((rule, idx) => {
+						return (
+							<Typography
+								component="div"
+								style={{
+									display: "flex",
+									marginTop: 0.25 + "em",
+								}}
+							>
+								{ruleFlags[idx] === null && (
+									<RadioButtonUnchecked
+										fontSize="small"
+										color="primary"
+									/>
+								)}
+								{ruleFlags[idx] === true && (
+									<CheckCircleOutline
+										fontSize="small"
+										style={{ color: green[500] }}
+									/>
+								)}
+								{ruleFlags[idx] === false && (
+									<HighlightOff
+										color="error"
+										fontSize="small"
+									/>
+								)}
+								<label>
+									<small>{rule.description}</small>
+								</label>
+								<br />
+							</Typography>
+						);
+					})}
 					<br />
 					<label key={signUp[4].field_id} className="label">
 						{signUp[4].field_label}
@@ -219,6 +299,7 @@ const Signup = (props) => {
 						onClick={() => {
 							doSignup();
 						}}
+						disabled={!enableRegisterButton()}
 					>
 						{loginPage.register}
 					</Button>
