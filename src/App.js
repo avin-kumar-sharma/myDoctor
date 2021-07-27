@@ -31,6 +31,7 @@ function App() {
       <Switch>
         <ThemeProvider theme={theme}>
           <Route path="/" exact component={Dashboard} />
+          <Route path="/appointments" exact component={Chat} />
           <Route path="/chat/:appointmentId" component={Chat} />
           <Route path="/login" exact component={SignInOutContainer} />
           <Route

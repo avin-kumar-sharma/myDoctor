@@ -103,7 +103,11 @@ function Chat() {
   useEffect(()=> scrollToBottom(),[]);
 
   const onAppointmentSelectHandler = (apmt) => {
-    history.push(apmt._id);
+    if(selectedAppointment){
+      history.push(apmt._id);
+    } else {
+      history.push(`chat/${apmt._id}`);
+    }
     setSelectedAppointment(apmt);
   };
 
@@ -111,7 +115,7 @@ function Chat() {
     <Page>
       <div className={classes.root}>
         <Grid container className={classes.main}>
-          <Grid item xs={4} className={classes.chatList}>
+          <Grid item xs={selectedAppointment ? 4 : 12} className={classes.chatList}>
             <Typography className={classes.statusTitle}>ONGOING CONSULTATIONS</Typography>
             {appointments.map((apt) => (
               <Flex className={`${classes.chatCardWrapper} ${apt._id===appointmentId ? classes.chatCardSelected:''}`} onClick={() => onAppointmentSelectHandler(apt)}>
@@ -126,7 +130,7 @@ function Chat() {
               </Flex>
             ))}
           </Grid>
-          {selectedAppointment && <Grid item xs={8} style={{height: '100%'}}>
+          {selectedAppointment && <Grid item xs={selectedAppointment ? 8 : 0} style={{height: '100%'}}>
             <Flex column style={{ height: "100%", alignItems: 'center' }}>
               <Flex className={classes.chartHeader} centerY>
                 <Avatar style={{ margin: "8px" }} src={profile._id === selectedAppointment.doctorId._id ? `${selectedAppointment.clientId.imageUrl}`:`${selectedAppointment.doctorId.imageUrl}`} />
