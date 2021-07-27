@@ -77,8 +77,6 @@ const Login = () => {
 		<>
 			<Grid>
 				<Paper elevation={10} id="login" className="paperStylelogin">
-					<br />
-					<br />
 					{error && (
 						<Alert severity="error">
 							{JSONResult.loginPage["login_fail"]}
@@ -120,8 +118,6 @@ const Login = () => {
               {loginPage.forgot}
             </Link> */}
 					</Typography>
-					<br />
-					<br />
 					<Button
 						fullWidth
 						style={loginStyle}
