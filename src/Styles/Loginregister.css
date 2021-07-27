@@ -1,41 +1,37 @@
-.paperStyle{
-    padding :30px 20px;
-   height : 95vh;
-    width:400;
-    margin:20px auto;
+.paperStyle {
+	padding: 30px 20px;
+	height: auto;
+	width: 400;
 }
-.paperStylelogin{
-    padding :30px 20px;
-   height : 65vh;
-    width:400;
-    margin:20px auto;
+.paperStylelogin {
+	padding: 30px 20px;
+	height: auto;
+	width: 400;
 }
-.paperStyle2{
-    
-    width:500px;
-    margin:20px auto
+.paperStyle2 {
+	width: auto;
+	margin: 20px auto;
 }
-.widthch{width:250px}
-.label{
-    
-    font-size:14px;
-    font-weight:500;
-    color:grey;
-   
-  
+.widthch {
+	width: 250px;
+}
+.label {
+	font-size: 14px;
+	font-weight: 500;
+	color: grey;
 }
 
-.headerStyle{
-    color:grey;
-    font-size:24px;
+.headerStyle {
+	color: grey;
+	font-size: 24px;
 }
 .stylesPro {
-   font-size:12px;
-    color:grey;
+	font-size: 12px;
+	color: grey;
 }
-.signin{
-    cursor: pointer;
+.signin {
+	cursor: pointer;
 }
-#signup{
-    margin-left: 55%;
+#signup {
+	margin-left: 55%;
 }

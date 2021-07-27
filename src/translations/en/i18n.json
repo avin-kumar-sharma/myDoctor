@@ -21,12 +21,12 @@
 		"invalid_mobile": "Please enter a valid 10-digit mobile number!",
 		"invalid_email": "Please enter a valid e-mail address!",
 		"empty_password": "Password cannot be empty!",
-		"mismatch_password": "Passwords do not match!",
-		"pwd_rule_upper": "Must contain uppercase letters.",
-		"pwd_rule_lower": "Must contain lowercase letters.",
+		"pwd_rule_upper": "Must contain uppercase letter.",
+		"pwd_rule_lower": "Must contain lowercase letter.",
 		"pwd_rule_digit": "Must contain at least one number.",
 		"pwd_rule_length": "Must contain at least %d characters.",
-		"pwd_rule_special": "Must contain at least one special character."
+		"pwd_rule_special": "Must contain at least one special character.",
+		"pwd_rule_match": "Passwords must match."
 	},
 	"patient": {
 		"head": "Patient Details",
@@ -59,7 +59,7 @@
 		},
 		{
 			"field_id": "2",
-			"field_label": "Mobile Number",
+			"field_label": "Mobile Number ",
 			"field_mandatory": "yes",
 			"field_placeholder": "XXXX-XXX-XXX",
 			"field_type": "number",
@@ -67,7 +67,7 @@
 		},
 		{
 			"field_id": "3",
-			"field_label": "Email",
+			"field_label": "Email ",
 			"field_mandatory": "yes",
 			"field_placeholder": "abc@gmail.com",
 			"field_type": "email",
@@ -75,7 +75,7 @@
 		},
 		{
 			"field_id": "4",
-			"field_label": "Create Password",
+			"field_label": "Create Password ",
 			"field_mandatory": "yes",
 			"field_placeholder": "create password",
 			"field_type": "password",
@@ -83,7 +83,7 @@
 		},
 		{
 			"field_id": "5",
-			"field_label": "Confirm Password",
+			"field_label": "Confirm Password ",
 			"field_mandatory": "yes",
 			"field_placeholder": "confirm password",
 			"field_type": "password",
