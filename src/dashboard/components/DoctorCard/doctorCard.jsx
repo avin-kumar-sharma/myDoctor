@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import moment from 'moment';
+import moment from "moment";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -35,7 +35,7 @@ export default function DoctorCard({ data }) {
               color="primary"
               gutterBottom
             >
-              {data.specializations.join(",")} | {a.diff(b, 'years')} years exp
+              {data.specializations.join(",")} | {a.diff(b, "years")} years exp
             </Typography>
             <Flex column>
               <Typography
@@ -53,7 +53,7 @@ export default function DoctorCard({ data }) {
         <Button
           size="small"
           onClick={() => {
-            history.push("/doctorDetailsAndBooking");
+            history.push(`/doctor/${data._id}`);
           }}
           variant="contained"
           color="primary"
