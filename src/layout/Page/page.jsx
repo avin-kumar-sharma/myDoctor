@@ -23,15 +23,6 @@ function Page(props) {
     setLoginPage(JSONResult.loginPage);
   }, []);
 
-  useEffect(() => {
-    if (userLoggedIn()) {
-      if (!tryShowProfile(Store)) {
-        dispatch(loadprofile({
-          id: localStorage.getItem("user-id")
-        }));
-      }
-    }
-  });
 
   Store.subscribe(() => {
     tryShowProfile(Store);
