@@ -190,11 +190,6 @@ const Signup = (props) => {
 						type={signUp[0].field_type}
 						onInput={(e) => {
 							handleFieldChange(e.target, setFullName);
-							setFieldError(
-								e.target.value,
-								setErrFullName,
-								validFullName
-							);
 						}}
 						onBlur={(e) => {
 							setFieldError(
@@ -226,11 +221,6 @@ const Signup = (props) => {
 						type={signUp[1].field_type}
 						onInput={(e) => {
 							handleFieldChange(e.target, setMobile);
-							setFieldError(
-								e.target.value,
-								setErrMobile,
-								validMobile
-							);
 						}}
 						onBlur={(e) => {
 							setFieldError(
@@ -260,11 +250,6 @@ const Signup = (props) => {
 						type={signUp[2].field_type}
 						onInput={(e) => {
 							handleFieldChange(e.target, setEmail);
-							setFieldError(
-								e.target.value,
-								setErrEmail,
-								validEmail
-							);
 						}}
 						onBlur={(e) => {
 							setFieldError(
@@ -297,11 +282,6 @@ const Signup = (props) => {
 						onInput={(e) => {
 							updateRules(e.target.value, confPassword);
 							handleFieldChange(e.target, setPassword);
-							setFieldError(
-								e.target.value,
-								setErrPassword,
-								validPassword
-							);
 						}}
 						onBlur={(e) => {
 							setFieldError(
