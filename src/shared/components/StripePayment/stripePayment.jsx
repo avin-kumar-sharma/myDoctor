@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import StripeChekcout from "react-stripe-checkout";
 import { config } from "dotenv";
+import { Button } from "@material-ui/core";
 config();
 
 const StripePayment = (props) => {
-  const { name, price } = props;
+  const { name, price, onClick } = props;
+  const submit_color = { color: "white" };
 
   const [product, setProduct] = React.useState({});
 
-  console.log("process env.", process.env.REACT_APP_KEY);
-
   useEffect(() => {
     setProduct({ name, price });
+    console.log("In stripe payment.");
+    console.log(product);
+    console.log(props);
   }, []);
 
   const makePayment = (token) => {
@@ -41,9 +44,16 @@ const StripePayment = (props) => {
       token={makePayment}
       name="Buy Consultancy"
     >
-      <button className="btn-large blue">
-        Buy {product.name} at USD {product.price}
-      </button>
+      <Button
+        className="btn-large blue"
+        variant="contained"
+        fullWidth
+        style={submit_color}
+        color="primary"
+        onClick={onClick}
+      >
+        Pay
+      </Button>
     </StripeChekcout>
   );
 };
