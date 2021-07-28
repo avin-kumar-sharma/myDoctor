@@ -17,7 +17,7 @@
 		"signup_fail": "Something went wrong while sign up!",
 		"login_success": "You are now logged in!",
 		"login_fail": "Mobile Number/Email or password is incorrect. Please try again.",
-		"invalid_fullname": "Please enter your full name!",
+		"invalid_fullname": "Please enter a valid name!",
 		"invalid_mobile": "Please enter a valid 10-digit mobile number!",
 		"invalid_email": "Please enter a valid e-mail address!",
 		"empty_password": "Password cannot be empty!",
@@ -93,7 +93,7 @@
 	"loginMap": [
 		{
 			"data_id": "1",
-			"data_label": "Mobile Number/ Email ID",
+			"data_label": "Mobile Number/Email ID",
 			"data_mandatory": "yes",
 			"data_placeholder": "Enter Mobile Number/Email",
 			"data_type": "text",
@@ -103,7 +103,7 @@
 			"data_id": "2",
 			"data_label": "Password",
 			"data_mandatory": "yes",
-			"data_placeholder": "Enter password",
+			"data_placeholder": "Enter Password",
 			"data_type": "password"
 		}
 	]

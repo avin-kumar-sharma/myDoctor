@@ -61,7 +61,7 @@ const SignInOutContainer = ({ field }) => {
 				<img src={"myDoctor.jpg"} alt="Logo" />
 			</Grid>
 			<Grid item md={5} lg={3}>
-				<Paper className="paperStyle2">
+				<Paper className="paperStyle2" style={{ minHeight: 90 + "vh" }}>
 					{message !== "" && (
 						<Alert severity="success">{message}</Alert>
 					)}
@@ -76,7 +76,11 @@ const SignInOutContainer = ({ field }) => {
 
 						<Tab className="widthch" label={loginPage.register} />
 					</Tabs>
-					<TabPanel value={value} index={0}>
+					<TabPanel
+						value={value}
+						index={0}
+						style={{ minHeight: 100 + "%" }}
+					>
 						<Login />
 					</TabPanel>
 					<TabPanel value={value} index={1}>
