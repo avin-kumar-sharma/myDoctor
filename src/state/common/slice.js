@@ -50,7 +50,7 @@ export const loadSpecializations = () => async (dispatch) => {
   dispatch(showLoading());
   try {
     const res = await getSpecializationsAPI();
-    dispatch(loadSpecializationsSuccess(res.data));
+    dispatch(loadSpecializationsSuccess(res.data.data));
   } catch (err) {
     dispatch(loadSpecializationsFailed(err));
   }

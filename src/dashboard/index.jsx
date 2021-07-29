@@ -1,5 +1,5 @@
 import Page from "../layout/Page/page";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import SearchBar from "./components/SearchBar/searchBar";
 import Location from "./components/Location/location";
 import Specialisation from "./components/Specialization/specialisation";
@@ -16,6 +16,7 @@ import { useStyles } from "./styles";
 function Dashboard() {
   const classes = useStyles();
   const { doctors, pages } = useSelector((state) => state.doctors);
+  const [specialization, setSpecialization] = useState();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,13 +25,19 @@ function Dashboard() {
   const onPageClick = (e, page) => {
     dispatch(loadDoctors(page));
   };
+  const onSearchHandler = (searchString) => {
+    dispatch(loadDoctors(1, specialization, searchString))
+  };
+  const onSelecteSpecialization = (selection) => {
+    setSpecialization(selection);
+    dispatch(loadDoctors(1, selection, ''))
+  };
   return (
     <Page>
       <div className={classes.root}>
         <div className={classes.searchSection}>
-          <Location />
-          <Specialisation />
-          <SearchBar />
+          <Specialisation onSelectSpecialization = {onSelecteSpecialization} />
+          <SearchBar onSearch={onSearchHandler}/>
         </div>
         <Grid container className={classes.content}>
           <Grid item container xs={12} spacing={4} style={{ margin: "0" }}>

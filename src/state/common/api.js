@@ -1,5 +1,5 @@
 import API from '../../api';
 
 export function getSpecializationsAPI() {
-  return API.get('/specializations');
+  return API.get('/metadata/specializations');
 }

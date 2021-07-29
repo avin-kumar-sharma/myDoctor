@@ -8,7 +8,7 @@ import { loadSpecializations } from "../../../state/common/slice";
 import { useStyles } from "./styles";
 
 
-export default function Specialisation() {
+export default function Specialisation({onSelectSpecialization}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
   const { specializations } = useSelector((state) => state.common);
@@ -20,11 +20,15 @@ export default function Specialisation() {
     <Autocomplete
       id="specialisation"
       style={{ width: 200 }}
-      options={specializations || []}
+      options={specializations && specializations.map(sp => sp.name) || []}
       autoComplete
       includeInputInList
       filterSelectedOptions
       value={value}
+      onChange={(event, newValue) => {
+          setValue(newValue);
+          onSelectSpecialization(newValue);
+      }}
       /*getOptionLabel={(option) => option.name}*/
       renderInput={(params) => (
         <Paper
