@@ -8,9 +8,7 @@ import LogoutIcon from "@material-ui/icons/ExitToApp";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../state/user/slice";
 import { useStyles } from "./styles";
-import { useHistory } from "react-router-dom";
-
-
+import { Link, useHistory } from "react-router-dom";
 
 export default function ProfileSection() {
   const classes = useStyles();
@@ -51,7 +49,11 @@ export default function ProfileSection() {
           keepMounted
           open={Boolean(anchorEl)}
         >
-          <MenuItem onClick={handleClose}>
+          <MenuItem
+            onClick={() => {
+              history.push("/profile");
+            }}
+          >
             <SearchIcon style={{ marginRight: "8px" }} /> Profile
           </MenuItem>
           <MenuItem onClick={handleClose}>
