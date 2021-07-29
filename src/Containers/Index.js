@@ -88,6 +88,7 @@ const SignInOutContainer = ({ field }) => {
 							field={field}
 							onSuccess={handleSignupSuccess}
 							onClear={handleClearMessage}
+							onSignIn={() => { setValue(0); }}
 						/>{" "}
 					</TabPanel>
 				</Paper>

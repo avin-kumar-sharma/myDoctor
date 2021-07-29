@@ -39,6 +39,8 @@ const Signup = (props) => {
 	const [errEmail, setErrEmail] = React.useState("");
 	const [errPassword, setErrPassword] = React.useState(null);
 
+	const [showPwdRules, setShowPwdRules] = React.useState(false);
+
 	const pwdRules = [
 		{
 			ruleFn: PwdRules.hasLowerChar,
@@ -287,6 +289,11 @@ const Signup = (props) => {
 							updateRules(e.target.value, confPassword);
 							handleFieldChange(e.target, setPassword);
 						}}
+						onFocus={(e) => {
+							if (!showPwdRules) {
+								setShowPwdRules(true);
+							}
+						}}
 						onBlur={(e) => {
 							setFieldError(
 								e.target.value,
@@ -315,7 +322,7 @@ const Signup = (props) => {
 						}}
 						value={confPassword}
 					/>
-					{pwdRules.map((rule, idx) => {
+					{showPwdRules && pwdRules.map((rule, idx) => {
 						return (
 							<Typography
 								component="div"
@@ -366,7 +373,7 @@ const Signup = (props) => {
 				<br />
 				<Typography>
 					{loginPage.already_have_an_account}
-					<Link href="/login" className="signin">
+					<Link href="/login" className="signin" onClick={(e) => { e.preventDefault(); if (!!props.onSignIn) props.onSignIn(); }}>
 						{loginPage.signIn}
 					</Link>
 				</Typography>
