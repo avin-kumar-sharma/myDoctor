@@ -65,18 +65,26 @@ const Profile = (props) => {
             <Typography gutterBottom variant="h4" component="h2">
               {profileInfo.contactNumber}
             </Typography>
-            <Typography gutterBottom variant="h6">
-              Alternate Mobile :
-            </Typography>
-            <Typography gutterBottom variant="h4" component="h2">
-              {profileInfo.alternateNumber}
-            </Typography>
-            <Typography gutterBottom variant="h6">
-              Address :
-            </Typography>
-            <Typography gutterBottom variant="h4" component="h2">
-              {profileInfo.address}
-            </Typography>
+            {profileInfo.alternateNumber && (
+              <div>
+                <Typography gutterBottom variant="h6">
+                  Alternate Mobile :
+                </Typography>
+                <Typography gutterBottom variant="h4" component="h2">
+                  {profileInfo.alternateNumber}
+                </Typography>
+              </div>
+            )}
+            {profileInfo.address && (
+              <div>
+                <Typography gutterBottom variant="h6">
+                  Address :
+                </Typography>
+                <Typography gutterBottom variant="h4" component="h2">
+                  {profileInfo.address}
+                </Typography>
+              </div>
+            )}
           </CardContent>
         </CardActionArea>
       </Card>
