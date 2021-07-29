@@ -41,12 +41,6 @@ const DoctorsDetailAndBooking = (props) => {
           <Grid item xs={12}>
             <DoctorDetails data={doctorInfos} />
           </Grid>
-          {/* <Grid item s={12}>
-            <StripePayment
-              name="Doctor Consultation"
-              price="50"
-            ></StripePayment>
-          </Grid> */}
         </Grid>
       </div>
     </Page>

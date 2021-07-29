@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { ReactComponent as Logo } from "../../icons/logo.svg";
 import ProfileSection from "../components/ProfileSection/profileSection";
 import { useStyles } from "./styles";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loadprofile } from "../../state/user/slice.js";
 import { useEffect } from "react";
@@ -15,6 +15,7 @@ import Store from "../../state/index.js";
 
 function Page(props) {
   const classes = useStyles();
+  const history = useHistory();
 
   const [loginPage, setLoginPage] = React.useState([]);
   const [showProfile, setShowProfile] = React.useState(false);
@@ -22,7 +23,6 @@ function Page(props) {
   useEffect(() => {
     setLoginPage(JSONResult.loginPage);
   }, []);
-
 
   Store.subscribe(() => {
     tryShowProfile(Store);
@@ -33,7 +33,7 @@ function Page(props) {
     const hasAuthToken = localStorage.getItem("auth-token");
     return hasUserId && hasAuthToken;
   }
-  
+
   function tryShowProfile(store) {
     const profileAvailable = !!store.getState().user.profile;
     if (profileAvailable) {
@@ -46,13 +46,16 @@ function Page(props) {
     <div>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Logo className={classes.logo} />
+          <Logo className={classes.logo} onClick={() => history.push("/")} />
           {showProfile ? (
             <ProfileSection />
           ) : (
-           <Link to="/login"> <Button color="primary" variant="contained">
-              {loginPage.login}
-            </Button></Link>
+            <Link to="/login">
+              {" "}
+              <Button color="primary" variant="contained">
+                {loginPage.login}
+              </Button>
+            </Link>
           )}
         </Toolbar>
       </AppBar>
