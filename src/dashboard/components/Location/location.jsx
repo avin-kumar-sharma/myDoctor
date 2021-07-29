@@ -105,7 +105,7 @@ export default function Location() {
       filterSelectedOptions
       value={value}
       onChange={(event, newValue) => {
-        setOptions(newValue ? [newValue, ...options] : options);
+        //setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
       }}
       onInputChange={(event, newInputValue) => {

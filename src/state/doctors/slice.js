@@ -49,10 +49,10 @@ export const {
 export default slice.reducer;
 
 
-export const loadDoctors = (page) => async (dispatch) => {
+export const loadDoctors = (page, specialization, searchString) => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const res = await getDoctorsAPI(page);
+    const res = await getDoctorsAPI(page, specialization, searchString);
     dispatch(loadDoctorsSuccess(res.data));
   } catch (err) {
     dispatch(loadDoctorsFailed(err));
