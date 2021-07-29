@@ -113,7 +113,11 @@ const Signup = (props) => {
 	}
 
 	function validFullName(fullName) {
-		return fullName.trim() !== "";
+		return (
+			fullName.trim() !== "" &&
+			/^[a-z0-9 ]{2,}$/i.test(fullName) && // Only allowed characters are digits, letters and spaces.
+			!/^(\d| )+$/.test(fullName) // Should not contain only digits and spaces though.
+		);
 	}
 	function validMobile(mobile) {
 		return /^\d{10}$/.test(mobile);
