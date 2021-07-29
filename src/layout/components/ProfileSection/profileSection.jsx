@@ -49,7 +49,7 @@ export default function ProfileSection() {
           keepMounted
           open={Boolean(anchorEl)}
         >
-          <MenuItem onClick={handleClose}>
+          <MenuItem
             onClick={() => {
               history.push("/profile");
             }}
