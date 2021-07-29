@@ -14,16 +14,18 @@ import Chat from "./Chat";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadprofile } from "./state/user/slice";
-
+import Profile from "./MyProfile/Profile";
 
 function App() {
   const dispatch = useDispatch();
-  const token = localStorage.getItem('auth-token');
+  const token = localStorage.getItem("auth-token");
   useEffect(() => {
-    if(token){
-      dispatch(loadprofile({
-        id: localStorage.getItem("user-id")
-      }));
+    if (token) {
+      dispatch(
+        loadprofile({
+          id: localStorage.getItem("user-id"),
+        })
+      );
     }
   }, [token]);
   return (
@@ -40,14 +42,9 @@ function App() {
             component={DoctorsDetailAndBooking}
           />
           <Route path="/myAppointments" exact component={MyAppointments} />
-          <Route path="/self-appointment"
-            exact
-            component={Index}>
-          </Route>
-          <Route path="/others-appointment"
-            exact
-            component={Others}>
-          </Route>
+          <Route path="/self-appointment" exact component={Index}></Route>
+          <Route path="/others-appointment" exact component={Others}></Route>
+          <Route path="/profile" exact component={Profile} />
         </ThemeProvider>
       </Switch>
     </Router>
