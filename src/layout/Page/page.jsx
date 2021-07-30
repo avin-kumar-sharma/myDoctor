@@ -20,9 +20,22 @@ function Page(props) {
   const [loginPage, setLoginPage] = React.useState([]);
   const [showProfile, setShowProfile] = React.useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     setLoginPage(JSONResult.loginPage);
   }, []);
+
+  useEffect(() => {
+    if (userLoggedIn()) {
+      if (!tryShowProfile(Store)) {
+        dispatch(
+          loadprofile({
+            id: localStorage.getItem("user-id"),
+          })
+        );
+      }
+    }
+  });
 
   Store.subscribe(() => {
     tryShowProfile(Store);
