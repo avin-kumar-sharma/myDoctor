@@ -63,9 +63,9 @@ const SlotBooking = (props) => {
     return (
       <div style={{ color: "red" }}>
         {msgParts[0]}
-        <Link to="/login">{JSONResult['doctors_appointment']['sign_in']}</Link>
+        <Link style={{ textDecoration: "none" }} to="/login">{JSONResult['doctors_appointment']['sign_in']}</Link>
         {msgParts[1]}
-        <Link to="/login?v=1">{JSONResult['doctors_appointment']['register']}</Link>
+        <Link style={{ textDecoration: "none" }} to="/login?v=1">{JSONResult['doctors_appointment']['register']}</Link>
         {msgParts[2]}
       </div>
     );
