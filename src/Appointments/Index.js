@@ -156,13 +156,13 @@ const Index = () => {
           )}
           <br />
           <br />
-          <StripePayment
+          {data && <StripePayment
             name={patient.confirm_and_pay}
             price={data.consultationFee}
             onClick={() => {
               dispatch(bookNewAppointment(getAppointmentDetails()));
             }}
-          ></StripePayment>
+          ></StripePayment>}
         </Container>
       </Container>
     </>

@@ -185,13 +185,13 @@ const Others = () => {
           <br />
           <br />
 
-          <StripePayment
+          {data && <StripePayment
             name={patient.confirm_and_pay}
             price={data.consultationFee}
             onClick={() => {
               bookAppointment();
             }}
-          ></StripePayment>
+          ></StripePayment>}
           <br />
           <br />
         </Container>

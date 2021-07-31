@@ -6,10 +6,12 @@ import Chip from "@material-ui/core/Chip";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAppointmentData } from "../../../state/appointment/slice.js";
 import moment from "moment";
+import JSONResult from "../../../translations/en/i18n.json";
+import Store from "../../../state/index.js";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,6 +43,7 @@ function a11yProps(index) {
 const SlotBooking = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [showLoginMessage, setShowLoginMessage] = React.useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -55,7 +58,24 @@ const SlotBooking = (props) => {
     setValue(newValue);
   };
 
+  function getLoginMessage() {
+    const msgParts = JSONResult['doctors_appointment']['login_message'].split("%s");
+    return (
+      <div style={{ color: "red" }}>
+        {msgParts[0]}
+        <Link style={{ textDecoration: "none" }} to="/login">{JSONResult['doctors_appointment']['sign_in']}</Link>
+        {msgParts[1]}
+        <Link style={{ textDecoration: "none" }} to="/login?v=1">{JSONResult['doctors_appointment']['register']}</Link>
+        {msgParts[2]}
+      </div>
+    );
+  }
+
   function selectSlot(slotId, timeId) {
+    if (!Store.getState().user.loggedIn) {
+      setShowLoginMessage(true);
+      return;
+    }
     const idxSlot = availableSlots.findIndex((s) => s._id === slotId);
     const idxTime = availableSlots[idxSlot].time.findIndex(
       (t) => t._id === timeId
@@ -129,6 +149,9 @@ const SlotBooking = (props) => {
           </div>
         </TabPanel>
       ))}
+      {showLoginMessage && (
+        getLoginMessage()
+      )}
     </React.Fragment>
   );
 };
