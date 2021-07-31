@@ -8,7 +8,7 @@ import ProfileSection from "../components/ProfileSection/profileSection";
 import { useStyles } from "./styles";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loadprofile } from "../../state/user/slice.js";
+import { loadprofile, logout } from "../../state/user/slice.js";
 import { useEffect } from "react";
 import JSONResult from "../../translations/en/i18n.json";
 import Store from "../../state/index.js";
@@ -55,13 +55,19 @@ function Page(props) {
     }
     return false;
   }
+
+  function handleLogout() {
+    setShowProfile(false);
+    dispatch(logout());
+    history.push("/");
+  }
   return (
     <div>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Logo className={classes.logo} onClick={() => history.push("/")} />
           {showProfile ? (
-            <ProfileSection />
+            <ProfileSection onLogoutClick={handleLogout} />
           ) : (
             <Link to="/login">
               {" "}
