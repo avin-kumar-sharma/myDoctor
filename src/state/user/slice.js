@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getProfileAPI, loginAPI, signupAPI } from "./api";
 
+function isUserLoggedIn() {
+	return !!localStorage.getItem("auth-token") && !!localStorage.getItem("user-id");
+}
+
 const initialState = {
 	token: null,
 	profile: null,
 	loading: false,
 	error: null,
+	loggedIn: isUserLoggedIn()
 };
 
 const slice = createSlice({
@@ -27,6 +32,7 @@ const slice = createSlice({
 			state.profile = null;
 			state.loading = false;
 			state.error = null;
+			state.loggedIn = false;
 			localStorage.removeItem("auth-token");
 			localStorage.removeItem("user-id");
 		},
@@ -36,6 +42,7 @@ const slice = createSlice({
 			localStorage.setItem("user-id", state.profile._id);
 			localStorage.setItem("auth-token", state.token);
 			localStorage.setItem("profile", JSON.stringify(state.token));
+			state.loggedIn = true;
 			state.loading = false;
 			state.error = null;
 		},

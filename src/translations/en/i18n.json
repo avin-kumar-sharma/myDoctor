@@ -4,7 +4,10 @@
 	},
 	"doctors_appointment": {
 		"years_of_experience": "Years of Experience",
-		"doctor_salutation": "Dr."
+		"doctor_salutation": "Dr.",
+		"login_message": "Please %s / %s to book an appointment.",
+		"sign_in": "Sign in",
+		"register": "Register"
 	},
 	"loginPage": {
 		"forgot": "Forgot Password?",

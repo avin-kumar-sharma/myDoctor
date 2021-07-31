@@ -7,9 +7,14 @@ import Login from "../Components/Login";
 import Signup from "../Components/Signup";
 import "../Styles/Loginregister.css";
 import JSONResult from "../translations/en/i18n.json";
+import { useLocation } from "react-router-dom";
 
 const SignInOutContainer = ({ field }) => {
-	const [value, setValue] = useState(0);
+	const location = useLocation();
+	const params = new URLSearchParams(location.search);
+	let tabIndex = parseInt(params.get('v'));
+	if (!Number.isInteger(tabIndex) || tabIndex < 0 || tabIndex > 1) tabIndex = 0;
+	const [value, setValue] = useState(tabIndex);
 
 	const [loginPage, setLoginPage] = React.useState([]);
 	const [message, setMessage] = React.useState("");
