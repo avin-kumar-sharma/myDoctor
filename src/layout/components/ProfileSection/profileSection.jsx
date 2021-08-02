@@ -48,7 +48,10 @@ export default function ProfileSection({ onLogoutClick }) {
           >
             <SearchIcon style={{ marginRight: "8px" }} /> Profile
           </MenuItem>
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={() => {
+            history.push('/myAppointments');
+            handleClose();
+          }}>
             <AppointmentsIcon style={{ marginRight: "8px" }} /> My Appointments
           </MenuItem>
           <MenuItem onClick={() => {
