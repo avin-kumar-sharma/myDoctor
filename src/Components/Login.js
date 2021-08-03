@@ -36,6 +36,10 @@ const Login = () => {
     setLoginPage(JSONResult.loginPage);
   }, []);
 
+  const profile = useSelector((state) => {
+    return state.user.profile;
+  });
+
   const dispatch = useDispatch();
 
   if (userAlreadyLoggedIn()) {
@@ -66,9 +70,8 @@ const Login = () => {
   }
 
   function userAlreadyLoggedIn() {
-    const tokenPresent = !!localStorage.getItem("auth-token");
-    const userIdPresent = !!localStorage.getItem("user-id");
-    return tokenPresent && userIdPresent;
+    const isLoggedIn = Store.getState().user.profile?.loggedIn;
+    return isLoggedIn;
   }
   const loginStyle = { color: "white" };
   const colordark = { backgroundColor: "darkBlue", color: "white" };
@@ -76,17 +79,13 @@ const Login = () => {
     <>
       <Grid>
         {error && (
-          <Alert severity="error">
-            {JSONResult.loginPage["login_fail"]}
-          </Alert>
+          <Alert severity="error">{JSONResult.loginPage["login_fail"]}</Alert>
         )}
         <Paper elevation={10} id="login" className="paperStylelogin">
           {loginMap.map((datas) => {
             return (
               <>
-                <label className="label">
-                  {datas.data_label}
-                </label>
+                <label className="label">{datas.data_label}</label>
                 <TextField
                   ref={refsMap[datas.data_id]}
                   variant="outlined"
@@ -104,9 +103,7 @@ const Login = () => {
             control={
               <Checkbox
                 checked={isDoctorLogin}
-                onChange={() =>
-                  setIsDoctorLogin((prev) => !prev)
-                }
+                onChange={() => setIsDoctorLogin((prev) => !prev)}
                 name="checkedB"
                 color="primary"
               />

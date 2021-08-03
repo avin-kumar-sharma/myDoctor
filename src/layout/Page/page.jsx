@@ -12,6 +12,7 @@ import { loadprofile, logout } from "../../state/user/slice.js";
 import { useEffect } from "react";
 import JSONResult from "../../translations/en/i18n.json";
 import Store from "../../state/index.js";
+import { useSelector } from "react-redux";
 
 function Page(props) {
   const classes = useStyles();
@@ -25,12 +26,16 @@ function Page(props) {
     setLoginPage(JSONResult.loginPage);
   }, []);
 
+  const profile = useSelector((state) => {
+    return state.user.profile;
+  });
+
   useEffect(() => {
     if (userLoggedIn()) {
       if (!tryShowProfile(Store)) {
         dispatch(
           loadprofile({
-            id: localStorage.getItem("user-id"),
+            id: profile?._id,
           })
         );
       }
@@ -42,9 +47,8 @@ function Page(props) {
   });
 
   function userLoggedIn() {
-    const hasUserId = localStorage.getItem("user-id");
-    const hasAuthToken = localStorage.getItem("auth-token");
-    return hasUserId && hasAuthToken;
+    const isLoggedIn = Store.getState().user.loggedIn;
+    return isLoggedIn;
   }
 
   function tryShowProfile(store) {

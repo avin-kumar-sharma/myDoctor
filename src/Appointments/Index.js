@@ -40,7 +40,7 @@ const Index = () => {
   const profile = useSelector((state) => {
     return state.user.profile;
   });
-  const clientId = localStorage.getItem("user-id");
+  const clientId = profile?._id;
   if (!!!data || !!!clientId) {
     history.push("/login");
   }
@@ -156,13 +156,15 @@ const Index = () => {
           )}
           <br />
           <br />
-          {data && <StripePayment
-            name={patient.confirm_and_pay}
-            price={data.consultationFee}
-            onClick={() => {
-              dispatch(bookNewAppointment(getAppointmentDetails()));
-            }}
-          ></StripePayment>}
+          {data && (
+            <StripePayment
+              name={patient.confirm_and_pay}
+              price={data.consultationFee}
+              onClick={() => {
+                dispatch(bookNewAppointment(getAppointmentDetails()));
+              }}
+            ></StripePayment>
+          )}
         </Container>
       </Container>
     </>

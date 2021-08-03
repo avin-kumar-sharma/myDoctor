@@ -11,11 +11,17 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./styles";
+import { useSelector } from "react-redux";
 
 const Profile = (props) => {
   const [profileInfo, setProfileInfo] = React.useState({});
   const classes = useStyles();
-  const clientId = localStorage.getItem("user-id");
+
+  const profile = useSelector((state) => {
+    return state.user.profile;
+  });
+
+  const clientId = profile._id;
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/user/${clientId}`)

@@ -32,7 +32,10 @@ const Others = () => {
   const data = useSelector((state) => {
     return state.appointment.data;
   });
-  const clientId = localStorage.getItem("user-id");
+  const profile = useSelector((state) => {
+    return state.user.profile;
+  });
+  const clientId = profile?._id;
   if (!!!data || !!!clientId) {
     history.push("/login");
   }
@@ -185,13 +188,15 @@ const Others = () => {
           <br />
           <br />
 
-          {data && <StripePayment
-            name={patient.confirm_and_pay}
-            price={data.consultationFee}
-            onClick={() => {
-              bookAppointment();
-            }}
-          ></StripePayment>}
+          {data && (
+            <StripePayment
+              name={patient.confirm_and_pay}
+              price={data.consultationFee}
+              onClick={() => {
+                bookAppointment();
+              }}
+            ></StripePayment>
+          )}
           <br />
           <br />
         </Container>

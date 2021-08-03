@@ -52,20 +52,25 @@ const SlotBooking = (props) => {
   const doctorId = props.data._id;
   const consultationFee = props.data.consultationFee;
 
-  dispatch(setAppointmentData(null));
+  //dispatch(setAppointmentData(null));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   function getLoginMessage() {
-    const msgParts = JSONResult['doctors_appointment']['login_message'].split("%s");
+    const msgParts =
+      JSONResult["doctors_appointment"]["login_message"].split("%s");
     return (
       <div style={{ color: "red" }}>
         {msgParts[0]}
-        <Link style={{ textDecoration: "none" }} to="/login">{JSONResult['doctors_appointment']['sign_in']}</Link>
+        <Link style={{ textDecoration: "none" }} to="/login">
+          {JSONResult["doctors_appointment"]["sign_in"]}
+        </Link>
         {msgParts[1]}
-        <Link style={{ textDecoration: "none" }} to="/login?v=1">{JSONResult['doctors_appointment']['register']}</Link>
+        <Link style={{ textDecoration: "none" }} to="/login?v=1">
+          {JSONResult["doctors_appointment"]["register"]}
+        </Link>
         {msgParts[2]}
       </div>
     );
@@ -149,9 +154,7 @@ const SlotBooking = (props) => {
           </div>
         </TabPanel>
       ))}
-      {showLoginMessage && (
-        getLoginMessage()
-      )}
+      {showLoginMessage && getLoginMessage()}
     </React.Fragment>
   );
 };
