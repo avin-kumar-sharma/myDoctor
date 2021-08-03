@@ -9,6 +9,17 @@
 		"sign_in": "Sign in",
 		"register": "Register"
 	},
+	"myAppointments": {
+		"not_started": "Not Started",
+		"in_progress": "In Progress",
+		"completed": "Completed",
+		"doctorSalutation": "Dr.",
+		"labelDate": "Date",
+		"labelTiming": "Timing",
+		"labelStatus": "Status",
+		"labelPatient": "Patient",
+		"self": "Self"
+	},
 	"loginPage": {
 		"forgot": "Forgot Password?",
 		"login": "Login",
