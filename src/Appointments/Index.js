@@ -47,12 +47,13 @@ const Index = () => {
   const dispatch = useDispatch();
 
   const [error, setError] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
   Store.subscribe(() => {
     const err = Store.getState().appointment.error;
     setError(err !== null);
     const created = Store.getState().appointment.created;
-    setSuccess(created === true);
+    if (created) {
+      history.push("/appointments");
+    }
   });
 
   function getAppointmentDetails() {
@@ -85,11 +86,6 @@ const Index = () => {
         {error && (
           <Alert severity="error">
             {JSONResult.patient["appointment_fail"]}
-          </Alert>
-        )}
-        {success && (
-          <Alert severity="success">
-            {JSONResult.patient["appointment_success"]}
           </Alert>
         )}
         <label>{patient.label}</label>
