@@ -1,9 +1,8 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Page from "../layout/Page/page";
+import { useStore, useSelector, useDispatch } from "react-redux";
+import ProtectedPage from "../layout/Page/protectedpage";
 import { useHistory } from "react-router";
 import { fetchAppointments } from "../state/appointment/slice";
-import Store from "../state";
 import i18n from "../translations/en/i18n.json";
 import { Container, Paper, Card, Grid, Avatar, Button } from "@material-ui/core";
 import { useStyles } from "./styles";
@@ -12,12 +11,6 @@ import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
 
 const MyAppointments = () => {
   const history = useHistory();
-  const userLoggedIn = useSelector((state) => {
-    return state.user.loggedIn;
-  });
-  if (!userLoggedIn) {
-    history.push("/login");
-  }
   const userId = localStorage.getItem("user-id");
   if (userId === null) {
     console.error("Missing 'user-id' in the local storage. Redirecting to login ...");
@@ -30,6 +23,7 @@ const MyAppointments = () => {
 
   const [appointments, setAppointments] = React.useState(initialData);
 
+  const store = useStore();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -39,8 +33,9 @@ const MyAppointments = () => {
     }
   });
 
-  Store.subscribe(() => {
-    const appointmentState = Store.getState().appointment;
+
+  store.subscribe(() => {
+    const appointmentState = store.getState().appointment;
     const data = appointmentState.appointments[userId];
     // Caution: Do not call setAppointments when appointment data is not available or empty. It will lead to infinite rendering loop.
     if (data && Array.isArray(data) && !(appointments.length === 0 && data.length === 0)) {
@@ -48,10 +43,13 @@ const MyAppointments = () => {
     }
   });
 
+  const startConsultation = (appointmentId) => {
+    history.push(`/consultation/${appointmentId}`);
+  };
 
   const classes = useStyles();
   return (
-    <Page>
+    <ProtectedPage>
       <Container maxWidth="lg">
         <Paper elevation={1} className={classes.container}>
           <div className={classes.heading}>
@@ -90,7 +88,7 @@ const MyAppointments = () => {
                     </div>
                   </div>
                   <div className="right">
-                    <Button variant="outlined" color="primary" disableElevation>
+                    <Button variant="outlined" color="primary" disableElevation onClick={() => { startConsultation(appointment._id); }}>
                       <ForumOutlinedIcon /> Consult
                     </Button>
                   </div>
@@ -100,7 +98,7 @@ const MyAppointments = () => {
           </Grid>
         </Paper>
       </Container>
-    </Page>
+    </ProtectedPage>
   );
 };
 

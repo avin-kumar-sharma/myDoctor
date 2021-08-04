@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) =>
   createStyles({
     main: {
       width: "100%",
+      minHeight: "100%",
       display: "flex",
       justifyContent: "center",
       alignItems: "flex-start",

@@ -9,6 +9,10 @@
 		"sign_in": "Sign in",
 		"register": "Register"
 	},
+	"consultationChat": {
+		"doctorSalutation": "Dr.",
+		"self": "Self"
+	},
 	"myAppointments": {
 		"not_started": "Not Started",
 		"in_progress": "In Progress",

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   bookAppointment,
+  getAppointmentDetails,
   getAppointments,
 } from './api';
 
@@ -53,6 +54,22 @@ const slice = createSlice({
         [action.payload.userId]: [],
       };
     },
+    fetchAppointmentDetailsSuccess(state, action) {
+      state.loading = false;
+      state.error = null;
+      const userAppointments = state.appointments[action.payload.userId] ?? [];
+      state.appointments = {
+        ...state.appointments,
+        [action.payload.userId]: [
+          ...userAppointments,
+          action.payload.appointment
+        ]
+      };
+    },
+    fetchAppointmentDetailsFail(state, action) {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
     setAppointmentData(state, action) {
       state.data = action.payload;
     }
@@ -67,6 +84,8 @@ export const {
   setAppointmentData,
   fetchAppointmentsSuccess,
   fetchAppointmentsFail,
+  fetchAppointmentDetailsSuccess,
+  fetchAppointmentDetailsFail
 } = slice.actions;
 
 export default slice.reducer;
@@ -94,5 +113,15 @@ export const fetchAppointments = ({ userId }) => async (dispatch) => {
       userId,
       error,
     }));
+  }
+};
+
+export const fetchAppointmentDetails = ({ userId, appointmentId }) => async (dispatch) => {
+  try {
+    dispatch(showLoading());
+    const res = await getAppointmentDetails({ appointmentId });
+    dispatch(fetchAppointmentDetailsSuccess({ userId, appointment: res.data.data }));
+  } catch (error) {
+    dispatch(fetchAppointmentDetailsFail({ error }));
   }
 };
