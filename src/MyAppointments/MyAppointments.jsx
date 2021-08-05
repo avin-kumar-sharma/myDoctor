@@ -8,9 +8,16 @@ import { Container, Paper, Card, Grid, Avatar, Button } from "@material-ui/core"
 import { useStyles } from "./styles";
 import EventIcon from '@material-ui/icons/Event';
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
+import { useLocation } from "react-router-dom";
+import { Alert } from '@material-ui/lab';
 
 const MyAppointments = () => {
   const history = useHistory();
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const showNewAppointmentMessage = params.get('c') === '1';
+
   const userId = localStorage.getItem("user-id");
   if (userId === null) {
     console.error("Missing 'user-id' in the local storage. Redirecting to login ...");
@@ -51,6 +58,11 @@ const MyAppointments = () => {
   return (
     <ProtectedPage>
       <Container maxWidth="lg">
+        {showNewAppointmentMessage && (
+          <Alert severity="success" style={{ marginTop: "1rem" }}>
+            {i18n["patient"]["appointment_success"]}
+          </Alert>
+        )}
         <Paper elevation={1} className={classes.container}>
           <div className={classes.heading}>
             <EventIcon />

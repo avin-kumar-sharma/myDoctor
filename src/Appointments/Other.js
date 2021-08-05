@@ -55,7 +55,7 @@ const Others = () => {
     setError(err !== null);
     const created = Store.getState().appointment.created;
     if (created) {
-      history.push("/appointments");
+      history.push("/appointments?c=1");
     }
   });
 
@@ -178,6 +178,9 @@ const Others = () => {
               onClick={(e) => { if (!validate()) e.stopPropagation(); }}
               onPaymentSuccess={() => {
                 dispatch(bookNewAppointment(getAppointmentDetails()));
+              }}
+              onPaymentFail={(error) => {
+                setError(true);
               }}
             ></StripePayment>
           )}

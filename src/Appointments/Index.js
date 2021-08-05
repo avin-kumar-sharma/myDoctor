@@ -52,7 +52,7 @@ const Index = () => {
     setError(err !== null);
     const created = Store.getState().appointment.created;
     if (created) {
-      history.push("/appointments");
+      history.push("/appointments?c=1");
     }
   });
 
@@ -157,6 +157,9 @@ const Index = () => {
               price={data.consultationFee}
               onPaymentSuccess={() => {
                 dispatch(bookNewAppointment(getAppointmentDetails()));
+              }}
+              onPaymentFail={(error) => {
+                setError(true);
               }}
             ></StripePayment>
           )}

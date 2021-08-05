@@ -25,6 +25,7 @@ const StripePayment = (props) => {
 
     const headers = {
       "content-type": "application/json",
+      "authorization": `Bearer ${localStorage.getItem('auth-token')}`,
     };
 
     return fetch(`http://localhost:4000/v1/payment`, {
@@ -32,13 +33,15 @@ const StripePayment = (props) => {
       headers,
       body: JSON.stringify(body),
     })
-      .then((response) => {
-        console.log("RESPONSE ", response);
-        if (onPaymentSuccess) onPaymentSuccess();
+      .then(response => response.json())
+      .then(body => {
+        console.log("RESPONSE BODY");
+        console.log(body);
+        if (onPaymentSuccess) onPaymentSuccess(body);
       })
       .catch((error) => {
         console.log(error);
-        if (onPaymentFail) onPaymentFail();
+        if (onPaymentFail) onPaymentFail(error);
       });
   };
 

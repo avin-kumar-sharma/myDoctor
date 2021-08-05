@@ -62,7 +62,7 @@
 		"label_fee": "Fee : ",
 		"confirm_and_pay": "Confirm and Pay",
 		"appointment_success": "Appointment is booked successfully!",
-		"appointment_fail": "Failed to book appointment!",
+		"appointment_fail": "Failed to book appointment. Please try again!",
 		"invalid_otherName": "Please enter a valid patient name!",
 		"invalid_otherMobileNumber": "Please enter a valid 10-digit mobile number!"
 	},
