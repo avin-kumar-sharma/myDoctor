@@ -10,6 +10,7 @@ import StripePayment from "../shared/components/StripePayment/stripePayment";
 const DoctorsDetailAndBooking = (props) => {
   const classes = useStyles();
   const [doctorInfos, setDoctorInfos] = React.useState(null);
+  const [bookedSlots, setBookedSlots] = React.useState(null);
   const { doctorId } = props.match.params;
 
   console.log("Logging props : ", doctorId);
@@ -18,6 +19,10 @@ const DoctorsDetailAndBooking = (props) => {
     fetch(`http://localhost:4000/v1/doctor/${doctorId}`)
       .then((response) => response.json())
       .then((data) => setDoctorInfos(data.message[0]));
+
+    fetch(`http://localhost:4000/appointments/${doctorId}`)
+      .then((response) => response.json())
+      .then((data) => setBookedSlots(data.data));
   }, []);
 
   if (doctorInfos == null) {
@@ -36,7 +41,7 @@ const DoctorsDetailAndBooking = (props) => {
             <DoctorsInfo data={doctorInfos} />
           </Grid>
           <Grid item xs={6}>
-            <SlotBooking data={doctorInfos} />
+            <SlotBooking data={doctorInfos} bookedSlots={bookedSlots} />
           </Grid>
           <Grid item xs={12}>
             <DoctorDetails data={doctorInfos} />

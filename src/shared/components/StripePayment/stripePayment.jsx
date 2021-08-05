@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 config();
 
 const StripePayment = (props) => {
-  const { name, price, onClick } = props;
+  const { name, price, onSuccess, onError } = props;
   const submit_color = { color: "white" };
 
   const [product, setProduct] = React.useState({});
@@ -34,8 +34,12 @@ const StripePayment = (props) => {
     })
       .then((response) => {
         console.log("RESPONSE ", response);
+        onSuccess();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        onError();
+      });
   };
 
   return (
@@ -50,7 +54,6 @@ const StripePayment = (props) => {
         fullWidth
         style={submit_color}
         color="primary"
-        onClick={onClick}
       >
         Pay
       </Button>

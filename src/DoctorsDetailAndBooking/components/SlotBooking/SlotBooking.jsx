@@ -40,6 +40,12 @@ function a11yProps(index) {
   };
 }
 
+let isSlotAvailable = (slotId, bookedSlots) => {
+  const bookedSlotsList = bookedSlots?.map((a) => a.timeId);
+  var res = bookedSlotsList?.findIndex((s) => s === slotId);
+  return res === -1;
+};
+
 const SlotBooking = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -49,10 +55,16 @@ const SlotBooking = (props) => {
   const history = useHistory();
 
   let { availableSlots } = props.data;
+  let { bookedSlots } = props;
   const doctorId = props.data._id;
   const consultationFee = props.data.consultationFee;
 
-  //dispatch(setAppointmentData(null));
+  console.log("booked slots : ");
+  console.log(bookedSlots?.map((a) => a.timeId));
+
+  // useEffect(() => {
+  //   //dispatch(setAppointmentData({}));
+  // }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -91,6 +103,8 @@ const SlotBooking = (props) => {
 
     dispatch(
       setAppointmentData({
+        slotId: slotId,
+        timeId: timeId,
         date: formatDate(date),
         startTime: formatTime(startTime),
         endTime: formatTime(endTime),
@@ -140,17 +154,20 @@ const SlotBooking = (props) => {
       {availableSlots.map((slotInfo, index) => (
         <TabPanel value={value} index={index}>
           <div className={classes.root}>
-            {slotInfo.time.map((slot) => (
-              <Chip
-                variant="outlined"
-                label={slot.startTime + " - " + slot.endTime}
-                clickable
-                onClick={() => {
-                  selectSlot(slotInfo._id, slot._id);
-                }}
-                color="primary"
-              />
-            ))}
+            {slotInfo.time.map(
+              (slot) =>
+                isSlotAvailable(slot._id, bookedSlots) && (
+                  <Chip
+                    variant="outlined"
+                    label={slot.startTime + " - " + slot.endTime}
+                    clickable
+                    onClick={() => {
+                      selectSlot(slotInfo._id, slot._id);
+                    }}
+                    color="primary"
+                  />
+                )
+            )}
           </div>
         </TabPanel>
       ))}
