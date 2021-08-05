@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadprofile } from "./state/user/slice";
 import Profile from "./MyProfile/Profile";
+import ConsultationChat from "./Consultation/ConsultationChat";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <Route path="/" exact component={Dashboard} />
           <Route path="/appointments" exact component={MyAppointments} />
+          <Route path="/consultation/:appointmentId" exact component={ConsultationChat} />
           <Route path="/chat/:appointmentId" component={Chat} />
           <Route path="/login" exact component={SignInOutContainer} />
           <Route

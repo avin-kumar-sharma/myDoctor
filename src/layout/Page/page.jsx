@@ -66,7 +66,7 @@ function Page(props) {
     history.push("/");
   }
   return (
-    <div>
+    <div style={{ minHeight: "100%" }}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Logo className={classes.logo} onClick={() => history.push("/")} />

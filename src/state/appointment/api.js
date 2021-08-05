@@ -7,3 +7,7 @@ export function bookAppointment(payload) {
 export function getAppointments({ userId }) {
   return API.get(`/appointments/${userId}`);
 }
+
+export function getAppointmentDetails({ appointmentId }) {
+  return API.get(`/appointments/${appointmentId}/details`);
+}
