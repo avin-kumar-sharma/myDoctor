@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 config();
 
 const StripePayment = (props) => {
-  const { name, price, onSuccess, onError } = props;
+  const { name, price, onClick, onPaymentSuccess, onPaymentFail } = props;
   const submit_color = { color: "white" };
 
   const [product, setProduct] = React.useState({});
@@ -25,6 +25,7 @@ const StripePayment = (props) => {
 
     const headers = {
       "content-type": "application/json",
+      "authorization": `Bearer ${localStorage.getItem('auth-token')}`,
     };
 
     return fetch(`http://localhost:4000/v1/payment`, {
@@ -32,13 +33,15 @@ const StripePayment = (props) => {
       headers,
       body: JSON.stringify(body),
     })
-      .then((response) => {
-        console.log("RESPONSE ", response);
-        onSuccess();
+      .then(response => response.json())
+      .then(body => {
+        console.log("RESPONSE BODY");
+        console.log(body);
+        if (onPaymentSuccess) onPaymentSuccess(body);
       })
       .catch((error) => {
         console.log(error);
-        onError();
+        if (onPaymentFail) onPaymentFail(error);
       });
   };
 
@@ -46,6 +49,8 @@ const StripePayment = (props) => {
     <StripeChekcout
       stripeKey={process.env.REACT_APP_KEY}
       token={makePayment}
+      amount={product.price * 100}
+      currency="INR"
       name="Buy Consultancy"
     >
       <Button

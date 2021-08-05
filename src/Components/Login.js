@@ -42,16 +42,20 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  if (userAlreadyLoggedIn()) {
+  const userLoggedIn = useSelector((state) => {
+    return state.user.loggedIn;
+  });
+
+  if (userLoggedIn) {
     history.push("/");
   }
   Store.subscribe(() => {
     setError(!!Store.getState().user.error);
-    const loginSuccessful =
-      !!!Store.getState().user.error && Store.getState().user.token;
-    if (loginSuccessful) {
-      history.push("/");
-    }
+    // const loginSuccessful =
+    //   !!!Store.getState().user.error && Store.getState().user.token;
+    // if (loginSuccessful) {
+    //   history.push("/");
+    // }
   });
 
   const refsMap = {};
@@ -69,10 +73,10 @@ const Login = () => {
     };
   }
 
-  function userAlreadyLoggedIn() {
-    const isLoggedIn = Store.getState().user.profile?.loggedIn;
-    return isLoggedIn;
-  }
+  // function userAlreadyLoggedIn() {
+  //   const isLoggedIn = Store.getState().user.profile?.loggedIn;
+  //   return isLoggedIn;
+  // }
   const loginStyle = { color: "white" };
   const colordark = { backgroundColor: "darkBlue", color: "white" };
   return (

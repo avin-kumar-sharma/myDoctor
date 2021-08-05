@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../layout/Page/page";
+import ProtectedPage from "../layout/Page/protectedpage";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 import {
@@ -41,8 +41,8 @@ const Index = () => {
     return state.user.profile;
   });
   const clientId = profile?._id;
-  if (!!!data || !!!clientId) {
-    history.push("/login");
+  if (!clientId) {
+    console.error("error: cannot find id in user profile!");
   }
   const dispatch = useDispatch();
 
@@ -50,10 +50,6 @@ const Index = () => {
   Store.subscribe(() => {
     const err = Store.getState().appointment.error;
     setError(err !== null);
-    const created = Store.getState().appointment.created;
-    if (created) {
-      history.push("/appointments");
-    }
   });
 
   function getAppointmentDetails() {
@@ -78,8 +74,7 @@ const Index = () => {
   }
 
   return (
-    <>
-      <Page />
+    <ProtectedPage>
       <Container maxWidth="sm">
         <Typography className="patient" variant="h4">
           {patient.head}
@@ -158,18 +153,18 @@ const Index = () => {
             <StripePayment
               name={patient.confirm_and_pay}
               price={data.consultationFee}
-              onSuccess={() => {
-                console.log("payment successfull");
+              onPaymentSuccess={() => {
+                history.push("/appointments?c=1");
                 dispatch(bookNewAppointment(getAppointmentDetails()));
               }}
-              onError={() => {
-                console.log("payment error occured");
+              onPaymentFail={(error) => {
+                setError(true);
               }}
             ></StripePayment>
           )}
         </Container>
       </Container>
-    </>
+    </ProtectedPage>
   );
 };
 export default Index;

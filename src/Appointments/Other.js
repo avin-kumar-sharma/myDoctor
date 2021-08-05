@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../layout/Page/page";
+import ProtectedPage from "../layout/Page/protectedpage";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 import {
@@ -36,8 +36,8 @@ const Others = () => {
     return state.user.profile;
   });
   const clientId = profile?._id;
-  if (!!!data || !!!clientId) {
-    history.push("/login");
+  if (!clientId) {
+    console.error("error: cannot find id in user profile!");
   }
   const dispatch = useDispatch();
 
@@ -53,10 +53,6 @@ const Others = () => {
   Store.subscribe(() => {
     const err = Store.getState().appointment.error;
     setError(err !== null);
-    const created = Store.getState().appointment.created;
-    if (created) {
-      history.push("/appointments");
-    }
   });
 
   function getAppointmentDetails() {
@@ -94,15 +90,8 @@ const Others = () => {
     return errors.length === 0;
   }
 
-  function bookAppointment() {
-    if (validate()) {
-      dispatch(bookNewAppointment(getAppointmentDetails()));
-    }
-  }
-
   return (
-    <>
-      <Page />
+    <ProtectedPage>
       <Container maxWidth="sm">
         <Typography className="patient" variant="h4">
           {patient.head}
@@ -184,8 +173,13 @@ const Others = () => {
             <StripePayment
               name={patient.confirm_and_pay}
               price={data.consultationFee}
-              onClick={() => {
-                bookAppointment();
+              onClick={(e) => { if (!validate()) e.stopPropagation(); }}
+              onPaymentSuccess={() => {
+                history.push("/appointments?c=1");
+                dispatch(bookNewAppointment(getAppointmentDetails()));
+              }}
+              onPaymentFail={(error) => {
+                setError(true);
               }}
             ></StripePayment>
           )}
@@ -193,7 +187,7 @@ const Others = () => {
           <br />
         </Container>
       </Container>
-    </>
+    </ProtectedPage>
   );
 };
 export default Others;

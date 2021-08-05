@@ -25,6 +25,7 @@ export const useStyles = makeStyles((theme) =>
     },
     logo: {
       height: 50,
+      cursor: "pointer",
     },
     avatar: {
       width: 50,

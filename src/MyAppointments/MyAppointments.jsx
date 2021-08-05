@@ -8,13 +8,19 @@ import { Container, Paper, Card, Grid, Avatar, Button } from "@material-ui/core"
 import { useStyles } from "./styles";
 import EventIcon from '@material-ui/icons/Event';
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
+import { useLocation } from "react-router-dom";
+import { Alert } from '@material-ui/lab';
 
 const MyAppointments = () => {
   const history = useHistory();
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const showNewAppointmentMessage = params.get('c') === '1';
+
   const userId = localStorage.getItem("user-id");
   if (userId === null) {
     console.error("Missing 'user-id' in the local storage. Redirecting to login ...");
-    history.push("/login");
   }
   let initialData = useSelector((state) => {
     return state.appointment.appointments[userId];
@@ -44,13 +50,19 @@ const MyAppointments = () => {
   });
 
   const startConsultation = (appointmentId) => {
-    history.push(`/consultation/${appointmentId}`);
+    //history.push(`/consultation/${appointmentId}`);
+    history.push(`/chat/${appointmentId}`);
   };
 
   const classes = useStyles();
   return (
     <ProtectedPage>
       <Container maxWidth="lg">
+        {showNewAppointmentMessage && (
+          <Alert severity="success" style={{ marginTop: "1rem" }}>
+            {i18n["patient"]["appointment_success"]}
+          </Alert>
+        )}
         <Paper elevation={1} className={classes.container}>
           <div className={classes.heading}>
             <EventIcon />
@@ -88,7 +100,7 @@ const MyAppointments = () => {
                     </div>
                   </div>
                   <div className="right">
-                    <Button variant="outlined" color="primary" disableElevation onClick={() => { startConsultation(appointment._id); }}>
+                    <Button variant="outlined" color="primary" disableElevation onClick={() => { startConsultation(appointment._id); }} disabled={!enableConsultButton(appointment)}>
                       <ForumOutlinedIcon /> Consult
                     </Button>
                   </div>
@@ -104,16 +116,20 @@ const MyAppointments = () => {
 
 export default MyAppointments;
 
+const STATUS_NOT_STARTED = "NOT_STARTED";
+const STATUS_IN_PROGRESS = "IN_PROGRESS";
+const STATUS_COMPLETED = "COMPLETED";
+
 const statusMapping = {
-  "NOT_STARTED": {
+  [STATUS_NOT_STARTED]: {
     text: i18n["myAppointments"]["not_started"],
     cssClass: "status not-started",
   },
-  "IN_PROGRESS": {
+  [STATUS_IN_PROGRESS]: {
     text: i18n["myAppointments"]["in_progress"],
     cssClass: "status in-progress",
   },
-  "COMPLETED": {
+  [STATUS_COMPLETED]: {
     text: i18n["myAppointments"]["completed"],
     cssClass: "status completed",
   },
@@ -147,10 +163,17 @@ function getPatientName(appointmentData) {
 }
 
 function getAppointmentDate(appointmentData) {
-  const date = new Date(appointmentData.date);
+  return formatDate(new Date(appointmentData.date));
+}
+
+function formatDate(date) {
   return date.toLocaleDateString('en-GB', {
     day: 'numeric', month: 'short', year: 'numeric'
   });
+}
+
+function enableConsultButton(appointmentData) {
+  return getAppointmentDate(appointmentData) === formatDate(new Date()) && appointmentData.appointmentStatus !== STATUS_COMPLETED;
 }
 
 function getAppointmentTiming(appointmentData) {
