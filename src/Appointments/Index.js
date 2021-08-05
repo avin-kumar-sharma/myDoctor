@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../layout/Page/page";
+import ProtectedPage from "../layout/Page/protectedpage";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 import {
@@ -41,8 +41,8 @@ const Index = () => {
     return state.user.profile;
   });
   const clientId = profile?._id;
-  if (!!!data || !!!clientId) {
-    history.push("/login");
+  if (!clientId) {
+    history.push("/");
   }
   const dispatch = useDispatch();
 
@@ -76,8 +76,7 @@ const Index = () => {
   }
 
   return (
-    <>
-      <Page />
+    <ProtectedPage>
       <Container maxWidth="sm">
         <Typography className="patient" variant="h4">
           {patient.head}
@@ -156,14 +155,14 @@ const Index = () => {
             <StripePayment
               name={patient.confirm_and_pay}
               price={data.consultationFee}
-              onClick={() => {
+              onPaymentSuccess={() => {
                 dispatch(bookNewAppointment(getAppointmentDetails()));
               }}
             ></StripePayment>
           )}
         </Container>
       </Container>
-    </>
+    </ProtectedPage>
   );
 };
 export default Index;

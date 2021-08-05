@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 config();
 
 const StripePayment = (props) => {
-  const { name, price, onClick } = props;
+  const { name, price, onClick, onPaymentSuccess, onPaymentFail } = props;
   const submit_color = { color: "white" };
 
   const [product, setProduct] = React.useState({});
@@ -34,14 +34,20 @@ const StripePayment = (props) => {
     })
       .then((response) => {
         console.log("RESPONSE ", response);
+        if (onPaymentSuccess) onPaymentSuccess();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        if (onPaymentFail) onPaymentFail();
+      });
   };
 
   return (
     <StripeChekcout
       stripeKey={process.env.REACT_APP_KEY}
       token={makePayment}
+      amount={product.price * 100}
+      currency="INR"
       name="Buy Consultancy"
     >
       <Button

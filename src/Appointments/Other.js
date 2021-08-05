@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../layout/Page/page";
+import ProtectedPage from "../layout/Page/protectedpage";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 import {
@@ -36,8 +36,8 @@ const Others = () => {
     return state.user.profile;
   });
   const clientId = profile?._id;
-  if (!!!data || !!!clientId) {
-    history.push("/login");
+  if (!clientId) {
+    history.push("/");
   }
   const dispatch = useDispatch();
 
@@ -92,15 +92,8 @@ const Others = () => {
     return errors.length === 0;
   }
 
-  function bookAppointment() {
-    if (validate()) {
-      dispatch(bookNewAppointment(getAppointmentDetails()));
-    }
-  }
-
   return (
-    <>
-      <Page />
+    <ProtectedPage>
       <Container maxWidth="sm">
         <Typography className="patient" variant="h4">
           {patient.head}
@@ -182,8 +175,9 @@ const Others = () => {
             <StripePayment
               name={patient.confirm_and_pay}
               price={data.consultationFee}
-              onClick={() => {
-                bookAppointment();
+              onClick={(e) => { if (!validate()) e.stopPropagation(); }}
+              onPaymentSuccess={() => {
+                dispatch(bookNewAppointment(getAppointmentDetails()));
               }}
             ></StripePayment>
           )}
@@ -191,7 +185,7 @@ const Others = () => {
           <br />
         </Container>
       </Container>
-    </>
+    </ProtectedPage>
   );
 };
 export default Others;
