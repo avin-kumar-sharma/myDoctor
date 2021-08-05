@@ -58,6 +58,8 @@ const Index = () => {
 
   function getAppointmentDetails() {
     return {
+      slotDateId: data.slotId,
+      timeId: data.timeId,
       date: data.date,
       startTime: data.startTime,
       endTime: data.endTime,
@@ -156,8 +158,12 @@ const Index = () => {
             <StripePayment
               name={patient.confirm_and_pay}
               price={data.consultationFee}
-              onClick={() => {
+              onSuccess={() => {
+                console.log("payment successfull");
                 dispatch(bookNewAppointment(getAppointmentDetails()));
+              }}
+              onError={() => {
+                console.log("payment error occured");
               }}
             ></StripePayment>
           )}
