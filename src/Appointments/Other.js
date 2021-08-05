@@ -49,13 +49,14 @@ const Others = () => {
   }
 
   const [error, setError] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
   const [invalid, setInvalid] = React.useState([]);
   Store.subscribe(() => {
     const err = Store.getState().appointment.error;
     setError(err !== null);
     const created = Store.getState().appointment.created;
-    setSuccess(created === true);
+    if (created) {
+      history.push("/appointments");
+    }
   });
 
   function getAppointmentDetails() {
@@ -96,13 +97,7 @@ const Others = () => {
   function bookAppointment() {
     if (validate()) {
       dispatch(bookNewAppointment(getAppointmentDetails()));
-      clearForm();
     }
-  }
-
-  function clearForm() {
-    setName("");
-    setMobile("");
   }
 
   return (
@@ -116,11 +111,6 @@ const Others = () => {
         {error && (
           <Alert severity="error">
             {JSONResult.patient["appointment_fail"]}
-          </Alert>
-        )}
-        {success && (
-          <Alert severity="success">
-            {JSONResult.patient["appointment_success"]}
           </Alert>
         )}
         {invalid.map((err) => (

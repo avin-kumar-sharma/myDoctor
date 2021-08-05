@@ -33,7 +33,7 @@ function App() {
       <Switch>
         <ThemeProvider theme={theme}>
           <Route path="/" exact component={Dashboard} />
-          <Route path="/appointments" exact component={Chat} />
+          <Route path="/appointments" exact component={MyAppointments} />
           <Route path="/chat/:appointmentId" component={Chat} />
           <Route path="/login" exact component={SignInOutContainer} />
           <Route
@@ -41,7 +41,6 @@ function App() {
             exact
             component={DoctorsDetailAndBooking}
           />
-          <Route path="/myAppointments" exact component={MyAppointments} />
           <Route path="/self-appointment" exact component={Index}></Route>
           <Route path="/others-appointment" exact component={Others}></Route>
           <Route path="/profile" exact component={Profile} />
