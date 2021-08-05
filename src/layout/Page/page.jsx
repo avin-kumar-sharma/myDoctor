@@ -7,61 +7,36 @@ import { ReactComponent as Logo } from "../../icons/logo.svg";
 import ProfileSection from "../components/ProfileSection/profileSection";
 import { useStyles } from "./styles";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadprofile, logout } from "../../state/user/slice.js";
 import { useEffect } from "react";
-import JSONResult from "../../translations/en/i18n.json";
-import Store from "../../state/index.js";
-import { useSelector } from "react-redux";
+import i18n from "../../translations/en/i18n.json";
 
 function Page(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const [loginPage, setLoginPage] = React.useState([]);
-  const [showProfile, setShowProfile] = React.useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setLoginPage(JSONResult.loginPage);
-  }, []);
+  const userLoggedIn = useSelector((state) => {
+    return state.user.loggedIn;
+  });
 
-  const profile = useSelector((state) => {
+  const userProfile = useSelector((state) => {
     return state.user.profile;
   });
 
   useEffect(() => {
-    if (userLoggedIn()) {
-      if (!tryShowProfile(Store)) {
-        dispatch(
-          loadprofile({
-            id: profile?._id,
-          })
-        );
-      }
+    if (userLoggedIn && !userProfile) {
+      dispatch(
+        loadprofile({
+          id: localStorage.getItem('user-id'),
+        })
+      );
     }
   });
-
-  Store.subscribe(() => {
-    tryShowProfile(Store);
-  });
-
-  function userLoggedIn() {
-    const isLoggedIn = Store.getState().user.loggedIn;
-    return isLoggedIn;
-  }
-
-  function tryShowProfile(store) {
-    const profileAvailable = !!store.getState().user.profile;
-    if (profileAvailable) {
-      setShowProfile(true);
-      return true;
-    }
-    return false;
-  }
 
   function handleLogout() {
-    setShowProfile(false);
     dispatch(logout());
     history.push("/");
   }
@@ -70,13 +45,13 @@ function Page(props) {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Logo className={classes.logo} onClick={() => history.push("/")} />
-          {showProfile ? (
-            <ProfileSection onLogoutClick={handleLogout} />
+          {userLoggedIn ? (
+            <ProfileSection onLogoutClick={handleLogout} profile={userProfile} />
           ) : (
             <Link to="/login">
               {" "}
               <Button color="primary" variant="contained">
-                {loginPage.login}
+                {i18n["loginPage"]["login"]}
               </Button>
             </Link>
           )}
