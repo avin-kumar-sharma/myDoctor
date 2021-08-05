@@ -26,18 +26,25 @@ function Dashboard() {
     dispatch(loadDoctors(page));
   };
   const onSearchHandler = (searchString) => {
-    dispatch(loadDoctors(1, specialization, searchString))
+    dispatch(loadDoctors(1, specialization, searchString));
   };
   const onSelecteSpecialization = (selection) => {
     setSpecialization(selection);
-    dispatch(loadDoctors(1, selection, ''))
+    dispatch(loadDoctors(1, selection, ""));
   };
   return (
     <Page>
       <div className={classes.root}>
+        <Flex center full>
+          <img
+            src={"banner.PNG"}
+            alt="Banner"
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+        </Flex>
         <div className={classes.searchSection}>
-          <Specialisation onSelectSpecialization = {onSelecteSpecialization} />
-          <SearchBar onSearch={onSearchHandler}/>
+          <Specialisation onSelectSpecialization={onSelecteSpecialization} />
+          <SearchBar onSearch={onSearchHandler} />
         </div>
         <Grid container className={classes.content}>
           <Grid item container xs={12} spacing={4} style={{ margin: "0" }}>
@@ -48,7 +55,7 @@ function Dashboard() {
             ))}
           </Grid>
         </Grid>
-        <Flex center full className={classes.pageNation}>
+        {pages > 1 && <Flex center full className={classes.pageNation}>
           <Pagination
             count={pages}
             variant="outlined"
@@ -56,6 +63,7 @@ function Dashboard() {
             onChange={onPageClick}
           />
         </Flex>
+        }
       </div>
     </Page>
   );

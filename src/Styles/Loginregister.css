@@ -1,12 +1,8 @@
 .paperStyle {
 	padding: 30px 20px;
-	height: auto;
-	width: 400;
 }
 .paperStylelogin {
 	padding: 30px 20px;
-	height: 100%;
-	width: 400;
 }
 .paperStyle2 {
 	width: auto;
@@ -34,4 +30,7 @@
 }
 #signup {
 	margin-left: 55%;
+}
+.MuiOutlinedInput-input{
+	padding: 8px !important;
 }
