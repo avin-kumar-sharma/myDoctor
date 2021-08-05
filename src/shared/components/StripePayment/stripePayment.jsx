@@ -59,7 +59,6 @@ const StripePayment = (props) => {
         fullWidth
         style={submit_color}
         color="primary"
-        onClick={onClick}
       >
         Pay
       </Button>

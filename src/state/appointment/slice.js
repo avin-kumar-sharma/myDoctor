@@ -1,10 +1,10 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 import {
   bookAppointment,
   getAppointmentDetails,
   getAppointments,
 } from './api';
-
 
 const initialState = {
   data: null,
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'appointment',
+  name: "appointment",
   initialState,
   reducers: {
     showLoading(state) {
@@ -72,7 +72,7 @@ const slice = createSlice({
     },
     setAppointmentData(state, action) {
       state.data = action.payload;
-    }
+    },
   },
 });
 

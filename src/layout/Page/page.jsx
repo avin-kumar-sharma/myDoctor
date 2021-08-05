@@ -48,7 +48,7 @@ function Page(props) {
           {userLoggedIn ? (
             <ProfileSection onLogoutClick={handleLogout} profile={userProfile} />
           ) : (
-            <Link to="/login">
+            <Link to="/login" style={{textDecoration: 'none'}}>
               {" "}
               <Button color="primary" variant="contained">
                 {i18n["loginPage"]["login"]}

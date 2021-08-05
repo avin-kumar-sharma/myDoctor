@@ -8,98 +8,89 @@ import Signup from "../Components/Signup";
 import "../Styles/Loginregister.css";
 import JSONResult from "../translations/en/i18n.json";
 import { useLocation } from "react-router-dom";
+import Flex from "../shared/components/Flex";
 
 const SignInOutContainer = ({ field }) => {
-	const location = useLocation();
-	const params = new URLSearchParams(location.search);
-	let tabIndex = parseInt(params.get('v'));
-	if (!Number.isInteger(tabIndex) || tabIndex < 0 || tabIndex > 1) tabIndex = 0;
-	const [value, setValue] = useState(tabIndex);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  let tabIndex = parseInt(params.get("v"));
+  if (!Number.isInteger(tabIndex) || tabIndex < 0 || tabIndex > 1) tabIndex = 0;
+  const [value, setValue] = useState(tabIndex);
 
-	const [loginPage, setLoginPage] = React.useState([]);
-	const [message, setMessage] = React.useState("");
+  const [loginPage, setLoginPage] = React.useState([]);
+  const [message, setMessage] = React.useState("");
 
-	function handleSignupSuccess(message) {
-		setMessage(message);
-		setValue(0);
-	}
+  function handleSignupSuccess(message) {
+    setMessage(message);
+    setValue(0);
+  }
 
-	function handleClearMessage() {
-		setMessage("");
-	}
+  function handleClearMessage() {
+    setMessage("");
+  }
 
-	useEffect(() => {
-		setLoginPage(JSONResult.loginPage);
-	}, []);
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
-	};
+  useEffect(() => {
+    setLoginPage(JSONResult.loginPage);
+  }, []);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-	function TabPanel(props) {
-		const { children, value, index, ...other } = props;
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
-		return (
-			<div
-				role="tabpanel"
-				hidden={value !== index}
-				id={`simple-tabpanel-${index}`}
-				aria-labelledby={`simple-tab-${index}`}
-				{...other}
-			>
-				{value === index && (
-					<Box p={2}>
-						<Typography>{children}</Typography>
-					</Box>
-				)}
-			</div>
-		);
-	}
-	return (
-		<Grid
-			container
-			direction="row"
-			justifyContent="center"
-			alignItems="center"
-			style={{ minHeight: 100 + "%" }}
-		>
-			<Grid item xs={0} md={3} lg={4}>
-				<img src={"myDoctor.jpg"} alt="Logo" />
-			</Grid>
-			<Grid item md={5} lg={3}>
-				<Paper className="paperStyle2" style={{ minHeight: 90 + "vh" }}>
-					{message !== "" && (
-						<Alert severity="success">{message}</Alert>
-					)}
-					<Tabs
-						value={value}
-						indicatorColor="primary"
-						textColor="primary"
-						onChange={handleChange}
-						aria-label="disabled tabs example"
-					>
-						<Tab className="widthch" label={loginPage.login} />
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box p={2}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+  return (
+    <Flex row full>
+      <Flex style={{width: '60%'}} center>
+        <img src={"login_image.png"} alt="Logo" style={{display: 'block', height: '380px', width:'300px'}}/>
+      </Flex>
+      <Flex style={{width: '40%'}}>
+        <Paper className="paperStyle2" elevation={1}>
+          {message !== "" && <Alert severity="success">{message}</Alert>}
+          <Tabs
+            value={value}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleChange}
+            aria-label="disabled tabs example"
+          >
+            <Tab className="widthch" label={loginPage.login} />
 
-						<Tab className="widthch" label={loginPage.register} />
-					</Tabs>
-					<TabPanel
-						value={value}
-						index={0}
-						style={{ minHeight: 100 + "%" }}
-					>
-						<Login />
-					</TabPanel>
-					<TabPanel value={value} index={1}>
-						<Signup
-							field={field}
-							onSuccess={handleSignupSuccess}
-							onClear={handleClearMessage}
-							onSignIn={() => { setValue(0); }}
-						/>{" "}
-					</TabPanel>
-				</Paper>
-			</Grid>
-		</Grid>
-	);
+            <Tab className="widthch" label={loginPage.register} />
+          </Tabs>
+          <TabPanel value={value} index={0} style={{ minHeight: 100 + "%" }}>
+            <Login />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Signup
+              field={field}
+              onSuccess={handleSignupSuccess}
+              onClear={handleClearMessage}
+              onSignIn={() => {
+                setValue(0);
+              }}
+            />{" "}
+          </TabPanel>
+        </Paper>
+      </Flex>
+    </Flex>
+  );
 };
 
 export default SignInOutContainer;

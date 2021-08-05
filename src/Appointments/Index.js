@@ -54,6 +54,8 @@ const Index = () => {
 
   function getAppointmentDetails() {
     return {
+      slotDateId: data.slotId,
+      timeId: data.timeId,
       date: data.date,
       startTime: data.startTime,
       endTime: data.endTime,

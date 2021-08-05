@@ -85,7 +85,7 @@ const Login = () => {
         {error && (
           <Alert severity="error">{JSONResult.loginPage["login_fail"]}</Alert>
         )}
-        <Paper elevation={10} id="login" className="paperStylelogin">
+        <Paper elevation={10} id="login" className="paperStylelogin" elevation={0}>
           {loginMap.map((datas) => {
             return (
               <>

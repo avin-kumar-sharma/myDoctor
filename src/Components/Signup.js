@@ -173,7 +173,7 @@ const Signup = (props) => {
 	return (
 		<Grid>
 			{error && <Alert severity="error">{error}</Alert>}
-			<Paper elevation={10} className="paperStyle">
+			<Paper elevation={10} className="paperStyle" elevation={0}>
 				<form>
 					<label key={signUp[0].field_id} className="label">
 						{signUp[0].field_label}
