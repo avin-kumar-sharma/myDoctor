@@ -37,7 +37,7 @@ const Others = () => {
   });
   const clientId = profile?._id;
   if (!clientId) {
-    history.push("/");
+    console.error("error: cannot find id in user profile!");
   }
   const dispatch = useDispatch();
 
@@ -53,10 +53,6 @@ const Others = () => {
   Store.subscribe(() => {
     const err = Store.getState().appointment.error;
     setError(err !== null);
-    const created = Store.getState().appointment.created;
-    if (created) {
-      history.push("/appointments?c=1");
-    }
   });
 
   function getAppointmentDetails() {
@@ -177,6 +173,7 @@ const Others = () => {
               price={data.consultationFee}
               onClick={(e) => { if (!validate()) e.stopPropagation(); }}
               onPaymentSuccess={() => {
+                history.push("/appointments?c=1");
                 dispatch(bookNewAppointment(getAppointmentDetails()));
               }}
               onPaymentFail={(error) => {
