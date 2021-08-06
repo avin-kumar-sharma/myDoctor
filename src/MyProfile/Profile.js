@@ -1,18 +1,13 @@
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import React, { useEffect } from "react";
 import Page from "../layout/Page/page";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import {Typography,Paper,TextField} from "@material-ui/core";
+import {Typography,TextField} from "@material-ui/core";
 import { useStyles } from "./styles";
 import { useSelector } from "react-redux";
 import { MenuItem } from "@material-ui/core";
+import ProtectedPage from "../layout/Page/protectedpage";
 
 const gender = [
 
@@ -84,10 +79,11 @@ const Profile = (props) => {
   }
   
   return (
+    <ProtectedPage>
+
+    <Container maxWidth="lg" >
     <div className={classes.root}>
-       
         <Grid   container wrap="nowrap" spacing={3}>
-          
           <Grid item  xs={12} sm={6} direction="row" className={classes.heading}  >
             <Typography noWrap className={classes.account}>
               Accounts
@@ -107,7 +103,18 @@ const Profile = (props) => {
           </Grid>
           <Grid item xs={4}>
            <Typography className={classes.grey}>Pick a photo from your computer </Typography>
-         <TextField type="file" accept="image/png, image/jpeg"></TextField>
+           <input
+        accept="image/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="contained-button-file">
+        <Button variant="contained" color="primary" component="span">
+          ADD PHOTO
+        </Button>
+      </label>
           </Grid>
           <Grid item xs={8} >
            <Typography className={classes.grey} >Name*</Typography>
@@ -119,7 +126,7 @@ const Profile = (props) => {
           
           
             <Grid item xs={4}>
-            <Typography className={classes.grey} >Phone Number</Typography>
+            <Typography className={classes.grey} >Mobile Number</Typography>
            <TextField type="number" variant="outlined" value={profileInfo.contactNumber}></TextField>
            <Typography className={classes.grey} >Date of birth</Typography>
            <TextField type="date" variant="outlined"></TextField>
@@ -174,6 +181,8 @@ const Profile = (props) => {
         </Grid>
      
     </div>
+    </Container>
+    </ProtectedPage>
   );
 };
 

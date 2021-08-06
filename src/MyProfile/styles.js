@@ -3,12 +3,8 @@ import { Autocomplete } from "@material-ui/lab";
 
 export const useStyles = makeStyles({
   root: {
-    maxWidth: 1300,
-
-    marginTop:30,
-    marginLeft:30,
-    
-   
+    maxWidth: 2000,
+ 
   },
   grid:{
     height:170,
@@ -38,5 +34,9 @@ export const useStyles = makeStyles({
  ,
  textField:{
    width:214,
- }
+ },
+ input: {
+  display: 'none',
+},
+
 });
