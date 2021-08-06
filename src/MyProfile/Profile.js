@@ -9,12 +9,58 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
+import {Typography,Paper,TextField} from "@material-ui/core";
 import { useStyles } from "./styles";
 import { useSelector } from "react-redux";
+import { MenuItem } from "@material-ui/core";
 
+const gender = [
+
+  {
+    value:"male",
+    label:"male",
+  },
+  {
+    value:"female",
+    label:"female",
+  },{
+    value:"others",
+    label:"others",
+  },
+]
+const bloodgroups = [
+  {
+    value: 'A+',
+    label: 'A+',
+  },
+  {
+    value: 'A-',
+    label: 'A-',
+  },
+  {
+    value: 'B+',
+    label: 'B+',
+  },
+  {
+    value: 'AB-',
+    label: 'AB-',
+  },
+  {
+    value: 'AB+',
+    label: 'AB+',
+  },
+  {
+    value: 'O+',
+    label: 'O+',
+  },
+  {
+    value: 'O-',
+    label: 'O-',
+  },
+];
 const Profile = (props) => {
   const [profileInfo, setProfileInfo] = React.useState({});
+
   const classes = useStyles();
 
   const profile = useSelector((state) => {
@@ -36,65 +82,98 @@ const Profile = (props) => {
       </Page>
     );
   }
-
+  
   return (
-    <Page>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={profileInfo.profileImage}
-            title="Doctor image"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h6">
-              Name :
+    <div className={classes.root}>
+       
+        <Grid   container wrap="nowrap" spacing={3}>
+          
+          <Grid item  xs={12} sm={6} direction="row" className={classes.heading}  >
+            <Typography noWrap className={classes.account}>
+              Accounts
             </Typography>
-            <Typography gutterBottom variant="h4" component="h2">
-              {profileInfo.firstName + " " + profileInfo.lastName}
-            </Typography>
-            <Typography gutterBottom variant="h6">
-              E-Mail :
-            </Typography>
-            <Typography gutterBottom variant="h4" component="h2">
-              {profileInfo.email}
-            </Typography>
-            <Typography gutterBottom variant="h6">
-              Gender :
-            </Typography>
-            <Typography gutterBottom variant="h4" component="h2">
-              {profileInfo.gender}
-            </Typography>
-            <Typography gutterBottom variant="h6">
-              Mobile :
-            </Typography>
-            <Typography gutterBottom variant="h4" component="h2">
-              {profileInfo.contactNumber}
-            </Typography>
-            {profileInfo.alternateNumber && (
-              <div>
-                <Typography gutterBottom variant="h6">
-                  Alternate Mobile :
-                </Typography>
-                <Typography gutterBottom variant="h4" component="h2">
-                  {profileInfo.alternateNumber}
-                </Typography>
-              </div>
-            )}
-            {profileInfo.address && (
-              <div>
-                <Typography gutterBottom variant="h6">
-                  Address :
-                </Typography>
-                <Typography gutterBottom variant="h4" component="h2">
-                  {profileInfo.address}
-                </Typography>
-              </div>
-            )}
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Page>
+           
+          </Grid>
+          <Grid item xs={12} sm={6} className={classes.button}>
+          <Button variant="contained" className={classes.button} color="primary">Save Changes</Button>
+          </Grid>
+        </Grid>
+    <hr/>
+        <Grid container wrap="nowrap" spacing={3}>
+          
+          <Grid xs={2} direction="column"  item xs className={classes.grid} >
+           <Typography className={classes.grey} >Profile Photo</Typography>
+          <Avatar alt="A" src={profileInfo.profileImage} className={classes.avatar} />
+          </Grid>
+          <Grid item xs={4}>
+           <Typography className={classes.grey}>Pick a photo from your computer </Typography>
+         <TextField type="file" accept="image/png, image/jpeg"></TextField>
+          </Grid>
+          <Grid item xs={8} >
+           <Typography className={classes.grey} >Name*</Typography>
+           <TextField type="text" value={profileInfo.firstName + " " + profileInfo.lastName} variant="outlined"></TextField>
+          </Grid>
+        </Grid>
+      <hr/>
+        <Grid container className={classes.grid} wrap="nowrap" spacing={3}>
+          
+          
+            <Grid item xs={4}>
+            <Typography className={classes.grey} >Phone Number</Typography>
+           <TextField type="number" variant="outlined" value={profileInfo.contactNumber}></TextField>
+           <Typography className={classes.grey} >Date of birth</Typography>
+           <TextField type="date" variant="outlined"></TextField>
+            </Grid>
+            <Grid item xs={4}>
+            <Typography className={classes.grey} >Email</Typography>
+           <TextField type="email" value={profileInfo.email} variant="outlined"></TextField>
+           <Typography className={classes.grey} >Blood Group</Typography>
+           <TextField select variant="outlined" className={classes.textField}>
+           {bloodgroups.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+           </TextField>
+            </Grid>
+            <Grid item xs={4}>
+            <Typography className={classes.grey} value={profileInfo.gender}>Gender*</Typography>
+           <TextField className={classes.textField}  select variant="outlined">
+           {gender.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+           </TextField>
+           <Typography  className={classes.grey} >Timezone</Typography>
+           <TextField  select className={classes.textField} variant="outlined"></TextField>
+            </Grid>
+          
+        </Grid>
+     <hr/>
+        <Grid container className={classes.grid} wrap="nowrap" spacing={3}>
+         
+          <Grid item xs>
+          <Typography className={classes.grey} >House No./Street Name/Area</Typography>
+           <TextField value={profileInfo.address} type="text" variant="outlined"></TextField>
+           <Typography className={classes.grey} >State</Typography>
+           <TextField type="text" variant="outlined"></TextField>
+          </Grid>
+          <Grid item xs>
+          <Typography className={classes.grey} >Colony/Street/Locality</Typography>
+           <TextField type="text" variant="outlined"></TextField>
+           <Typography className={classes.grey} >Country*</Typography>
+           <TextField select className={classes.textField} type="text" variant="outlined"></TextField>
+          </Grid>
+          <Grid item xs>
+          <Typography className={classes.grey} >City</Typography>
+           <TextField  type="text" variant="outlined"></TextField>
+           <Typography className={classes.grey} >Pincode</Typography>
+           <TextField type="number" variant="outlined"></TextField>
+          </Grid>
+        </Grid>
+     
+    </div>
   );
 };
 
