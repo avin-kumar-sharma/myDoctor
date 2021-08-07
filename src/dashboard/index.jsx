@@ -37,7 +37,7 @@ function Dashboard() {
       <div className={classes.root}>
         <Flex center full>
           <img
-            src={"/public/banner.PNG"}
+            src={"../../public/banner.jpg"}
             alt="Banner"
             style={{ display: "block", width: "100%", height: "auto" }}
           />
