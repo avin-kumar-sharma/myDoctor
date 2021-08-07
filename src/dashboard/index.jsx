@@ -36,11 +36,7 @@ function Dashboard() {
     <Page>
       <div className={classes.root}>
         <Flex center full>
-          <img
-            src={"../../public/banner.jpg"}
-            alt="Banner"
-            style={{ display: "block", width: "100%", height: "auto" }}
-          />
+          <img src={"banner.jpg"} alt="banner" style={{ display: "block", width: "100%", height: "auto" }}/>
         </Flex>
         <div className={classes.searchSection}>
           <Specialisation onSelectSpecialization={onSelecteSpecialization} />
