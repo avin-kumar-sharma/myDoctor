@@ -52,7 +52,7 @@ const StripePayment = (props) => {
       token={makePayment}
       amount={product.price * 100}
       currency="INR"
-      name="Buy Consultancy"
+      name="Consultation Fees"
     >
       <Button
         className="btn-large blue"
