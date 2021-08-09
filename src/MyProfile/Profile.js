@@ -53,8 +53,17 @@ const bloodgroups = [
     label: 'O-',
   },
 ];
+
+// Approach to make editable form
+// Use a state `editable` (boolean) which indicates whether form is editable or not.
+// Set `editable` to `true` when Edit button is clicked and `false` when Save button is clicked (initially false).
+// Then based on the `editable` value, you can conditionally render the inputs as read only.
 const Profile = (props) => {
+  
   const [profileInfo, setProfileInfo] = React.useState({});
+  const [put, setPut] = React.useState(true);
+  
+  
 
   const classes = useStyles();
 
@@ -69,7 +78,7 @@ const Profile = (props) => {
       .then((response) => response.json())
       .then((data) => setProfileInfo(data.message));
   }, []);
-
+ 
   if (profileInfo == null) {
     return (
       <Page>
@@ -77,7 +86,23 @@ const Profile = (props) => {
       </Page>
     );
   }
+ 
+ 
+ 
+  // Instead of changing button labels, try to use two separate buttons.
+    //TODO: BUG e.target is button element which was clicked. Instead, input element is expected.
+    // setData(e.target.value); // Trying to set data to the buttons's value attribute!!! Button has no value attribute.
+//  const setEdit=(e)=>{
+//    setState(e.target.value);
+//  }
+ const editbutton=()=>{
+   setPut(false);
+   
   
+ }
+ const savebutton=()=>{
+  setPut(true);
+}
   return (
     <ProtectedPage>
 
@@ -85,14 +110,18 @@ const Profile = (props) => {
     <div className={classes.root}>
         <Grid   container wrap="nowrap" spacing={3}>
           <Grid item  xs={12} sm={6} direction="row" className={classes.heading}  >
-            <Typography noWrap className={classes.account}>
-              Accounts
+            <Typography color="primary" noWrap className={classes.account}>
+              Account Details
             </Typography>
            
           </Grid>
           <Grid item xs={12} sm={6} className={classes.button}>
-          <Button variant="contained" className={classes.button} color="primary">Save Changes</Button>
+          <Button onClick={editbutton}   variant="contained" className={classes.button} color="primary">Edit</Button>
           </Grid>
+          <Grid item xs={12} sm={6} className={classes.button}>
+          <Button onClick={savebutton}   variant="contained" className={classes.button} color="primary">Save changes</Button>
+          </Grid>
+          
         </Grid>
     <hr/>
         <Grid container wrap="nowrap" spacing={3}>
@@ -118,7 +147,7 @@ const Profile = (props) => {
           </Grid>
           <Grid item xs={8} >
            <Typography className={classes.grey} >Name*</Typography>
-           <TextField type="text" value={profileInfo.firstName + " " + profileInfo.lastName} variant="outlined"></TextField>
+           <TextField disabled={put} type="text" defaultValue={profileInfo.firstName + " " + profileInfo.lastName}  variant="outlined"></TextField>
           </Grid>
         </Grid>
       <hr/>
@@ -127,15 +156,17 @@ const Profile = (props) => {
           
             <Grid item xs={4}>
             <Typography className={classes.grey} >Mobile Number</Typography>
-           <TextField type="number" variant="outlined" value={profileInfo.contactNumber}></TextField>
+           <TextField  InputProps={{
+            readOnly: false,
+          }} type="number" variant="outlined"   value={profileInfo.contactNumber}></TextField>
            <Typography className={classes.grey} >Date of birth</Typography>
            <TextField type="date" variant="outlined"></TextField>
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} >Email</Typography>
-           <TextField type="email" value={profileInfo.email} variant="outlined"></TextField>
+           <TextField disabled={put} type="email" defaultValue={profileInfo.email} defaultValue={profileInfo.email} variant="outlined"></TextField>
            <Typography className={classes.grey} >Blood Group</Typography>
-           <TextField select variant="outlined" className={classes.textField}>
+           <TextField disabled={put} select variant="outlined" defaultValue="A+" className={classes.textField}>
            {bloodgroups.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -145,7 +176,7 @@ const Profile = (props) => {
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} value={profileInfo.gender}>Gender*</Typography>
-           <TextField className={classes.textField}  select variant="outlined">
+           <TextField disabled={put} className={classes.textField}  select variant="outlined">
            {gender.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -153,7 +184,7 @@ const Profile = (props) => {
           ))}
            </TextField>
            <Typography  className={classes.grey} >Timezone</Typography>
-           <TextField  select className={classes.textField} variant="outlined"></TextField>
+           <TextField disabled={put} select className={classes.textField} variant="outlined"></TextField>
             </Grid>
           
         </Grid>
@@ -162,21 +193,21 @@ const Profile = (props) => {
          
           <Grid item xs>
           <Typography className={classes.grey} >House No./Street Name/Area</Typography>
-           <TextField value={profileInfo.address} type="text" variant="outlined"></TextField>
+           <TextField disabled={put} value={profileInfo.address} type="text" variant="outlined"></TextField>
            <Typography className={classes.grey} >State</Typography>
-           <TextField type="text" variant="outlined"></TextField>
+           <TextField disabled={put} type="text" variant="outlined"></TextField>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >Colony/Street/Locality</Typography>
-           <TextField type="text" variant="outlined"></TextField>
+           <TextField disabled={put} type="text" variant="outlined" defaultValue={profileInfo.address}></TextField>
            <Typography className={classes.grey} >Country*</Typography>
-           <TextField select className={classes.textField} type="text" variant="outlined"></TextField>
+           <TextField disabled={put} select className={classes.textField} type="text" variant="outlined" defaultValue={profileInfo.country}></TextField>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >City</Typography>
-           <TextField  type="text" variant="outlined"></TextField>
+           <TextField disabled={put} type="text" variant="outlined" defaultValue={profileInfo.city}></TextField>
            <Typography className={classes.grey} >Pincode</Typography>
-           <TextField type="number" variant="outlined"></TextField>
+           <TextField disabled={put} type="number" variant="outlined" defaultValue={profileInfo.pincode}></TextField>
           </Grid>
         </Grid>
      
