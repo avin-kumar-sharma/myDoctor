@@ -25,6 +25,7 @@ export const useStyles = makeStyles({
   avatar:{
     width: 100,
     height: 100,
+    margin:"auto"
   },
  
   grey:{
@@ -38,5 +39,30 @@ export const useStyles = makeStyles({
  input: {
   display: 'none',
 },
-
+name:{
+  display:"flex",
+  margin:"auto",
+  width:200
+},
+namee:{
+  textAlign:"center",
+  color:"gray"
+},
+button:{
+ display:"flex",
+ margin:"auto",
+ 
+},
+icon:{
+  marginLeft:640,
+  marginTop:-200,
+  zIndex:1,
+  height:20,
+  width:20
+	// display: "none"
+},
+profile:{
+  margin:"auto",
+  
+}
 });
