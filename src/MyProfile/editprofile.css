@@ -15,6 +15,11 @@
   .profilepic:hover .profilepic__image {
     opacity: .5;
   }
+  .profilepicimage{
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+  }
   
   .profilepic__image {
     object-fit: cover;
