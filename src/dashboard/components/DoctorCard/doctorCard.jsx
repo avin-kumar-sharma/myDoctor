@@ -11,7 +11,7 @@ import Flex from "../../../shared/components/Flex";
 import { useStyles } from "./styles";
 import { useHistory } from "react-router-dom";
 
-export default function DoctorCard({ data }) {
+export default function DoctorCard({ data }) { 
   const classes = useStyles();
   const { t } = useTranslation("i18n");
   const history = useHistory();
@@ -22,7 +22,7 @@ export default function DoctorCard({ data }) {
       <CardContent>
         <Flex>
           <Avatar src={data.imageUrl} className={classes.avatar} />
-          <Flex column style={{ marginLeft: "16px" }}>
+          <Flex column style={{ marginLeft: "14px" }}>
             <Typography
               className={classes.title}
               color="textPrimary"
@@ -30,9 +30,20 @@ export default function DoctorCard({ data }) {
             >
               {`${data.firstName} ${data.lastName}`}
             </Typography>
+            {/* <Typography
+              className={classes.subTitle}
+              color="textPrimary"
+              gutterBottom
+            >
+              
+           {data.qualifications.map((qualification) => (
+               qualification.name + ","
+              ))}
+             
+            </Typography> */}
             <Typography
               className={classes.subTitle}
-              color="primary"
+              color="textPrimary"
               gutterBottom
             >
               {data.specializations.join(",")} | {a.diff(b, "years")} years exp
@@ -40,7 +51,7 @@ export default function DoctorCard({ data }) {
             <Flex column>
               <Typography
                 className={classes.subTitle}
-                color="primary"
+                color="textPrimary"
                 gutterBottom
               >
                 Fee: {`${data.consultationFee} ${data.consultationFeeCurrency}`}
@@ -49,13 +60,14 @@ export default function DoctorCard({ data }) {
           </Flex>
         </Flex>
       </CardContent>
-      <CardActions style={{ justifyContent: "center" }}>
+      <CardActions style={{ justifyContent: "center" }} >
         <Button
           size="small"
+          className={classes.button}
           onClick={() => {
             history.push(`/doctor/${data._id}`);
           }}
-          variant="contained"
+          variant="outlined"
           color="primary"
         >
           {t("dashboard.book_appointment")}
