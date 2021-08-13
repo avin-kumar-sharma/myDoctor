@@ -76,164 +76,24 @@ const Profile = (props) => {
 //contactNumber Hook
 
 var contacty = profileInfo.contactNumber;
-const [contact, setContact] = React.useState();
+var emaily = profileInfo.email;
+var namey = profileInfo.firstName+" "+profileInfo.lastName;
+var doby = profileInfo.dateOfBirth;
+var addressy= profileInfo.address;
+var statey = profileInfo.state;
+var localityy= profileInfo.locality;
+var cityy = profileInfo.city;
+var pincodey = profileInfo.pincode;
+const [state, setState] = React.useState({contact:'',email:'',name:'',dob:'',address:'',states:'',locality:'',city:'',pincode:''});
 
 useEffect(()=>{
-  setContact(profileInfo.contactNumber);
-},[contacty])
-const handleChange2=(e)=>{
-  setContact(e.target.value);
-  
-}
-//username hook
-var username1 = profileInfo.firstName + " " + profileInfo.lastName;
-const[username,setUsername] = React.useState();
-
-useEffect(()=>{
-  setUsername(username1);
-},[username1])
-
+  setState({contact:contacty,email:emaily,name:namey,dob:doby,address:addressy,states:statey,locality:localityy,city:cityy,pincode:pincodey});
+},[contacty,emaily,namey,doby,addressy,statey,localityy,cityy,pincodey])
 const handleChange=(e)=>{
-  setUsername(e.target.value);
-  
-}
-//dob hook
-var dob1 = profileInfo.dateOfBirth;
-const[dob,setDob] = React.useState();
-
-useEffect(()=>{
-  setDob(dob1);
-},[dob1])
-
-const handleChange3=(e)=>{
-  setDob(e.target.value);
-  
-}
-
-//email hook
-var email1 = profileInfo.email;
-const[email,setEmail] = React.useState();
-
-useEffect(()=>{
-  setEmail(email1);
-},[email1])
-
-const handleChange4=(e)=>{
-  setEmail(e.target.value);
-  
-}
-
-
-//bloodGroup hook
-var bloodgroup1 = profileInfo.bloodgroup;
-const[bloodgroup,setBloodgroup] = React.useState();
-
-useEffect(()=>{
-  setBloodgroup(bloodgroup1);
-},[bloodgroup1])
-
-const handleChange5=(e)=>{
-  setBloodgroup(e.target.value);
-  
-}
-
-//gender hook
-var gender1 = profileInfo.gender;
-const[genderval,setGenderval] = React.useState();
-
-useEffect(()=>{
-  setGenderval(gender1);
-},[gender1])
-
-const handleChange6=(e)=>{
-  setGenderval(e.target.value);
-  
-}
-//timezone hook
-var timezone1 = profileInfo.timezone;
-const[timezone,setTimezone] = React.useState();
-
-useEffect(()=>{
-  setTimezone(timezone1);
-},[timezone1])
-
-const handleChange7=(e)=>{
-  setTimezone(e.target.value);
-  
-}
-//address hook
-var address1 = profileInfo.address;
-const[address,setAddress] = React.useState();
-
-useEffect(()=>{
-  setAddress(address1);
-},[address1])
-
-const handleChange8=(e)=>{
-  setAddress(e.target.value);
-  
-}
-
-//state hook
-var state1 = profileInfo.state;
-const[state,setState] = React.useState();
-
-useEffect(()=>{
-  setState(state1);
-},[state1])
-
-const handleChange9=(e)=>{
   setState(e.target.value);
   
 }
-//locality hook
-var locality1 = profileInfo.locality;
-const[locality,setLocality] = React.useState();
 
-useEffect(()=>{
-  setLocality(locality1);
-},[locality1])
-
-const handleChange10=(e)=>{
-  setLocality(e.target.value);
-  
-}
-//country hook
-var country1 = profileInfo.country;
-const[country,setCountry] = React.useState();
-
-useEffect(()=>{
-  setCountry(country1);
-},[country1])
-
-const handleChange11=(e)=>{
-  setCountry(e.target.value);
-  
-}
-//city hook
-var city1 = profileInfo.city;
-const[city,setCity] = React.useState();
-
-useEffect(()=>{
-  setCity(city1);
-},[city1])
-
-const handleChange12=(e)=>{
-  setCity(e.target.value);
-  
-}
-//pincode hook
-var pincode1 = profileInfo.pincode;
-const[pincode,setPincode] = React.useState();
-
-useEffect(()=>{
-  setPincode(pincode1);
-},[pincode1])
-
-const handleChange13=(e)=>{
-  setPincode(e.target.value);
-  
-}
 
   if (profileInfo == null) {
     return (
@@ -308,7 +168,7 @@ const handleChange13=(e)=>{
           <br/>
           <Grid item  >
            <Typography className={classes.namee}  >Name*</Typography>
-           <TextField disabled={put} type="text" className={classes.name}  onInput={handleChange}  value={username} variant="outlined"></TextField>
+           <TextField disabled={put} type="text" className={classes.name}  onInput={handleChange}  value={state.name} variant="outlined"></TextField>
           </Grid>
         
       <hr/>
@@ -317,15 +177,15 @@ const handleChange13=(e)=>{
           
             <Grid item xs={4}>
             <Typography className={classes.grey} >Mobile Number*</Typography>
-           <TextField   type="number" disabled={put} variant="outlined" onInput={handleChange2}  value={contact}></TextField>
+           <TextField   type="number" disabled={put} variant="outlined" onInput={handleChange}  value={state.contact}></TextField>
            <Typography className={classes.grey} >Date of birth</Typography>
-           <TextField type="date" disabled={put}  onInput={handleChange3}  value={dob} variant="outlined"></TextField>
+           <TextField type="date" disabled={put}  onInput={handleChange}  value={state.dob} variant="outlined"></TextField>
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} >Email</Typography>
-           <TextField disabled={put} type="email" onInput={handleChange4}  value={email} variant="outlined"></TextField>
+           <TextField disabled={put} type="email" onInput={handleChange}  value={state.email} variant="outlined"></TextField>
            <Typography className={classes.grey} >Blood Group</Typography>
-           <TextField disabled={put} select variant="outlined" onInput={handleChange5}  value={bloodgroup} className={classes.textField}>
+           <TextField disabled={put} select variant="outlined" onInput={handleChange}  defaultValue={profileInfo.bloodgroup} className={classes.textField}>
            {bloodgroups.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -334,8 +194,8 @@ const handleChange13=(e)=>{
            </TextField>
             </Grid>
             <Grid item xs={4}>
-            <Typography className={classes.grey} value={profileInfo.gender}>Gender*</Typography>
-           <TextField disabled={put} className={classes.textField} onInput={handleChange6}  value={genderval} select variant="outlined">
+            <Typography className={classes.grey} >Gender*</Typography>
+           <TextField disabled={put} className={classes.textField} defaultValue={profileInfo.gender} select variant="outlined">
            {gender.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -343,7 +203,7 @@ const handleChange13=(e)=>{
           ))}
            </TextField>
            <Typography  className={classes.grey} >Timezone</Typography>
-           <TextField disabled={put} select className={classes.textField} onInput={handleChange7}  value={timezone} variant="outlined"></TextField>
+           <TextField disabled={put} select className={classes.textField}   defaultValue={profileInfo.timezone} variant="outlined"></TextField>
             </Grid>
           
         </Grid>
@@ -352,21 +212,21 @@ const handleChange13=(e)=>{
          
           <Grid item xs>
           <Typography className={classes.grey} >House No./Street Name/Area</Typography>
-           <TextField disabled={put} onInput={handleChange8}  value={address} type="text" variant="outlined"></TextField>
+           <TextField disabled={put} onInput={handleChange}  value={state.address} type="text" variant="outlined"></TextField>
            <Typography className={classes.grey} >State</Typography>
-           <TextField disabled={put} type="text" onInput={handleChange9}  value={state} variant="outlined"></TextField>
+           <TextField disabled={put} type="text" onInput={handleChange}  value={state.states} variant="outlined"></TextField>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >Colony/Street/Locality</Typography>
-           <TextField disabled={put} type="text" variant="outlined"  onInput={handleChange10}  value={locality}></TextField>
+           <TextField disabled={put} type="text" variant="outlined"  onInput={handleChange}  value={state.locality}></TextField>
            <Typography className={classes.grey} >Country*</Typography>
-           <TextField disabled={put} select className={classes.textField} type="text" variant="outlined"  onInput={handleChange11}  value={country}></TextField>
+           <TextField disabled={put} select className={classes.textField} type="text" variant="outlined"  onInput={handleChange}  defaultValue={state.country}></TextField>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >City</Typography>
-           <TextField disabled={put} type="text" variant="outlined" onInput={handleChange12}  value={city} ></TextField>
+           <TextField disabled={put} type="text" variant="outlined" onInput={handleChange}  value={state.city} ></TextField>
            <Typography className={classes.grey} >Pincode</Typography>
-           <TextField disabled={put} type="number" variant="outlined"  onInput={handleChange13}  value={pincode}></TextField>
+           <TextField disabled={put} type="number" variant="outlined"  onInput={handleChange}  value={state.pincode}></TextField>
           </Grid>
         </Grid>
      
