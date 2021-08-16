@@ -31,5 +31,12 @@ export const useStyles = makeStyles((theme) =>
       width: 50,
       height: 50,
     },
+    searchSection: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: theme.spacing(3),
+    }
   })
 );

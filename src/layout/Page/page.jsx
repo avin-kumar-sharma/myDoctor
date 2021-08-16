@@ -1,5 +1,7 @@
 import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+import SearchBar from "../../dashboard/components/SearchBar/searchBar";
+import Specialisation from "../../dashboard/components/Specialization/specialisation";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
@@ -44,7 +46,12 @@ function Page(props) {
     <div style={{ minHeight: "100%" }}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
+          
           <Logo className={classes.logo} onClick={() => history.push("/")} />
+          <div className={classes.searchSection}>
+          <Specialisation  />
+          <SearchBar  />
+          </div>
           {userLoggedIn ? (
             <ProfileSection onLogoutClick={handleLogout} profile={userProfile} />
           ) : (
@@ -55,9 +62,12 @@ function Page(props) {
               </Button>
             </Link>
           )}
+          
         </Toolbar>
+        
       </AppBar>
       <main className={classes.main}>{props.children}</main>
+     
     </div>
   );
 }

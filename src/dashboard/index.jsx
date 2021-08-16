@@ -42,10 +42,10 @@ function Dashboard() {
             style={{ display: "block", width: "100%", height: "auto" }}
           />
         </Flex>
-        <div className={classes.searchSection}>
+        {/* <div className={classes.searchSection}>
           <Specialisation onSelectSpecialization={onSelecteSpecialization} />
           <SearchBar onSearch={onSearchHandler} />
-        </div>
+        </div> */}
         <Grid container className={classes.content}>
           <Grid item container xs={12} spacing={4} style={{ margin: "0" }}>
             {doctors.map((doctor) => (

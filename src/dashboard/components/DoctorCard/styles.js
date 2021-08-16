@@ -6,7 +6,7 @@ export const useStyles = makeStyles({
       minWidth: 275,
       height: 200,
       width:200,
-      boxShadow: '5px 10px 18px #888888'
+    
       
     },
     title: {
@@ -32,7 +32,7 @@ export const useStyles = makeStyles({
         backgroundColor: '#0069d9',
         color:"#FFFFFF",
         borderColor: '#0062cc',
-        boxShadow: '5px 10px 18px #888888',
+        
       }
     }
   
