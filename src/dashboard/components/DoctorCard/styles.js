@@ -4,25 +4,25 @@ import { grey } from "@material-ui/core/colors";
 export const useStyles = makeStyles({
     root: {
       minWidth: 275,
-      height: 200,
-      width:200,
-    
-      
+      height: 250,
+      width:400, 
     },
+   
     title: {
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: "bold",
     },
     subTitle: {
       fontSize: 12,
       fontWeight: "semi-bold",
+      
     },
     pos: {
       marginBottom: 12,
     },
     avatar: {
-      width: 50,
-      height: 50,
+      width: 60,
+      height: 60,
     },
     button : {
       borderRadius:15,

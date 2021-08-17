@@ -4,9 +4,9 @@ export const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       width: "100%",
-      maxWidth: 900,
+      maxWidth: 1600,
       display: "flex",
-      justifyContent: "center",
+      // justifyContent: "center",
       alignItems: "flex-start",
       flexDirection: "column",
     },

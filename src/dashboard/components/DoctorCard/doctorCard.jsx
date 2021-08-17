@@ -20,9 +20,9 @@ export default function DoctorCard({ data }) {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Flex>
+        <Flex className={classes.flex}>
           <Avatar src={data.imageUrl} className={classes.avatar} />
-          <Flex column style={{ marginLeft: "14px" }}>
+          <Flex column style={{ marginLeft: "20px" }}>
             <Typography
               className={classes.title}
               color="textPrimary"
@@ -30,9 +30,9 @@ export default function DoctorCard({ data }) {
             >
               {`${data.firstName} ${data.lastName}`}
             </Typography>
-            {/* <Typography
+            <Typography
               className={classes.subTitle}
-              color="textPrimary"
+              color="textSecondary"
               gutterBottom
             >
               
@@ -40,10 +40,10 @@ export default function DoctorCard({ data }) {
                qualification.name + ","
               ))}
              
-            </Typography> */}
+            </Typography>
             <Typography
               className={classes.subTitle}
-              color="textPrimary"
+              color="textSecondary"
               gutterBottom
             >
               {data.specializations.join(",")} | {a.diff(b, "years")} years exp
@@ -51,16 +51,41 @@ export default function DoctorCard({ data }) {
             <Flex column>
               <Typography
                 className={classes.subTitle}
-                color="textPrimary"
+                color="textSecondary"
                 gutterBottom
               >
-                Fee: {`${data.consultationFee} ${data.consultationFeeCurrency}`}
+                License  : 12344565
               </Typography>
+              <Typography
+                className={classes.subTitle}
+                color="textSecondary"
+                gutterBottom
+              >
+                Languages : English , Hindi
+              </Typography>
+              <Typography
+                className={classes.subTitle}
+                color="textSecondary"
+                gutterBottom
+              >
+                Hospital : {data.experience.map((exp) => (
+               exp.hospitalName
+              ))}
+              </Typography>
+              
             </Flex>
           </Flex>
         </Flex>
       </CardContent>
-      <CardActions style={{ justifyContent: "center" }} >
+      <CardActions style={{ marginLeft: "88px" }} >
+        <flex>
+        <Typography
+                className={classes.subTitle}
+                color="textPrimary"
+                gutterBottom
+              >
+                Next available on : Tommorow
+              </Typography>
         <Button
           size="small"
           className={classes.button}
@@ -72,6 +97,7 @@ export default function DoctorCard({ data }) {
         >
           {t("dashboard.book_appointment")}
         </Button>
+        </flex>
       </CardActions>
     </Card>
   );
