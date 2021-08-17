@@ -107,6 +107,7 @@ class DemoForm extends React.Component {
             <TextField
             variant="outlined"
               type="password" 
+              onChange={this.handleChange}
               value={this.state.input.current_password}
               name="current_password"
               class="form-control" 
