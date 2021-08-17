@@ -59,8 +59,7 @@ const Profile = (props) => {
   
   
   const [put, setPut] = React.useState(true);
-  const [text, setText] = React.useState();
-  
+
   
   const classes = useStyles();
 
@@ -72,10 +71,6 @@ const Profile = (props) => {
     setProfileInfo(profile);
   })
   const clientId = profile._id;
-
-
-//contactNumber Hook
-
 var contacty = profileInfo.contactNumber;
 var emaily = profileInfo.email;
 var namey = profileInfo.firstName+" "+profileInfo.lastName;
@@ -164,7 +159,7 @@ const handleChange=(e)=>{
           <br/>
           <Grid item  >
            <Typography className={classes.namee}  >Name*</Typography>
-           <TextField disabled={put} type="text" className={classes.name}  onInput={handleChange}  value={state.name} variant="outlined"></TextField>
+           <input  disabled={put} type="text" className={classes.name}  onInput={handleChange}  value={state.name} variant="outlined"></input>
           </Grid>
         
       <hr/>
@@ -173,33 +168,33 @@ const handleChange=(e)=>{
           
             <Grid item xs={4}>
             <Typography className={classes.grey} >Mobile Number*</Typography>
-           <TextField   type="number" disabled={put} variant="outlined" onInput={handleChange}  value={state.contact}></TextField>
+           <input   type="number" disabled={put} variant="outlined" onInput={handleChange}  value={state.contact}></input>
            <Typography className={classes.grey} >Date of birth</Typography>
-           <TextField type="date" disabled={put}  onInput={handleChange}  value={state.dob} variant="outlined"></TextField>
+           <input type="date" disabled={put}  onInput={handleChange}  value={state.dob} variant="outlined"></input>
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} >Email</Typography>
-           <TextField disabled={put} type="email" onInput={handleChange}  value={state.email} variant="outlined"></TextField>
+           <input disabled={put} type="email" onInput={handleChange}  value={state.email} variant="outlined"></input>
            <Typography className={classes.grey} >Blood Group</Typography>
-           <TextField disabled={put} select variant="outlined" onInput={handleChange}  defaultValue={profileInfo.bloodgroup} className={classes.textField}>
+           <select disabled={put}  variant="outlined" onInput={handleChange}  defaultValue={profileInfo.bloodgroup} className={classes.textField}>
            {bloodgroups.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
-            </MenuItem>
+            </option>
           ))}
-           </TextField>
+           </select>
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} >Gender*</Typography>
-           <TextField disabled={put} className={classes.textField} defaultValue={profileInfo.gender} select variant="outlined">
+           <select disabled={put} className={classes.textField} defaultValue={profileInfo.gender} select variant="outlined">
            {gender.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
-            </MenuItem>
+            </option>
           ))}
-           </TextField>
+           </select>
            <Typography  className={classes.grey} >Timezone</Typography>
-           <TextField disabled={put} select className={classes.textField}   defaultValue={profileInfo.timezone} variant="outlined"></TextField>
+           <input disabled={put}  className={classes.textField}   defaultValue={profileInfo.timezone} variant="outlined"></input>
             </Grid>
           
         </Grid>
@@ -208,21 +203,21 @@ const handleChange=(e)=>{
          
           <Grid item xs>
           <Typography className={classes.grey} >House No./Street Name/Area</Typography>
-           <TextField disabled={put} onInput={handleChange}  value={state.address} type="text" variant="outlined"></TextField>
+           <input disabled={put} onInput={handleChange}  value={state.address} type="text" variant="outlined"></input>
            <Typography className={classes.grey} >State</Typography>
-           <TextField disabled={put} type="text" onInput={handleChange}  value={state.states} variant="outlined"></TextField>
+           <input disabled={put} type="text" onInput={handleChange}  value={state.states} variant="outlined"></input>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >Colony/Street/Locality</Typography>
-           <TextField disabled={put} type="text" variant="outlined"  onInput={handleChange}  value={state.locality}></TextField>
+           <input disabled={put} type="text" variant="outlined"  onInput={handleChange}  value={state.locality}></input>
            <Typography className={classes.grey} >Country*</Typography>
-           <TextField disabled={put} select className={classes.textField} type="text" variant="outlined"  onInput={handleChange}  defaultValue={state.country}></TextField>
+           <input disabled={put} select className={classes.textField} type="text" variant="outlined"  onInput={handleChange}  defaultValue={state.country}></input>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >City</Typography>
-           <TextField disabled={put} type="text" variant="outlined" onInput={handleChange}  value={state.city} ></TextField>
+           <input disabled={put} type="text" variant="outlined" onInput={handleChange}  value={state.city} ></input>
            <Typography className={classes.grey} >Pincode</Typography>
-           <TextField disabled={put} type="number" variant="outlined"  onInput={handleChange}  value={state.pincode}></TextField>
+           <input disabled={put} type="number" variant="outlined"  onInput={handleChange}  value={state.pincode}></input>
           </Grid>
         </Grid>
      

@@ -5,11 +5,27 @@ export const useStyles = makeStyles({
   root: {
     maxWidth: 2000,
     marginTop:30,
+    ' & input':{
+      border: "none",
+      backgroundColor:"white",
+      height:40,
+      width:200,
+      fontSize:15,
+    },
+    '& select':{
+      border: "none",
+      backgroundColor:"white",
+      height:40,
+      width:200,
+      fontSize:15,
+      color:"black",
+    }
     },
   grid:{
     height:170,
     
   },
+  
   account:{
         fontWeight:"bold",
         fontSize:30,
@@ -42,11 +58,14 @@ export const useStyles = makeStyles({
 name:{
   display:"flex",
   margin:"auto",
-  width:200
+  
 },
+
+
 namee:{
   textAlign:"center",
-  color:"gray"
+  color:"gray",
+  
 },
 button:{
  display:"flex",
