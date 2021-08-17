@@ -67,7 +67,10 @@ class DemoForm extends React.Component {
       let errors = {};
       let isValid = true;
   
-  
+      if (!input["current_password"]) {
+        isValid = false;
+        errors["current_password"] = "Please enter your current password.";
+      }
       if (!input["password"]) {
         isValid = false;
         errors["password"] = "Please enter your password.";
@@ -109,7 +112,7 @@ class DemoForm extends React.Component {
               class="form-control" 
               placeholder="Enter password" 
               id="current_password" />
-          </div><br/>
+          </div><div className="danger">{this.state.errors.current_password}</div><br/>
           <div class="form-group">
             <label for="password">New Password:</label>
             <TextField
