@@ -59,6 +59,7 @@ const Profile = (props) => {
   
   
   const [put, setPut] = React.useState(true);
+  const [text, setText] = React.useState();
   
   
   const classes = useStyles();
@@ -93,8 +94,6 @@ const handleChange=(e)=>{
   setState(e.target.value);
   
 }
-
-
   if (profileInfo == null) {
     return (
       <Page>
@@ -105,16 +104,13 @@ const handleChange=(e)=>{
  
  const editbutton=()=>{
    setPut(false);
-
  }
  const savebutton=()=>{
   setPut(true);
+
 }
  
   return (
-    
-    <ProtectedPage>
-     
     <Container maxWidth="lg" >
     <div className={classes.root}>
         <Grid   container wrap="nowrap" spacing={3}>
@@ -232,7 +228,7 @@ const handleChange=(e)=>{
      
     </div>
     </Container>
-    </ProtectedPage>
+   
   );
 };
 

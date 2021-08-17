@@ -4,7 +4,7 @@ import theme from "./Theme/index";
 import SignInOutContainer from "./Containers/Index";
 import Dashboard from "./dashboard";
 import DoctorsDetailAndBooking from "./DoctorsDetailAndBooking/DoctorsDetailAndBooking";
-
+import Settings from "./Settings/Settings";
 import MyAppointments from "./MyAppointments/MyAppointments";
 
 import Others from "./Appointments/Other";
@@ -14,8 +14,9 @@ import Chat from "./Chat";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadprofile } from "./state/user/slice";
-import Profile from "./MyProfile/Profile";
+import Profile from "./Settings/Profile";
 import ConsultationChat from "./Consultation/ConsultationChat";
+import Password from "./Settings/Password";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ function App() {
           <Route path="/self-appointment" exact component={Index}></Route>
           <Route path="/others-appointment" exact component={Others}></Route>
           <Route path="/profile" exact component={Profile} />
+          <Route path="/settings" exact component={Settings} />
+          
         </ThemeProvider>
       </Switch>
     </Router>

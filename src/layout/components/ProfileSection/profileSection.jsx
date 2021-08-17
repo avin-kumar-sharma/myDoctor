@@ -1,6 +1,6 @@
 import React from "react";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Avatar, Menu } from "@material-ui/core";
+import { Avatar, Menu,Popper,Grow,ClickAwayListener,MenuList,Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/PersonOutline";
 import AppointmentsIcon from "@material-ui/icons/CalendarToday";
@@ -12,6 +12,7 @@ export default function ProfileSection({ profile, onLogoutClick }) {
   const classes = useStyles();
   const anchorRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
   const history = useHistory();
 
   const handleClick = (event) => {
@@ -21,6 +22,7 @@ export default function ProfileSection({ profile, onLogoutClick }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
 
   return (
     <div className={classes.root}>
@@ -41,12 +43,15 @@ export default function ProfileSection({ profile, onLogoutClick }) {
             open={Boolean(anchorEl)}
           >
             <MenuItem
-              onClick={() => {
-                history.push("/profile");
-              }}
+            onClick={() => {
+              history.push('/settings');
+              handleClose();
+            }}
+              
             >
-              <SearchIcon style={{ marginRight: "8px" }} /> Profile
+              <SearchIcon style={{ marginRight: "8px" }} /> Settings
             </MenuItem>
+            
             <MenuItem onClick={() => {
               history.push('/appointments');
               handleClose();
