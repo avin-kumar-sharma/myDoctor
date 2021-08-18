@@ -13,9 +13,12 @@ export const useStyles = makeStyles({
       fontWeight: "bold",
     },
     subTitle: {
-      fontSize: 12,
+      fontSize: 13,
       fontWeight: "semi-bold",
       
+    },
+    colorspan:{
+      color: "red"
     },
     pos: {
       marginBottom: 12,

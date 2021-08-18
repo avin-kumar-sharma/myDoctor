@@ -84,7 +84,8 @@ export default function DoctorCard({ data }) {
                 color="textPrimary"
                 gutterBottom
               >
-                Next available on : Tommorow
+
+                Next available on : <span className={classes.colorspan}>Tommorow</span>
               </Typography>
         <Button
           size="small"
