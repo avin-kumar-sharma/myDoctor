@@ -1,40 +1,17 @@
-// import { Typography, TextField ,Paper, Container,Button} from '@material-ui/core';
-// import React from 'react';
-// import ProtectedPage from '../layout/Page/protectedpage';
-// import './password.css';
-// import './samepassword';
-// const Password=()=>{
-// return(
-//     <>
-   
-//     <Container className="container" maxWidth="sm">
-//         <Paper className="paper" >
-//                <Typography>Current Password</Typography>
-//                 <TextField placeholder="******" type="password" variant="outlined"></TextField><br/><br/>
-//                 <Typography>New Password</Typography>
-//                 <TextField id="password" name="password" placeholder="******" type="password" variant="outlined"></TextField><br/><br/>
-//                 <Typography>Confirm Password</Typography>
-//                 <TextField id="confirm_password" name="confirm_password" placeholder="******" type="password" variant="outlined"></TextField><br/><br/>
-//                 <Button type="submit" color="primary" variant="contained">Save Changes</Button>
-//                 </Paper>
-//            </Container>
-    
-//     </>
-// )
-// }
-// export default Password;
-import { TextField ,Button,Container,Paper} from '@material-ui/core';
+
+import { TextField ,Button,Container,Paper, Avatar, Typography} from '@material-ui/core';
 import React,{useEffect} from 'react';
 import './password.css';
+
 class DemoForm extends React.Component {
-    
+ 
     constructor() {
     super();
     this.state = {
       input: {},
-      errors: {}
+      errors: {},
     };
-     
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -101,6 +78,8 @@ class DemoForm extends React.Component {
       <div>
        <Container className="container" maxWidth="sm">
          <Paper className="paper" >
+           <Avatar/>
+           <Typography></Typography>
         <form onSubmit={this.handleSubmit}>
         <div class="form-group">
             <label for="password">Current Password:</label>

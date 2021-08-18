@@ -1,80 +1,96 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 import ProtectedPage from '../layout/Page/protectedpage';
 import Profile from './Profile';
 import Password from './Password';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+  },
+
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    marginTop:65,
+  },
+  drawerContainer: {
+    overflow: 'auto',
+  },
+  content: {
+   width:1000
+    
+  },
+  list:{
+    cursor:"pointer",
+    '&:hover':{
+      backgroundColor:"lightBlue",
+      color:"darkBlue",
+      borderRadius:20
+    }
   }
 }));
 
-export default function SimpleTabs() {
+export default function ClippedDrawer() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+  const[display,setDisplay]=React.useState(true);
+const displayl=()=>{
+   setDisplay(true);
+}
+const displayp=()=>{
+  setDisplay(false);
+}
   return (
-      <ProtectedPage>
+    <ProtectedPage>
     <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs variant="fullWidth" value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab  label="Profile" {...a11yProps(0)} />
-          <Tab label="Change Password" {...a11yProps(1)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel    value={value} index={0}>
-        <Profile/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-       <Password/>
-      </TabPanel>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <Toolbar />
+        <div className={classes.drawerContainer}>
+          <List>
+            <ListItem onClick={displayl} className={classes.list}>Profile</ListItem>
+            <ListItem onclick={displayp} className={classes.list}>Change Password</ListItem>
+            
+          </List>
+        
+         
+        </div>
+      </Drawer>
+        {(display)?
+          <main className={classes.content}>
+      
+        <Profile />
+        </main>
+      :
+      <main className={classes.content}>
+      <Password/>
+      </main>
+      }
       
     </div>
+    
     </ProtectedPage>
   );
 }

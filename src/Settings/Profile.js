@@ -106,7 +106,7 @@ const handleChange=(e)=>{
 }
  
   return (
-    <Container maxWidth="lg" >
+    <>
     <div className={classes.root}>
         <Grid   container wrap="nowrap" spacing={3}>
           <Grid item  xs={9} sm={12}  direction="row" className={classes.heading}  >
@@ -222,7 +222,7 @@ const handleChange=(e)=>{
         </Grid>
      
     </div>
-    </Container>
+    </>
    
   );
 };
