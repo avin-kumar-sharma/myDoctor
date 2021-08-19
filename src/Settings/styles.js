@@ -56,12 +56,12 @@ export const useStyles = makeStyles({
   display: 'none',
 },
 name:{
-  display:"flex",
-  margin:"auto",
-  
+  marginLeft:460
 },
-
-
+name2:{
+  marginLeft:400
+}
+,
 namee:{
   textAlign:"center",
   color:"gray",
@@ -83,5 +83,11 @@ icon:{
 profile:{
   margin:"auto",
   
+},
+flex:{
+  display:"flex",
+} ,
+flexitems:{
+  marginLeft:200
 }
 });

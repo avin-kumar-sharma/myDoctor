@@ -1,7 +1,8 @@
 
-import { TextField ,Button,Container,Paper, Avatar, Typography} from '@material-ui/core';
+import { TextField ,Button,Container,Paper, Avatar, Typography, Link} from '@material-ui/core';
 import React,{useEffect} from 'react';
 import './password.css';
+
 
 class DemoForm extends React.Component {
  
@@ -78,8 +79,7 @@ class DemoForm extends React.Component {
       <div>
        <Container className="container" maxWidth="sm">
          <Paper className="paper" >
-           <Avatar/>
-           <Typography></Typography>
+          
         <form onSubmit={this.handleSubmit}>
         <div class="form-group">
             <label for="password">Current Password:</label>
@@ -123,6 +123,7 @@ class DemoForm extends React.Component {
               <div className="danger">{this.state.errors.confirm_password}</div>
           </div>
           <br/>
+          <a href="#">Forgot Password?</a><br/><br/>
           <Button variant="contained" color="primary" type="submit" value="Submit"  >Save Changes</Button>
         </form>
         </Paper>

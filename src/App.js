@@ -17,7 +17,7 @@ import { loadprofile } from "./state/user/slice";
 import Profile from "./Settings/Profile";
 import ConsultationChat from "./Consultation/ConsultationChat";
 import Password from "./Settings/Password";
-
+import Final from './Settings/FinalSettings';
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("auth-token");
@@ -47,7 +47,7 @@ function App() {
           <Route path="/self-appointment" exact component={Index}></Route>
           <Route path="/others-appointment" exact component={Others}></Route>
           <Route path="/profile" exact component={Profile} />
-          <Route path="/settings" exact component={Settings} />
+          <Route path="/settings" exact component={Final} />
           
         </ThemeProvider>
       </Switch>

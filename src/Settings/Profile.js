@@ -1,4 +1,4 @@
-import { Container, Grid } from "@material-ui/core";
+import { Container, Grid, Menu, MenuList, Select } from "@material-ui/core";
 import React, { useEffect } from "react";
 import Page from "../layout/Page/page";
 import Avatar from "@material-ui/core/Avatar";
@@ -102,11 +102,13 @@ const handleChange=(e)=>{
  }
  const savebutton=()=>{
   setPut(true);
+  setState({contact:contacty,email:emaily,name:namey,dob:doby,address:addressy,states:statey,locality:localityy,city:cityy,pincode:pincodey})
 
 }
  
   return (
     <>
+    
     <div className={classes.root}>
         <Grid   container wrap="nowrap" spacing={3}>
           <Grid item  xs={9} sm={12}  direction="row" className={classes.heading}  >
@@ -155,11 +157,13 @@ const handleChange=(e)=>{
   : 
   <></>}
 </div>
-   
+   </div>
           <br/>
+          {(put)?
+          <>
           <Grid item  >
            <Typography className={classes.namee}  >Name*</Typography>
-           <input  disabled={put} type="text" className={classes.name}  onInput={handleChange}  value={state.name} variant="outlined"></input>
+            <Typography className={classes.name} >{profileInfo.firstName+" "+profileInfo.lastName}</Typography>
           </Grid>
         
       <hr/>
@@ -168,33 +172,21 @@ const handleChange=(e)=>{
           
             <Grid item xs={4}>
             <Typography className={classes.grey} >Mobile Number*</Typography>
-           <input   type="number" disabled={put} variant="outlined" onInput={handleChange}  value={state.contact}></input>
+           <Typography>{profileInfo.contactNumber}</Typography><br/>
            <Typography className={classes.grey} >Date of birth</Typography>
-           <input type="date" disabled={put}  onInput={handleChange}  value={state.dob} variant="outlined"></input>
+           <Typography>{profileInfo.dob}</Typography><br/>
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} >Email</Typography>
-           <input disabled={put} type="email" onInput={handleChange}  value={state.email} variant="outlined"></input>
+            <Typography>{profileInfo.email}</Typography><br/>
            <Typography className={classes.grey} >Blood Group</Typography>
-           <select disabled={put}  variant="outlined" onInput={handleChange}  defaultValue={profileInfo.bloodgroup} className={classes.textField}>
-           {bloodgroups.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-           </select>
+           <Typography>{profileInfo.bloodgroup}</Typography><br/>
             </Grid>
             <Grid item xs={4}>
             <Typography className={classes.grey} >Gender*</Typography>
-           <select disabled={put} className={classes.textField} defaultValue={profileInfo.gender} select variant="outlined">
-           {gender.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-           </select>
+            <Typography>{profileInfo.gender}</Typography><br/>
            <Typography  className={classes.grey} >Timezone</Typography>
-           <input disabled={put}  className={classes.textField}   defaultValue={profileInfo.timezone} variant="outlined"></input>
+           <Typography>{profileInfo.timezone}</Typography><br/>
             </Grid>
           
         </Grid>
@@ -203,25 +195,92 @@ const handleChange=(e)=>{
          
           <Grid item xs>
           <Typography className={classes.grey} >House No./Street Name/Area</Typography>
-           <input disabled={put} onInput={handleChange}  value={state.address} type="text" variant="outlined"></input>
+          <Typography>{profileInfo.address}</Typography><br/>
            <Typography className={classes.grey} >State</Typography>
-           <input disabled={put} type="text" onInput={handleChange}  value={state.states} variant="outlined"></input>
+           <Typography>{profileInfo.states}</Typography><br/>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >Colony/Street/Locality</Typography>
-           <input disabled={put} type="text" variant="outlined"  onInput={handleChange}  value={state.locality}></input>
+          <Typography>{profileInfo.locality}</Typography><br/>
            <Typography className={classes.grey} >Country*</Typography>
-           <input disabled={put} select className={classes.textField} type="text" variant="outlined"  onInput={handleChange}  defaultValue={state.country}></input>
+           <Typography>{profileInfo.country}</Typography><br/>
           </Grid>
           <Grid item xs>
           <Typography className={classes.grey} >City</Typography>
-           <input disabled={put} type="text" variant="outlined" onInput={handleChange}  value={state.city} ></input>
+          <Typography>{profileInfo.city}</Typography><br/>
            <Typography className={classes.grey} >Pincode</Typography>
-           <input disabled={put} type="number" variant="outlined"  onInput={handleChange}  value={state.pincode}></input>
+           <Typography>{pincodey}</Typography><br/>
           </Grid>
         </Grid>
-     
-    </div>
+          </>
+          :
+            <>
+          <Grid item  >
+           <Typography className={classes.namee}  >Name*</Typography>
+           <TextField  type="text" className={classes.name2}  onInput={handleChange}  value={state.name} variant="outlined"></TextField>
+          </Grid>
+        
+      <hr/>
+        <Grid container className={classes.grid} wrap="nowrap" spacing={3}>
+          
+          
+            <Grid item xs={4}>
+            <Typography className={classes.grey} >Mobile Number*</Typography>
+           <TextField   type="number" variant="outlined" onInput={handleChange}  value={state.contact}></TextField>
+           <Typography className={classes.grey} >Date of birth</Typography>
+           <TextField type="date"  onInput={handleChange}  value={state.dob} variant="outlined"></TextField>
+            </Grid>
+            <Grid item xs={4}>
+            <Typography className={classes.grey} >Email</Typography>
+           <TextField type="email" onInput={handleChange}  value={state.email} variant="outlined"></TextField>
+           <Typography className={classes.grey} >Blood Group</Typography>
+           <Select  variant="outlined" onInput={handleChange}  defaultValue={profileInfo.bloodgroup} className={classes.textField}>
+           {bloodgroups.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+           </Select>
+            </Grid>
+            <Grid item xs={4}>
+            <Typography className={classes.grey} >Gender*</Typography>
+           <Select className={classes.textField} defaultValue={profileInfo.gender} select variant="outlined">
+           {gender.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+           </Select>
+           <Typography  className={classes.grey} >Timezone</Typography>
+           <TextField  className={classes.textField}   defaultValue={profileInfo.timezone} variant="outlined"></TextField>
+            </Grid>
+          
+        </Grid>
+     <hr/>
+        <Grid container className={classes.grid} wrap="nowrap" spacing={3}>
+         
+          <Grid item xs>
+          <Typography className={classes.grey} >House No./Street Name/Area</Typography>
+           <TextField onInput={handleChange}  value={state.address} type="text" variant="outlined"></TextField>
+           <Typography className={classes.grey} >State</Typography>
+           <TextField type="text" onInput={handleChange}  value={state.states} variant="outlined"></TextField>
+          </Grid>
+          <Grid item xs>
+          <Typography className={classes.grey} >Colony/Street/Locality</Typography>
+           <TextField type="text" variant="outlined"  onInput={handleChange}  value={state.locality}></TextField>
+           <Typography className={classes.grey} >Country*</Typography>
+           <TextField select className={classes.textField} type="text" variant="outlined"  onInput={handleChange}  defaultValue={state.country}></TextField>
+          </Grid>
+          <Grid item xs>
+          <Typography className={classes.grey} >City</Typography>
+           <TextField type="text" variant="outlined" onInput={handleChange}  value={state.city} ></TextField>
+           <Typography className={classes.grey} >Pincode</Typography>
+           <TextField type="number" variant="outlined"  onInput={handleChange}  value={state.pincode}></TextField>
+          </Grid>
+        </Grid>
+        </>
+}
+    
     </>
    
   );
