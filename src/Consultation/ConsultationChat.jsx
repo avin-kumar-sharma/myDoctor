@@ -2,10 +2,12 @@ import React from "react";
 import { useStore, useDispatch } from "react-redux";
 import ProtectedPage from "../layout/Page/protectedpage";
 import i18n from "../translations/en/i18n.json";
-import { Container, Paper, Card, Grid, Avatar, Button } from "@material-ui/core";
+import { Container, Paper, Card, Grid, Avatar, Button, IconButton, TextField } from "@material-ui/core";
 import { useStyles } from "./styles";
 import { fetchAppointmentDetails } from "../state/appointment/slice";
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
+import SendIcon from '@material-ui/icons/Send';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 
 const ConsultationChat = ({ match, appointment, ...restProps }) => {
   const { appointmentId } = match.params;
@@ -41,17 +43,111 @@ const ConsultationChat = ({ match, appointment, ...restProps }) => {
               <span>Consultation Chat</span>
             </div>
             <div className={classes.chatContainer}>
-              <div className={classes.doctorHeading}>
-                <Avatar className={classes.doctorAvatarLarge} alt={getDoctorName(appointmentData)} src={getDoctorProfileImageURL(appointmentData)} />
-                <div className="title">
-                  {getDoctorName(appointmentData)}
+              <div className="chatHead">
+                <div className={classes.profileBox}>
+                  <Avatar className={classes.profileAvatar} alt={getPatientName(appointmentData)} />
+                  <div className="title">
+                    {getPatientName(appointmentData)}
+                  </div>
+                </div>
+                <SwapHorizIcon fontSize="large" color="primary" />
+                <div className={classes.profileBox}>
+                  <Avatar alt={getDoctorName(appointmentData)} className={classes.profileAvatar} src={getDoctorProfileImageURL(appointmentData)} />
+                  <div className="title">
+                    {getDoctorName(appointmentData)}
+                  </div>
                 </div>
               </div>
+              <div className="appointment">
+                <span className="title">Appointment</span>
+                <span className="datetime">{getAppointmentDate(appointmentData)} - {getAppointmentTiming(appointmentData)}</span>
+              </div>
               <div className={classes.conversationBox}>
-                Conversation not yet started!
+                <ul>
+                  <li class="left">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">01:25 AM</span>
+                    </div>
+                  </li>
+                  <li class="right">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">a minute ago</span>
+                    </div>
+                  </li>
+                  <li class="left">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">01:25 AM</span>
+                    </div>
+                  </li>
+                  <li class="right">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">a minute ago</span>
+                    </div>
+                  </li>
+                  <li class="left">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">01:25 AM</span>
+                    </div>
+                  </li>
+                  <li class="left">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">01:25 AM</span>
+                    </div>
+                  </li>
+                  <li class="right">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">a minute ago</span>
+                    </div>
+                  </li>
+                  <li class="right">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">a minute ago</span>
+                    </div>
+                  </li>
+                  <li class="left">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">01:25 AM</span>
+                    </div>
+                  </li>
+                  <li class="right">
+                    <div class="message">
+                      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dui massa, suscipit eu enim in, auctor porta turpis. Donec ultrices nibh et eleifend venenatis.</span>
+                      <span class="timestamp">a minute ago</span>
+                    </div>
+                  </li>
+                </ul>
               </div>
               <div className={classes.chatBox}>
-                <input type="text" /> <button>Send</button>
+                <div className="inputMessageBox">
+                  <TextField
+                    aria-label="enter your message"
+                    color="primary"
+                    multiline
+                    fullWidth={true}
+                    variant="outlined"
+                    margin="dense"
+                    hiddenLabel={true}
+                    maxRows={10}
+                    placeholder="Your message"
+                  />
+                </div>
+                <div className="chatActions">
+                  <IconButton
+                    color="primary"
+                    aria-label="send message"
+                    component="span">
+                    <SendIcon />
+                  </IconButton>
+                </div>
               </div>
             </div>
           </Paper>
@@ -78,8 +174,8 @@ function getPatientName(appointmentData) {
     return i18n['consultationChat']['self'];
   }
   const otherName = appointmentData.otherName;
-  const otherMobileNumber = appointmentData.otherMobileNumber ? `(${appointmentData.otherMobileNumber})` : "";
-  return `${otherName} ${otherMobileNumber}`;
+  // const otherMobileNumber = appointmentData.otherMobileNumber ? `(${appointmentData.otherMobileNumber})` : "";
+  return `${otherName}`;
 }
 
 function getAppointmentDate(appointmentData) {
