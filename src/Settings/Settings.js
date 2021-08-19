@@ -15,21 +15,32 @@ import MailIcon from '@material-ui/icons/Mail';
 import ProtectedPage from '../layout/Page/protectedpage';
 import Profile from './Profile';
 import Password from './Password';
+import { BrowserRouter, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import DemoForm from './Password';
+import { NoEncryption } from '@material-ui/icons';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    
+  },
+  link:{
+    textDecoration:'none',
+    color: 'black'
   },
 
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    
   },
   drawerPaper: {
     width: drawerWidth,
     marginTop:65,
+    position: 'absolute'
   },
   drawerContainer: {
     overflow: 'auto',
@@ -50,16 +61,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ClippedDrawer() {
   const classes = useStyles();
-  const[display,setDisplay]=React.useState(true);
-const displayl=()=>{
-   setDisplay(true);
-}
-const displayp=()=>{
-  setDisplay(false);
-}
+ 
+
   return (
-    <ProtectedPage>
+    <ProtectedPage >
     <div className={classes.root}>
+      <BrowserRouter>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -70,25 +77,32 @@ const displayp=()=>{
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            <ListItem onClick={displayl} className={classes.list}>Profile</ListItem>
-            <ListItem onclick={displayp} className={classes.list}>Change Password</ListItem>
-            
+            <Link to="/Profile" className={classes.link}>
+            <ListItem className={classes.list}>Profile</ListItem>
+            </Link>
+            <Link to="/DemoForm" className={classes.link}>
+            <ListItem className={classes.list}>Change Password</ListItem>
+            </Link>
           </List>
         
          
         </div>
       </Drawer>
-        {(display)?
-          <main className={classes.content}>
-      
-        <Profile />
-        </main>
-      :
       <main className={classes.content}>
-      <Password/>
+      <Switch>
+        <Route exact path="/settings" >
+        <Profile/>
+        </Route>
+        <Route exact path="/Profile" >
+        <Profile/>
+        </Route>
+        <Route exact path="/DemoForm">
+          <DemoForm/>
+        </Route>
+      </Switch>
       </main>
-      }
       
+      </BrowserRouter>
     </div>
     
     </ProtectedPage>
